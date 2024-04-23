@@ -1,19 +1,26 @@
+<div>
 <header class="navbar">
+
   <div class="logo">
     <img src="../assets/logo_transparent.png" height="105" width="270"/>
   </div>
   <nav>
     <ul>
-      <li><button>Kategori</button></li>
-      <li><button>Foreninger</button></li>
-      <li><button>About</button></li>
-      <li><button>Contact</button></li>
+      <li><button routerLink="">Home</button></li>
+      <li><button routerLink="/kategori">Kategori</button></li>
+      <li><button routerLink="/foreninger">Foreninger</button></li>
+      <li><button routerLink="/about">About</button></li>
+      <li><button routerLink="/contact">Contact</button></li>
+      <li><button routerLink="/user-login" >Login</button></li>
+      <li><button routerLink="/user-signup">Signup</button></li>
+
     </ul>
   </nav>
 </header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer>
 
-
-
-
-
-<router-outlet />
+</footer>
+</div>
