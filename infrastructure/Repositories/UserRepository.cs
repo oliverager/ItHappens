@@ -19,7 +19,7 @@ public class UserRepository
     public User CreateUser(string firstname, string lastname, string username, string email, int phone, int usertype_id)
     {
         string sql = @$"
-        INSERT INTO qkyrffhj.users (firstname, lastname, username, email, phone, usertype_id) 
+        INSERT INTO users (firstname, lastname, username, email, phone, usertype_id) 
         VALUES (@firstname, @lastname, @username, @email, @phone, @usertype_id)
         RETURNING
         user_id as {nameof(User.user_id)},
@@ -53,13 +53,13 @@ public class UserRepository
     public User UpdateUser(int user_id, string firstname, string lastname, string username, string email, int phone, int usertype_id)
     {
         string sql = @$"
-        UPDATE ithappens.users SET firstname = @firstname, lastname = @lastName, username = @username, email = @email,  phone = @phone, usertype_id = @usertype_id
+        UPDATE ithappens.users SET firstname = @firstname, lastname = @lastname, username = @username, email = @email,  phone = @phone, usertype_id = @usertype_id
         WHERE user_id = @user_id 
         RETURNING
         user_id as {nameof(User.user_id)},
         firstname as {nameof(User.firstname)},
         lastname as {nameof(User.lastname)},
-        username as {nameof(User.username)}
+        username as {nameof(User.username)},
         email as {nameof(User.email)},
         phone as {nameof(User.phone)},
         usertype_id as {nameof(User.usertype_id)}
