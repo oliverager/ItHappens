@@ -20,7 +20,7 @@ public class PasswordHashRepository
     
     //Create
     
-    public void createUser(int user_id, string password_hash, string salt, string algorithm)
+    public void CreateUser(int user_id, string password_hash, string salt, string algorithm)
     {
         const string sql = $@"
     INSERT INTO ithappens.passwordhash (user_id, password_hash, salt, algorithm)
@@ -43,10 +43,10 @@ public class PasswordHashRepository
     {
         const string sql = $@"
     SELECT
-        passwordhash.user_id as {nameof(PasswordHash.User_Id)},
-        password_hash as {nameof(PasswordHash.Hash)},
-        salt as {nameof(PasswordHash.Salt)},
-        algorithm as {nameof(PasswordHash.Algorithm)}
+        passwordhash.user_id as {nameof(PasswordHash.user_id)},
+        password_hash as {nameof(PasswordHash.hash)},
+        salt as {nameof(PasswordHash.salt)},
+        algorithm as {nameof(PasswordHash.algorithm)}
     FROM ithappens.passwordhash
     JOIN ithappens.users ON ithappens.passwordhash.user_id = ithappens.users.user_id
     WHERE ithappens.users.email = @email;

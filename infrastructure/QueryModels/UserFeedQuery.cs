@@ -1,6 +1,6 @@
-﻿namespace infrastructure.DataModels;
+﻿namespace infrastructure.QueryModels;
 
-public class User
+public class UserFeedQuery
 {
     public int user_id { get; set; }
     public string firstname { get; set; }
@@ -9,5 +9,4 @@ public class User
     public string email { get; set; }
     public int phone { get; set; }
     public int usertype_id { get; set; }
-
 }

@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using infrastructure.DataModels;
+using infrastructure.QueryModels;
 using Npgsql;
 
 namespace infrastructure.Repositories;
@@ -15,23 +16,24 @@ public class UserRepository
     
     // Creating a User
 
-    public User CreateUser(string Firstname, string Lastname, string Email, int Phone, int UserType_Id)
+    public User CreateUser(string firstname, string lastname, string username, string email, int phone, int usertype_id)
     {
         string sql = @$"
-        INSERT INTO ithappens.users (Firstname, Lastname, Email, Phone, UserType_Id) 
-        VALUES (@Firstname, @Lastname, @Email, @Phone, @UserType_Id)
+        INSERT INTO ithappens.users (firstname, lastname, username, email, phone, usertype_id) 
+        VALUES (@firstname, @lastname, @username, @email, @phone, @usertype_id)
         RETURNING
-        user_id as {nameof(User.User_Id)},
-        Firstname as {nameof(User.Firstname)},
-        Lastname as {nameof(User.Lastname)},
-        Email as {nameof(User.Email)},
-        Phone as {nameof(User.Phone)}
-        UserType_Id as {nameof(User.UserType_Id)}
+        user_id as {nameof(User.user_id)},
+        firstname as {nameof(User.firstname)},
+        lastname as {nameof(User.lastname)},
+        username as {nameof(User.username)}
+        email as {nameof(User.email)},
+        phone as {nameof(User.phone)}
+        usertype_id as {nameof(User.usertype_id)}
         ";
             
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<User>(sql, new { Firstname, Lastname, Email, Phone, UserType_Id});
+            return conn.QueryFirst<User>(sql, new { firstname, lastname, username, email, phone, usertype_id});
         }
     }   
     
@@ -48,24 +50,50 @@ public class UserRepository
     
     // Update User
     
-    public User UpdateUser(int User_Id, string Firstname, string Lastname, string Email, int Phone, int UserType_Id)
+    public User UpdateUser(int user_id, string firstname, string lastname, string username, string email, int phone, int usertype_id)
     {
         string sql = @$"
-        UPDATE ithappens.users SET Firstname = @Firstname, Lastname = @lastName, Email = @email,  phone = @phone, UserType_Id = @usertype_Id
-        WHERE user_id = @user_Id 
+        UPDATE ithappens.users SET firstname = @firstname, lastname = @lastName, username = @username, email = @email,  phone = @phone, usertype_id = @usertype_id
+        WHERE user_id = @user_id 
         RETURNING
-        User_Id as {nameof(User.User_Id)},
-        Firstname as {nameof(User.Firstname)},
-        Lastname as {nameof(User.Lastname)},
-        Email as {nameof(User.Email)},
-        Phone as {nameof(User.Phone)},
-        UserType_Id as {nameof(User.UserType_Id)}
+        user_id as {nameof(User.user_id)},
+        firstname as {nameof(User.firstname)},
+        lastname as {nameof(User.lastname)},
+        username as {nameof(User.username)}
+        email as {nameof(User.email)},
+        phone as {nameof(User.phone)},
+        usertype_id as {nameof(User.usertype_id)}
         ";
             
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<User>(sql, new { User_Id, Firstname, Lastname, Email, Phone, UserType_Id });
+            return conn.QueryFirst<User>(sql, new { user_id, firstname, lastname, username, email, phone, usertype_id });
         }
+    }
+    
+    // Get User by ID
+    
+    public User? GetById(int userId)
+    {
+        string sql = @$"
+        SELECT
+        user_id as {nameof(UserFeedQuery.user_id)},
+        firstname as {nameof(UserFeedQuery.firstname)},
+        lastname as {nameof(UserFeedQuery.lastname)},
+        username as {nameof(UserFeedQuery.username)}
+        email as {nameof(UserFeedQuery.email)},
+        phone as {nameof(UserFeedQuery.phone)},
+        usertype_id as {nameof(UserFeedQuery.usertype_id)}
+       
+        
+        FROM ithappens.users
+        WHERE user_id = @user_Id 
+        ";
+            
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return conn.QueryFirst<User>(sql, new { userId });
+        } 
     }
 };
 

@@ -13,16 +13,16 @@ public class UserService
     }
     //Create user
     
-    public User CreateUser(string Firstname, string Lastname, string Email, int Phone, int UserType_Id)
+    public User CreateUser(string firstname, string lastname, string username string email, int phone, int usertype_id)
     {
-        return _userRepository.CreateUser(Firstname, Lastname, Email, Phone, UserType_Id);
+        return _userRepository.CreateUser(firstname, lastname, username, email, phone, usertype_id);
     }
     
     // Update user
     
-    public User UpdateUser(int User_Id, string Firstname, string Lastname, string Email, int Phone, int UserType_Id)
+    public User UpdateUser(int user_id, string firstname, string lastname, string username, string email, int phone, int usertype_id)
     {
-        return _userRepository.UpdateUser(User_Id, Firstname, Lastname, Email, Phone, UserType_Id);
+        return _userRepository.UpdateUser(user_id, firstname, lastname, username, email, phone, usertype_id);
     }
     
     // Delete user
