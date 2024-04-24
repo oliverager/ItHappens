@@ -1,7 +1,7 @@
 ﻿using infrastructure.DataModels;
 using infrastructure.Repositories;
 
-namespace services.Services;
+namespace service.Services;
 
 public class UserService
 {

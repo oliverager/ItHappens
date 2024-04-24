@@ -22,6 +22,17 @@ public static class Startup
     {
         var builder = WebApplication.CreateBuilder(args);
         
+        if (builder.Environment.IsDevelopment())
+        {
+            builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString,
+                dataSourceBuilder => dataSourceBuilder.EnableParameterLogging());
+        }
+
+        if (builder.Environment.IsProduction())
+        {
+            builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString);
+        }
+        
         builder.Services.AddSingleton<AccountService>();
         builder.Services.AddSingleton<UserRepository>();
         builder.Services.AddSingleton<PasswordHashRepository>();
