@@ -10,11 +10,11 @@ public class WsWithMetadata(IWebSocketConnection connection)
 
 public static class WebSocketStateService
 {
-    public static Dictionary<Guid, IWebSocketConnection> Connections = new();
+    public static Dictionary<Guid, WsWithMetadata> Connections = new();
 
     public static bool AddConnection(IWebSocketConnection ws)
     {
-        //return Connections.TryAdd(ws.ConnectionInfo.Id, new WsWithMetadata(ws));
+        return Connections.TryAdd(ws.ConnectionInfo.Id, new WsWithMetadata(ws));
         throw new Exception();
     }
 }

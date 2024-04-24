@@ -19,7 +19,7 @@ public class ClientWantsToSignup : BaseEventHandler<ClientWantsToSignupDto>
     public override Task Handle(ClientWantsToSignupDto dto, IWebSocketConnection socket)
     {
         // Set the username for the socket connection
-        //WebSocketStateService.Connections[socket.ConnectionInfo.Id].Username = dto.username;
+        WebSocketStateService.Connections[socket.ConnectionInfo.Id].Username = dto.username;
 
         // Create a personalized welcome message
         var welcomeMessage = new ServerWelcomesUser(dto.username);
