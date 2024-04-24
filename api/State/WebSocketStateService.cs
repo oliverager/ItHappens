@@ -5,7 +5,7 @@ namespace api.State;
 public class WsWithMetadata(IWebSocketConnection connection)
 {
     public IWebSocketConnection Connection { get; set; } = connection;
-    public string Username { get; set; }
+    public string userName { get; set; }
 }
 
 public static class WebSocketStateService

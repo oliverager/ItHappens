@@ -39,7 +39,7 @@ public class AccountService
         throw new InvalidCredentialException("Invalid credential!");
     }
 
-    public User Register(string firstname, string lastname, string email, int phone, int usertype_id, string password)
+    public User Register(string username, string firstname, string lastname, string email, int phone, int usertype_id, string password)
     {
         try
         {
@@ -50,7 +50,7 @@ public class AccountService
                 var hashAlgorithm = PasswordHashAlgorithm.Create();
                 var salt = hashAlgorithm.GenerateSalt();
                 var passwordHash = hashAlgorithm.HashPassword(password, salt);
-                var user = _userRepository.CreateUser(firstname, lastname, email, phone, usertype_id);
+                var user = _userRepository.CreateUser(firstname,lastname, username, email, phone, usertype_id);
                 _passwordHashRepository.CreateUser(user.user_id, passwordHash, salt, hashAlgorithm.GetName());
                 return user;
             }

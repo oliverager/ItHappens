@@ -1,7 +1,12 @@
 using System.Reflection;
 using api.State;
 using Fleck;
+using infrastructure;
+using infrastructure.Repositories;
 using lib;
+using Npgsql;
+using service.Services;
+
 
 namespace api;
 
@@ -16,6 +21,10 @@ public static class Startup
     public static void Statup(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        
+        builder.Services.AddSingleton<AccountService>();
+        builder.Services.AddSingleton<UserRepository>();
+        builder.Services.AddSingleton<PasswordHashRepository>();
 
         var clientEventHandlers = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());
 

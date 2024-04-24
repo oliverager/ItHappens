@@ -2,27 +2,53 @@
 using api.State;
 using Fleck;
 using lib;
+using service.Services;
 
 namespace api.ClientWants;
 
 public class ClientWantsToSignupDto : BaseDto
 {
     public string username { get; set; }
+    public string firstname { get; set; }
+    public string lastname { get; set; }
     public string password { get; set; }
     public string email { get; set; }
-    public int tel { get; set; }
+    public int phone { get; set; }
+    
+    public int userType_id { get; set;}
     
 }
 
 public class ClientWantsToSignup : BaseEventHandler<ClientWantsToSignupDto>
 {
+   
+    private readonly AccountService _accountService;
+    
+    
     public override Task Handle(ClientWantsToSignupDto dto, IWebSocketConnection socket)
     {
+        
+        if (!WebSocketStateService.Connections.ContainsKey(socket.ConnectionInfo.Id))
+        {
+            WebSocketStateService.AddConnection(socket);
+        }
+        
         // Set the username for the socket connection
-        WebSocketStateService.Connections[socket.ConnectionInfo.Id].Username = dto.username;
+        WebSocketStateService.Connections[socket.ConnectionInfo.Id].userName = dto.email;
 
+        try
+        {
+            _accountService.Register(dto.username, dto.firstname, dto.lastname, dto.email, dto.phone, dto.userType_id, dto.password);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
         // Create a personalized welcome message
-        var welcomeMessage = new ServerWelcomesUser(dto.username);
+        var welcomeMessage = new ServerWelcomesUser(dto.email);
 
         // Send the welcome message serialized as JSON
         socket.Send(JsonSerializer.Serialize(welcomeMessage));

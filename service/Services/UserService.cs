@@ -13,7 +13,7 @@ public class UserService
     }
     //Create user
     
-    public User CreateUser(string firstname, string lastname, string username string email, int phone, int usertype_id)
+    public User CreateUser(string firstname, string lastname, string username, string email, int phone, int usertype_id)
     {
         return _userRepository.CreateUser(firstname, lastname, username, email, phone, usertype_id);
     }

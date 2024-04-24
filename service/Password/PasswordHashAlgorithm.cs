@@ -1,5 +1,5 @@
 ﻿using System.Security.Cryptography;
-using services.Password;
+using service.Password;
 
 namespace service.Password;
 
