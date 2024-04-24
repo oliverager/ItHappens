@@ -5,5 +5,5 @@ public class PasswordHash
     public int User_Id { get; set; }
     public required string Hash { get; set; }
     public required string Salt { get; set; }
-    public required string Algirithm { get; set; }
+    public required string Algorithm { get; set; }
 }

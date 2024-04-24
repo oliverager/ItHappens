@@ -7,6 +7,6 @@ public class User
     public string Lastname { get; set; }
     public string Email { get; set; }
     public int Phone { get; set; }
-    public int userTypeId { get; set; }
+    public int UserType_Id { get; set; }
 
 }
