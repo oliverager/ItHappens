@@ -19,15 +19,15 @@ public class UserRepository
     public User CreateUser(string firstname, string lastname, string username, string email, int phone, int usertype_id)
     {
         string sql = @$"
-        INSERT INTO ithappens.users (firstname, lastname, username, email, phone, usertype_id) 
+        INSERT INTO qkyrffhj.users (firstname, lastname, username, email, phone, usertype_id) 
         VALUES (@firstname, @lastname, @username, @email, @phone, @usertype_id)
         RETURNING
         user_id as {nameof(User.user_id)},
         firstname as {nameof(User.firstname)},
         lastname as {nameof(User.lastname)},
-        username as {nameof(User.username)}
+        username as {nameof(User.username)},
         email as {nameof(User.email)},
-        phone as {nameof(User.phone)}
+        phone as {nameof(User.phone)},
         usertype_id as {nameof(User.usertype_id)}
         ";
             
