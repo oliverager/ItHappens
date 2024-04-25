@@ -42,6 +42,20 @@ public static class Startup
         var app = builder.Build();
 
         var server = new WebSocketServer("ws://0.0.0.0:8181");
+        
+        app.UseCors(options =>
+
+        {
+
+            options.SetIsOriginAllowed(origin => true)
+
+                .AllowAnyMethod()
+
+                .AllowAnyHeader()
+
+                .AllowCredentials();
+
+        });
 
         server.Start(ws =>
         {
