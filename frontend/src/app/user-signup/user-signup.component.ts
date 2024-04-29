@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+
 import {
   AbstractControl,
-  FormBuilder, ReactiveFormsModule,
+  FormControl, FormGroup, ReactiveFormsModule,
   ValidationErrors,
   ValidatorFn,
   Validators
 } from "@angular/forms";
+import {CommonModule} from "@angular/common";
 const passwordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const value: string = control.value;
   const hasUpperCase = /[A-Z]/.test(value);
@@ -21,8 +23,7 @@ const passwordValidator: ValidatorFn = (control: AbstractControl): ValidationErr
 @Component({
   selector: 'app-user-signup',
   standalone: true,
-  imports: [
-    RouterOutlet, RouterLink, RouterLinkActive, ReactiveFormsModule,
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, ReactiveFormsModule, CommonModule
   ],
   templateUrl: './user-signup.component.html',
   styleUrl: './user-signup.component.scss'
@@ -31,21 +32,26 @@ const passwordValidator: ValidatorFn = (control: AbstractControl): ValidationErr
 
 
 export class UserSignupComponent {
-  ws: WebSocket = new WebSocket('ws://0.0.0.0:8181')
 
-
-  createNewUser = this.fb.group({
-    userName: ['', Validators.required],
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    phone: ['', Validators.required],
-    password: ['', Validators.required, passwordValidator]
-
+userForm: FormGroup;
+isFormSubmitted: Boolean = false;
+  constructor() {
+    this.userForm = new FormGroup({
+      firstName: new FormControl("", [Validators.required]),
+      userName: new FormControl("", [Validators.required]),
+      lastName: new FormControl("", [Validators.required,Validators.minLength(4)]),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      phoneNumber: new FormControl("", [Validators.required, Validators.pattern("[0-9]{8}")]),
+      passWord: new FormControl("", [Validators.required, passwordValidator])
   })
-
-  constructor(public fb: FormBuilder) {
   }
+onSubmit(){
+const isFormValid = this.userForm.valid
+  debugger;
+this.isFormSubmitted = true;
+}
 
 }
+
+
 
