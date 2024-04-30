@@ -41,8 +41,8 @@ public static class Startup
 
         var app = builder.Build();
 
-        var post = Environment.GetEnvironmentVariable("POST") ?? "8181";
-        var server = new WebSocketServer("ws://0.0.0.0:8181" + post);
+        var post = Environment.GetEnvironmentVariable("PORT") ?? "8181";
+        var server = new WebSocketServer("ws://0.0.0.0:" + post);
         
         app.UseCors(options =>
 
