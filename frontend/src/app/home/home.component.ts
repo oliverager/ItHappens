@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {State} from "../../state";
 import {CommonModule} from "@angular/common";
 
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -11,6 +12,8 @@ import {CommonModule} from "@angular/common";
 })
 export class HomeComponent {
 constructor(public state: State) {
-  console.log(this.state.cards)
+
 }
+
+
 }

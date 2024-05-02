@@ -1,6 +1,7 @@
 
 <div class="body">
 <div class="card-container">
+
   <div *ngFor="let card of state.cards" class="card">
     <img [src]="card.imgurl" alt="Card Image">
     <div class="card-content">
@@ -9,5 +10,16 @@
       <p>{{ card.activities }}</p>
     </div>
   </div>
+  </div>
+
+  <div class="booking-container">
+    <div *ngFor="let booking of state.bookings" class="booking">
+    <img [src]="booking.imgurl" alt="Booking Image">
+    <div class="booking-content"></div>
+      <h3>{{booking.location}}</h3>
+  </div>
 </div>
-</div>
+  </div>
+
+
+

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Card } from './entities'
+import {Booking, Card} from './entities'
 
 @Injectable({
   providedIn: 'root'
@@ -87,6 +87,89 @@ export class State {
       imgurl: "assets/Football field.jpg"
     },
   ];
+  bookings: Booking[] = [
+    {
+      id: 1,
+      bookings_id: 1,
+      association_id: 1,
+      location: "lane 2",
+      activity_id: 1,
+      imgurl: "assets/football-field.png"
+
+    },
+    {
+      id: 2,
+      bookings_id: 2,
+      association_id: 2,
+      location: "lane 3",
+      activity_id: 2,
+      imgurl: "assets/football-field.png"
+    },
+    {
+      id: 3,
+      bookings_id: 3,
+      association_id: 3,
+      location: "lane 4",
+      activity_id: 3,
+      imgurl: "assets/football-field.png"
+    },
+    {
+      id: 4,
+      bookings_id: 4,
+      association_id: 4,
+      location: "lane 5",
+      activity_id: 4,
+      imgurl: "assets/football-field.png"
+    },
+    {
+      id: 5,
+      bookings_id: 5,
+      association_id: 5,
+      location: "lane 6",
+      activity_id: 5,
+      imgurl: "assets/football-field.png"
+    },
+    {
+      id: 6,
+      bookings_id: 6,
+      association_id: 6,
+      location: "lane 2",
+      activity_id: 6,
+      imgurl: "assets/football-field.png"
+    },
+    {
+      id: 7,
+      bookings_id: 7,
+      association_id: 7,
+      location: "lane 7",
+      activity_id: 7,
+      imgurl: "assets/football-field.png"
+    },
+    {
+      id: 8,
+      bookings_id: 8,
+      association_id: 8,
+      location: "lane 8",
+      activity_id: 8,
+      imgurl: "assets/football-field.png"
+    },
+    {
+      id: 9,
+      bookings_id: 9,
+      association_id: 9,
+      location: "lane 9",
+      activity_id: 9,
+      imgurl: "assets/football-field.png"
+    },
+    {
+      id: 10,
+      bookings_id: 10,
+      association_id: 10,
+      location: "lane 10",
+      activity_id: 10,
+      imgurl: "assets/football-field.png"
+    }
+
+  ];
+
 }
-
-
