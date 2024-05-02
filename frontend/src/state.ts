@@ -1,10 +1,48 @@
 import { Injectable } from '@angular/core';
-import { Card } from './entities'
+import {Association, Card} from './models/entities'
 
 @Injectable({
   providedIn: 'root'
 })
 export class State {
+  associateds: Association[] = [
+    {
+      id: 1,
+      name: "Sports Club",
+      email: "info@sportsclub.com",
+      telephone: 12345678,
+      address: "1234 Sport Street",
+      description: "A club offering various sports activities",
+      imgUrl: "assets/Football field.jpg"
+    },
+    {
+      id: 2,
+      name: "Art Center",
+      email: "contact@artcenter.com",
+      telephone: 98765432,
+      address: "5678 Art Ave",
+      description: "Center for local artists to display their work",
+      imgUrl: "assets/Football field.jpg"
+    },
+    {
+      id: 3,
+      name: "Community Garden",
+      email: "garden@community.org",
+      telephone: 23456789,
+      address: "91011 Green Road",
+      description: "Community managed garden for residents",
+      imgUrl: "assets/badminton.jpg"
+    },
+    {
+      id: 4,
+      name: "Tech Hub",
+      email: "info@techhub.com",
+      telephone: 34567890,
+      address: "1213 Innovation Blvd",
+      description: "Tech hub providing workshops and seminars",
+      imgUrl: "assets/badminton.jpg"
+    }
+  ]
   cards: Card[] = [
     {
       id: 1,

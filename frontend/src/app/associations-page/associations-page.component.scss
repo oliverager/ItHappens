@@ -1,0 +1,112 @@
+.hero {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  height: 255px;
+  background: url("../../assets/BlueBackgroundImages.jpg") no-repeat center center;
+  background-size: cover;
+  min-width: 900px;
+}
+.hero__text-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.hero__text {
+  color: #ffffff;
+  text-align: center;
+}
+.hero__pre-heading {
+  margin-bottom: 5px;
+  font-size: 40px;
+  line-height: 1;
+  font-family: "Mr Dafoe", sans-serif;
+}
+.hero__heading {
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 700;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+}
+.wrapper {
+  margin: 0 auto;
+  width: 1170px;
+  max-width: 100%;
+  padding: 15px 15px;
+}
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 50% 50%;
+
+  padding-block: 2rem;
+  width: min(95%, 70rem);
+  padding-bottom: 80px;
+}
+.product__image {
+  position: relative;
+  width: 580px;
+  max-width: 100%;
+}
+.product__image img {
+  display: block;
+  border: 18px solid #fff;
+  box-shadow: -2px -2px 4px rgba(0,0,0,0.2), 0px 2px 4px rgba(0,0,0,0.15);
+  width: 100%;
+}
+.product__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: 700;
+}
+h1 {
+  font-weight: 700;
+  font-family: "Montserrat",sans-serif;
+  text-transform: none;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size: 33px;
+}
+
+.product__short-description {
+  font-size: 16px;
+  line-height: 1.6;
+  font-family: "Montserrat",sans-serif;
+  font-weight: 400;
+  color: #454545;
+  -webkit-font-smoothing: antialiased;
+  margin-bottom: 11px;
+}
+.product__addtocart {
+  display: flex;
+  align-content: center;
+  gap: 2rem;
+  height: fit-content;
+  width: 100%;
+}
+.kilo-input {
+  border-radius: 15px;
+  text-align: center;
+}
+.product-information {
+  background: #ffffff;
+  grid-column: span 2;
+  display: block;
+  border: 18px solid #fff;
+  box-shadow: -2px -2px 4px rgba(0,0,0,0.2), 0px 2px 4px rgba(0,0,0,0.15);
+  width: 100%;
+}
+h3 {
+  font-size: 20px;
+  font-family: "Montserrat",sans-serif;
+  font-weight: 400;
+}
