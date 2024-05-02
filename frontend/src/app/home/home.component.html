@@ -1,98 +1,13 @@
+
 <div class="body">
-
-
 <div class="card-container">
-<div class="card">
-<img src="assets/Football field.jpg">
-<div class="card-content">
-<h3>Card 1</h3>
-<p>Football field, Esbjerg Ø, sumpevej 3, bane 1</p>
-</div>
-</div>
-</div>
-
-<div class="card-container">
-<div class="card">
-<img src="assets/badminton.jpg">
-<div class="card-content">
-<h3>Card 2</h3>
-<p>Badminton bane, Efi hallerne, stampevej 36, hal 2</p>
-</div>
-</div>
-</div>
-
-<div class="card-container">
-<div class="card">
-<img src="assets/Football field.jpg">
-<div class="card-content">
-<h3>Card 3</h3>
-<p>Football field, Esbjerg Ø, sumpevej 3, bane 2</p>
-</div>
-</div>
-</div>
-
-  <div class="card-container">
-    <div class="card">
-      <img src="assets/Football field.jpg">
-      <div class="card-content">
-        <h3>Card 1</h3>
-        <p>Football field, Esbjerg Ø, sumpevej 3, bane 1</p>
-      </div>
+  <div *ngFor="let card of state.cards" class="card">
+    <img [src]="card.imgurl" alt="Card Image">
+    <div class="card-content">
+      <h3>{{ card.location }}</h3>
+      <p>{{ card.address }}</p>
+      <p>{{ card.activities }}</p>
     </div>
   </div>
-
-  <div class="card-container">
-    <div class="card">
-      <img src="assets/badminton.jpg">
-      <div class="card-content">
-        <h3>Card 2</h3>
-        <p>Badminton bane, Efi hallerne, stampevej 36, hal 2</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card-container">
-    <div class="card">
-      <img src="assets/Football field.jpg">
-      <div class="card-content">
-        <h3>Card 3</h3>
-        <p>Football field, Esbjerg Ø, sumpevej 3, bane 2</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card-container">
-    <div class="card">
-      <img src="assets/Football field.jpg">
-      <div class="card-content">
-        <h3>Card 1</h3>
-        <p>Football field, Esbjerg Ø, sumpevej 3, bane 1</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card-container">
-    <div class="card">
-      <img src="assets/badminton.jpg">
-      <div class="card-content">
-        <h3>Card 2</h3>
-        <p>Badminton bane, Efi hallerne, stampevej 36, hal 2</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card-container">
-    <div class="card">
-      <img src="assets/Football field.jpg">
-      <div class="card-content">
-        <h3>Card 3</h3>
-        <p>Football field, Esbjerg Ø, sumpevej 3, bane 2</p>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-
-  </footer>
 </div>
-
+</div>
