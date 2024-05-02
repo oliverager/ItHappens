@@ -23,7 +23,7 @@ public class PasswordHashRepository
     public void CreateUser(int user_id, string password_hash, string salt, string algorithm)
     {
         const string sql = $@"
-    INSERT INTO passwordhash (user_id, password_hash, salt, algorithm)
+    INSERT INTO ithappens.passwordhash (user_id, password_hash, salt, algorithm)
     VALUES (@user_id, @password_hash, @salt, @algorithm)
     ";
         // Log or print the SQL query (for debugging purposes)
@@ -43,7 +43,7 @@ public class PasswordHashRepository
     {
         const string sql = $@"
     SELECT
-        passwordhash.user_id as {nameof(PasswordHash.user_id)},
+        ithappens.passwordhash.user_id as {nameof(PasswordHash.user_id)},
         password_hash as {nameof(PasswordHash.hash)},
         salt as {nameof(PasswordHash.salt)},
         algorithm as {nameof(PasswordHash.algorithm)}
@@ -65,7 +65,7 @@ public class PasswordHashRepository
     public void Update(int user_id, string hash, string salt, string algorithm)
     {
         const string sql = $@"
-UPDATE passwordhash
+UPDATE ithappens.passwordhash
 SET hash = @hash, salt = @salt, algorithm = @algorithm
 WHERE user_id = @user_Id
 ";
