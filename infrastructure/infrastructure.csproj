@@ -9,8 +9,10 @@
   <ItemGroup>
     <PackageReference Include="Cryptography" Version="1.0.0" />
     <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.0-preview.3.24172.9" />
     <PackageReference Include="Npgsql" Version="8.0.2" />
     <PackageReference Include="Npgsql.DependencyInjection" Version="8.0.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
   </ItemGroup>
 
 </Project>
