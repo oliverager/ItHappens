@@ -1,6 +1,7 @@
 <main>
   <section class="hero"></section>
   <section>
+
     <div class="grid">
       <div class="product__imagecontainer">
         <div class="product__image">
@@ -13,6 +14,18 @@
           <p>{{ association?.description }}</p>
         </div>
       </div>
+
+      <div class="card-container list">
+     <h5>Here you can see and book activities in your selected area</h5>
+        <div *ngFor="let card of state.cards" class="card">
+          <img [src]="card.imgurl" alt="Card Image">
+          <div class="card-content">
+            <h3>{{ card.location }}</h3>
+            <p>{{ card.address }}</p>
+            <p>{{ card.activities }}</p>
+          </div>
+        </div>
+      </div>
       <div class="product-information">
         <h3>Information</h3>
         <div>
@@ -22,5 +35,7 @@
         </div>
       </div>
     </div>
+
   </section>
+
 </main>

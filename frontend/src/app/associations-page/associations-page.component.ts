@@ -4,12 +4,13 @@ import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {WebSocketClientService} from "../ws.client.service";
 import {Association} from "../../models/entities";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-associations-page',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule, CommonModule
   ],
   templateUrl: './associations-page.component.html',
   styleUrl: './associations-page.component.scss'
