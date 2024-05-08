@@ -8,6 +8,9 @@ export class WebsocketSuperclass extends ReconnectingWebSocket {
   constructor(address: string) {
     super(address);
     this.onopen = this.handleOpen.bind(this);
+    // this.onerror = (error) => {
+    //   console.error('WebSocket Error:', error);
+    // };
   }
 
   sendDto(dto: BaseDto<any>) {

@@ -23,7 +23,7 @@ export class AssociationsPageComponent {
   amount = new FormControl(0, [Validators.required])
 
   constructor( public state: State ) {
-    const associationId = Number(this.route.snapshot.params['id']);
-    this.association = this.wsService.GetAssociationsById(associationId);
+    //const associationId = Number(this.route.snapshot.params['id']);
+   // this.association = this.wsService.GetAssociationsById(associationId);
   }
 }
