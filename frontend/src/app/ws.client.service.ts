@@ -3,6 +3,7 @@ import {BaseDto} from "../models/baseDto";
 import {WebsocketSuperclass} from "../models/WebsocketSuperclass";
 import {Association} from "../models/entities";
 import {State} from "../state";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class WebSocketClientService  {
   public socketConnection: WebsocketSuperclass;
 
   constructor(public state: State) {
-    this.socketConnection = new WebsocketSuperclass("ws://localhost:8181");
+    this.socketConnection = new WebsocketSuperclass(environment.websocketBaseUrl);
     this.handleEventsEmittedByTheServer()
   }
 

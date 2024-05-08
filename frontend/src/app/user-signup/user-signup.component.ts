@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 
 import {
@@ -9,6 +9,8 @@ import {
   Validators
 } from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import {WebSocketClientService} from "../ws.client.service";
+import {ClientWantsToSignup} from "../../models/ClientWantsToSignup";
 const passwordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const value: string = control.value;
   const hasUpperCase = /[A-Z]/.test(value);
@@ -23,34 +25,38 @@ const passwordValidator: ValidatorFn = (control: AbstractControl): ValidationErr
 @Component({
   selector: 'app-user-signup',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, ReactiveFormsModule, CommonModule
-  ],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, ReactiveFormsModule, CommonModule],
   templateUrl: './user-signup.component.html',
   styleUrl: './user-signup.component.scss'
 })
 
-
-
 export class UserSignupComponent {
 
-userForm: FormGroup;
-isFormSubmitted: Boolean = false;
+  ws = inject(WebSocketClientService);
+  userForm: FormGroup;
+  isFormSubmitted: Boolean = false;
   constructor() {
     this.userForm = new FormGroup({
-      firstName: new FormControl("", [Validators.required]),
       userName: new FormControl("", [Validators.required]),
+      firstName: new FormControl("", [Validators.required]),
       lastName: new FormControl("", [Validators.required,Validators.minLength(4)]),
       email: new FormControl("", [Validators.required, Validators.email]),
       phoneNumber: new FormControl("", [Validators.required, Validators.pattern("[0-9]{8}")]),
-      passWord: new FormControl("", [Validators.required, passwordValidator])
-  })
+      password: new FormControl("", [Validators.required, passwordValidator])
+    })
   }
-onSubmit(){
-const isFormValid = this.userForm.valid
-  debugger;
-this.isFormSubmitted = true;
-}
+  onSubmit(){
+    if (this.userForm.valid) {
+      this.signUp();
+      console.log("Success")
+    } else {
+      console.log("Failed to add user")
+    }
+  }
 
+  signUp(){
+    this.ws.socketConnection.sendDto(new ClientWantsToSignup(this.userForm.value!,))
+  }
 }
 
 
