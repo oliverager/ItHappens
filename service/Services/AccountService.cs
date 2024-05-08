@@ -26,18 +26,33 @@ public class AccountService
     {
         try
         {
+            _logger.LogInformation("Attempting to authenticate user with email: {Email}", email);
+        
             var passwordHash = _passwordHashRepository.GetByEmail(email);
+            _logger.LogInformation("Retrieved password hash for user with email: {Email}", email);
+        
             var hashAlgorithm = PasswordHashAlgorithm.Create(passwordHash.algorithm);
+            _logger.LogInformation("Created hash algorithm instance for user with email: {Email}", email);
+        
             var isValid = hashAlgorithm.VerifyHashedPassword(password, passwordHash.hash, passwordHash.salt);
-            if (isValid) return _userRepository.GetById(passwordHash.user_id);
+            _logger.LogInformation("Verification result for user with email {Email}: {IsValid}", email, isValid);
+        
+            if (isValid)
+            {
+                var user = _userRepository.GetById(passwordHash.user_id);
+                _logger.LogInformation("User with email {Email} authenticated successfully", email);
+                return user;
+            }
         }
         catch (Exception e)
         {
             _logger.LogError("Authenticate error: {Message}", e);
         }
 
+        _logger.LogWarning("Authentication failed for user with email: {Email}", email);
         throw new InvalidCredentialException("Invalid credential!");
     }
+
 
     public User Register(string username, string firstname, string lastname, string email, int phone, int usertype_id, string password)
     {

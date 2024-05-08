@@ -1,4 +1,5 @@
 ﻿using Fleck;
+using infrastructure.DataModels;
 using lib;
 using service.Services;
 
@@ -6,7 +7,7 @@ namespace api.ClientWants;
 
 public class ClientWantsToLogInDto : BaseDto
 {
-    public string username { get; set; }
+    public string email { get; set; }
     public string password { get; set; }
     
    
@@ -26,23 +27,26 @@ public class ClientWantsToLogIn : BaseEventHandler<ClientWantsToLogInDto>
 
     public override Task Handle(ClientWantsToLogInDto dto, IWebSocketConnection socket)
     {
-       
+        User user = _accountService.Authenticate(dto.email, dto.password);
+            
+        Console.WriteLine($"User Details: UserId={user.user_id}, Username={user.username}");
+
         // Assuming you have some authentication logic here
-        if (IsUserAuthenticated(dto))
+        try
         {
             // Send a success message back to the client
-            var user = _accountService.Authenticate(dto.username, dto.password);
-            var token = _jwtService.createToken(user);
+           
+            _jwtService.createToken(user);
 
             socket.Send($"Login Successfull");
             
         }
-        else
+        catch
         {
             // Send a failure message back to the client
             socket.Send("Login failed");
         }
-
+        
         return Task.CompletedTask;
     }
 
@@ -51,6 +55,6 @@ public class ClientWantsToLogIn : BaseEventHandler<ClientWantsToLogInDto>
         // Implement your authentication logic here
         // For example, check the username and password against a database
         // Return true if authentication is successful, false otherwise
-        return dto.username == "example_user" && dto.password == "example_password";
+        return dto.email == "example_user" && dto.password == "example_password";
     }
 }

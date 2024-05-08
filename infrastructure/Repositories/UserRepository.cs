@@ -80,7 +80,7 @@ public class UserRepository
         user_id as {nameof(UserFeedQuery.user_id)},
         firstname as {nameof(UserFeedQuery.firstname)},
         lastname as {nameof(UserFeedQuery.lastname)},
-        username as {nameof(UserFeedQuery.username)}
+        username as {nameof(UserFeedQuery.username)},
         email as {nameof(UserFeedQuery.email)},
         phone as {nameof(UserFeedQuery.phone)},
         usertype_id as {nameof(UserFeedQuery.usertype_id)}
