@@ -54,7 +54,7 @@ public class ClientWantsToSignup : BaseEventHandler<ClientWantsToSignupDto>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            socket.Send("Failed to add " + dto.username);
+            socket.Send(JsonSerializer.Serialize(new  {eventType= "error", msg = "Failed to add " + dto.username}));
             throw;
         }
 

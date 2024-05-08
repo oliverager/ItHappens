@@ -29,4 +29,8 @@ export class WebSocketClientService  {
   GetAssociationsById(associationId: number): Association | undefined {
     return this.state.associateds.find(associated => associated.id === associationId);
   }
+
+  ServerWelcomesUser(data: any) {
+    console.log(data)
+  }
 }
