@@ -23,10 +23,12 @@ public class ClientWantsToSignup : BaseEventHandler<ClientWantsToSignupDto>
 {
    
     private readonly AccountService _accountService;
+    
 
     public ClientWantsToSignup(AccountService accountService)
     {
         _accountService = accountService;
+        
     }
     
     
