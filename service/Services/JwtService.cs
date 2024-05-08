@@ -38,8 +38,8 @@ public class JwtService
             Subject = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.user_id.ToString()),
-                new Claim(ClaimTypes.username, user.username),
-                new Claim(ClaimTypes.usertype_id, user.usertype_id.ToString()),
+                new Claim(ClaimTypes.Name, user.username),
+                new Claim(ClaimTypes.Role, user.usertype_id.ToString()),
             }),
             Expires = TimeZoneInfo.ConvertTimeToUtc(DateTime.Now.AddDays(7)),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Secret), SecurityAlgorithms.HmacSha256Signature)
