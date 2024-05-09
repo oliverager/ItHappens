@@ -20,7 +20,7 @@ body, html {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: rgb(32, 65, 87);
+  background: #ffffff;
   background-size: cover;
   background-position: center;
 }
@@ -28,10 +28,11 @@ body, html {
   width: 400px;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 2);
+  border-color: #6c5d66;
   backdrop-filter: blur(20px);
-  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-  color: #fff;
-  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+  color: rgb(32, 65, 87);
+  border-radius: 20px;
   padding: 10px 20px;
 
 }
@@ -50,12 +51,12 @@ body, html {
   border: 2px solid;
   border-radius:40px;
   font-size: 16px;
-  color:#fff;
+  color:black;
   padding: 20px 45px 20px 20px;
 
 }
 .input-box input::placeholder{
-  color: #fff;
+  color: #6c5d66;
 }
 
 .input-box i{
@@ -72,7 +73,8 @@ body, html {
   border: none;
   outline: none;
   border-radius: 40px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+  margin-top: 15px;
   cursor: pointer;
   font-size: 16px;
   color: #333;

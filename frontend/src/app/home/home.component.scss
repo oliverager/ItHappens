@@ -6,18 +6,51 @@ p{
 h3{
   color: black;
 }
-
+.hero {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  height: 200px;
+  background: url("/assets/lot-hands-up-crowd-vector-minimal-design-illustration-fan-zone-prayers-beggars-poverty_570429-2200.jpg") no-repeat center center;
+  background-size: cover;
+  min-width: 900px;
+}
+.hero__text-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.hero__text {
+  color: #ffffff;
+  text-align: center;
+}
+.hero__pre-heading {
+  margin-bottom: 5px;
+  font-size: 40px;
+  line-height: 1;
+  font-family: "Mr Dafoe", sans-serif;
+}
+.hero__heading {
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 700;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+}
 .card-container{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 20px;
-  padding-inline: 35px;
-  padding-bottom: 35px;
+  margin-right: 16%;
+  margin-left: 16%;
 }
-
 .card{
-  width: 200px;
+  width: 225px;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
@@ -25,27 +58,20 @@ h3{
 }
 .card img{
   width: 100%;
-  height: 200px;
+  height: 150px;
 }
 .card-content{
 
   padding:16px;
 }
 .card-content{
-  font-size: 28px;
-  margin-bottom: 8px;
-}
-.card-content {
-  color: white;
-  font-size: 15px;
-  line-height: 1.3;
+  font-size: 14px;
+  margin-bottom: 0px;
 }
 .body {
   display: flex;
   flex-wrap: wrap;
 }
-
-
 
 .booking-container{
   display: flex;
