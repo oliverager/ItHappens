@@ -9,8 +9,6 @@ public class ClientWantsToLogInDto : BaseDto
 {
     public string email { get; set; }
     public string password { get; set; }
-    
-   
 }
 
 public class ClientWantsToLogIn : BaseEventHandler<ClientWantsToLogInDto>
@@ -36,9 +34,9 @@ public class ClientWantsToLogIn : BaseEventHandler<ClientWantsToLogInDto>
         {
             // Send a success message back to the client
            
-            _jwtService.createToken(user);
+            var token = _jwtService.createToken(user);
 
-            socket.Send($"Login Successfull");
+            socket.Send($"Login Successful. Token: {token}");
             
         }
         catch
