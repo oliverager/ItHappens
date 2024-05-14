@@ -5,6 +5,7 @@
 
       <div class="input-box">
         <input  type="url" id="activityImage" name="activityImage" placeholder="ImageUrl" class="form-control" formControlName="activityImage">
+        <img id="imagePreview" src="" alt="Image Preview" style="display: none;">
         <div class="text danger" *ngIf="activityForm.controls['activityImage'].invalid &&
       (activityForm.controls['activityImage'].touched || activityForm.controls['activityImage'].dirty || isFormSubmitted)">
           <span *ngIf="activityForm.controls['activityImage'].errors?.['required']">Requires an image</span>
