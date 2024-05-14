@@ -6,13 +6,13 @@
 <div class="box-rounder">
   <form action="">
     <h1 class="box-rounder-h1">Login</h1>
-    <div class="input-box">
-      <input type="text" placeholder="Username" required>
+    <div class="input-box" >
+      <input type="text" placeholder="Email" required name="email" class="form-control" formControlName="email">
       <i class='bx bxs-user'></i>
     </div>
 
-    <div class="input-box">
-      <input type="text" placeholder="Password" required>
+    <div class="input-box" >
+      <input type="text" placeholder="Password" required name="password" class="form-control" formControlName="password">
       <i class='bx bxs-lock-alt' ></i>
     </div>
 
@@ -21,7 +21,7 @@
       <a href="#"> Forgot password?</a>
     </div>
 
-    <button type="submit" class="btn">Login</button>
+    <button class="btn" type="button" (click)="onSubmitLog()">Log in</button>
     <div class="register-link">
       <p>Don't have an account?
         <a href="/user-signup">Register </a>

@@ -1,6 +1,6 @@
 import {BaseDto} from "./baseDto";
 
 export class ClientWantsToLogIn extends BaseDto<ClientWantsToLogIn> {
-  username?: string;
+  email?: string;
   password?: string;
 }
