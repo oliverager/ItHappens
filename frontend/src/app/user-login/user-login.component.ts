@@ -19,8 +19,9 @@ export class UserLoginComponent {
   loginForm: FormGroup;
   isFormSubmitted: Boolean = false;
   constructor() {
+
     this.loginForm = new FormGroup({
-      email: new FormControl("", [Validators.required, Validators.email]),
+      email: new FormControl("", [Validators.required]),
       password: new FormControl("", [Validators.required])
     })
   }
@@ -29,7 +30,7 @@ export class UserLoginComponent {
       this.logIn();
       console.log("Success")
     } else {
-      console.log("Failed to add user")
+      console.log("Failed to login")
     }
   }
 
