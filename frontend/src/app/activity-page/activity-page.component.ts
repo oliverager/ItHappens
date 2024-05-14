@@ -1,8 +1,7 @@
 import {Component, inject} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators,
-} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators,} from "@angular/forms";
 import {WebSocketClientService} from "../ws.client.service";
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {ClientWantsToCreateActivity} from "../../models/ClientWantsToCreateActivity";
 
 
@@ -10,7 +9,7 @@ import {ClientWantsToCreateActivity} from "../../models/ClientWantsToCreateActiv
   selector: 'app-activity-page',
   standalone: true,
   imports: [
-    ReactiveFormsModule,CommonModule,
+    ReactiveFormsModule, CommonModule, NgOptimizedImage,
   ],
   templateUrl: './activity-page.component.html',
   styleUrl: './activity-page.component.scss'
@@ -33,12 +32,23 @@ export class ActivityPageComponent {
   onSubmit(){
     if (this.activityForm.valid) {
       this.createActivity();
-      console.log("Success")
+
     } else {
-      console.log("Failed to add user")
+      //this.toastService.error('Please fill in all required fields.');
     }
 }
   createActivity(){
     this.ws.socketConnection.sendDto(new ClientWantsToCreateActivity(this.activityForm.value!,))
+    //this.toastService.success('Activity created successfully');
   }
+  ngOnInit(): void {
+    // Add the event listener when the component initializes
+    const inputField = document.getElementById('activityImage') as HTMLInputElement;
+    const imagePreview = document.getElementById('imagePreview') as HTMLImageElement;
+
+    inputField.addEventListener('input', () => {
+      imagePreview.src = inputField.value;
+      imagePreview.style.display = 'block';
+    });
+}
 }
