@@ -32,10 +32,8 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true
-                     },
+            "scripts": []
+          },
           "configurations": {
             "production": {
               "budgets": [
@@ -99,8 +97,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }
