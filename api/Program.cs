@@ -34,6 +34,7 @@ public static class Startup
         }
         
         builder.Services.AddSingleton<AccountService>();
+        builder.Services.AddSingleton<AssociationService>();
         builder.Services.AddSingleton<UserRepository>();
         builder.Services.AddSingleton<PasswordHashRepository>();
         builder.Services.AddSingleton<JwtService>();

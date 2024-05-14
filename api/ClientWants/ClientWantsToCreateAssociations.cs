@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using Fleck;
 using lib;
+using service.Services;
 
 namespace api.ClientWants;
 
@@ -15,23 +16,24 @@ public class ClientWantsToCreateAssociationsDto : BaseDto
 
 public class ClientWantsToCreateAssociations : BaseEventHandler<ClientWantsToCreateAssociationsDto>
 {
+    private readonly AssociationService _associationService;
+
+    public ClientWantsToCreateAssociations(AssociationService associationService)
+    {
+        _associationService = associationService;
+    }
     public override Task Handle(ClientWantsToCreateAssociationsDto dto, IWebSocketConnection socket)
     {
-        // Create a JSON object from the DTO properties
-        var response = new
+        try
         {
-            Name = dto.Name,
-            Email = dto.Email,
-            Telephone = dto.Tel,
-            Address = dto.Address,
-            Description = dto.Description
-        };
-
-        // Serialize the response object to JSON
-        string jsonResponse = JsonSerializer.Serialize(response);
-
-        // Send the JSON response through the WebSocket connection
-        socket.Send(jsonResponse);
+            _associationService.createAssociation(dto.Name, dto.Email, dto.Tel, dto.Address, dto.Description);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            socket.Send(JsonSerializer.Serialize(new  {eventType= "error", msg = "Failed to add " + dto.Name}));
+            throw;
+        }
 
         return Task.CompletedTask;
     }
