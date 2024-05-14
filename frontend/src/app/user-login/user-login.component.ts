@@ -25,7 +25,7 @@ export class UserLoginComponent {
       password: new FormControl("", [Validators.required])
     })
   }
-  onSubmit(){
+  onSubmitLog(){
     if (this.loginForm.valid) {
       this.logIn();
       console.log("Success")
