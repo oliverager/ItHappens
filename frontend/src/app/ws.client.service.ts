@@ -13,7 +13,8 @@ export class WebSocketClientService  {
   public socketConnection: WebsocketSuperclass;
 
   constructor(public state: State) {
-    this.socketConnection = new WebsocketSuperclass(environment.websocketBaseUrl);
+    this.socketConnection = new WebsocketSuperclass(environment.websocketBaseUrl
+    );
     this.handleEventsEmittedByTheServer()
   }
 

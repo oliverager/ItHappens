@@ -17,7 +17,7 @@ export class UserLoginComponent {
 
   ws = inject(WebSocketClientService);
   loginForm: FormGroup;
-  isFormSubmitted: Boolean = false;
+  isFormSubmitted: Boolean = true;
   constructor() {
 
     this.loginForm = new FormGroup({
@@ -25,7 +25,7 @@ export class UserLoginComponent {
       password: new FormControl("", [Validators.required])
     })
   }
-  onSubmitLog(){
+  onSubmit(){
     if (this.loginForm.valid) {
       this.logIn();
       console.log("Success")

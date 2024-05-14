@@ -6,6 +6,7 @@ export class WebsocketSuperclass extends ReconnectingWebSocket {
   private messageQueue: Array<BaseDto<any>> = [];
 
   constructor(address: string) {
+
     super(address);
     this.onopen = this.handleOpen.bind(this);
     // this.onerror = (error) => {
