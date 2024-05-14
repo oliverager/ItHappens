@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {State} from "../../state";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {WebSocketClientService} from "../ws.client.service";
 import {Association} from "../../models/entities";
 import {CommonModule} from "@angular/common";
@@ -22,8 +22,15 @@ export class AssociationsPageComponent {
 
   amount = new FormControl(0, [Validators.required])
 
-  constructor( public state: State ) {
-    //const associationId = Number(this.route.snapshot.params['id']);
-   // this.association = this.wsService.GetAssociationsById(associationId);
+  constructor( public state: State, private router: Router) {
+    const associationId = Number(this.route.snapshot.params['id']);
+    this.association = this.wsService.GetAssociationsById(associationId);
+  }
+  createActivity(): void {
+    // Assuming you have the ID available in your component
+    const id = 'id'; // Replace 'your-id-value' with your actual ID
+
+    // Navigate to the specified route with the ID parameter
+    this.router.navigate(['app-activity-page', id])
   }
 }
