@@ -20,7 +20,7 @@
       </div>
 
       <div class="input-box">
-        <input type="tel" id="phoneNumber" name="phone Number" placeholder="Phone Number" pattern="[0-9]{8}" class="form-control" formControlName="phone">
+        <input type="number" id="phone" name="phone" placeholder="phone" pattern="[0-9]{8}" class="form-control" formControlName="phone">
         <div class="text danger" *ngIf="associationForm.controls['phone'].invalid &&
     (associationForm.controls['phone'].touched || associationForm.controls['phone'].dirty || isFormSubmitted)">
           <span *ngIf="associationForm.controls['phone'].errors?.['pattern']">This is not a valid phone number</span>
