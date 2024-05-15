@@ -95,5 +95,14 @@ public class UserRepository
             return conn.QueryFirst<User>(sql, new { userId });
         } 
     }
+    
+    public bool DoesUserWithEmailExist(string email)
+    {
+        var sql = $@"SELECT COUNT(*) FROM ithappens.users WHERE email = @email;";
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return conn.ExecuteScalar<int>(sql, new { email }) == 1;
+        }
+    }
 };
 
