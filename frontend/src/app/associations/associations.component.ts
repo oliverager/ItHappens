@@ -2,7 +2,6 @@ import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CommonModule, NgIf} from "@angular/common";
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
-import {ClientWantsToLogIn} from "../../models/ClientWantsToLogIn";
 import {WebSocketClientService} from "../ws.client.service";
 import {ClientWantsToCreateAssociations} from "../../models/ClientWantsToCreateAssociations";
 
@@ -26,12 +25,14 @@ export class AssociationsComponent {
   isFormSubmitted: Boolean = false;
   constructor() {
     this.associationForm = new FormGroup({
-      associationName: new FormControl("", [Validators.required,Validators.minLength(4)]),
-      associationAddress: new FormControl("", [Validators.required, Validators.pattern
-      ("^(?=\\S*\\s)(?=[^a-zA-Z]*[a-zA-Z])(?=\\D*\\d)[a-zA-Z\\d\\s',.#/-]*$")]),
+      name: new FormControl("", [Validators.required,Validators.minLength(4)]),
       email: new FormControl("", [Validators.required, Validators.email]),
-      phoneNumber: new FormControl("", [Validators.required, Validators.pattern("[0-9]{8}")]),
-
+      phone: new FormControl(0, [Validators.required, Validators.pattern("[0-9]{8}")]),
+      address: new FormControl("", [Validators.required, Validators.pattern
+      ("^(?=\\S*\\s)(?=[^a-zA-Z]*[a-zA-Z])(?=\\D*\\d)[a-zA-Z\\d\\s',.#/-]*$")]),
+      description: new FormControl("", [Validators.required, Validators.minLength(4)]),
+      bannerUrl: new FormControl("", [Validators.required, Validators.minLength(4)]),
+      profileUrl: new FormControl("", [Validators.required, Validators.minLength(4)]),
     })
   }
   onSubmit(){

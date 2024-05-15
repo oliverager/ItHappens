@@ -14,23 +14,23 @@ public class AssociationService
     
     //Create Association
     
-    public Association createAssociation(string name, string email, int phone, string address, string description)
+    public Association CreateAssociation(string name, string email, int phone, string address, string description, string bannerUrl, string profileUrl)
     {
-        return _associationRepository.createAssociation(name, email, phone, address, description);
+        return _associationRepository.CreateAssociation(name, email, phone, address, description, bannerUrl, profileUrl);
     }
     
     // Update Association
     
-    public Association updateAssociation(int association_id, string name, string email, int phone, string address, string description)
+    public Association UpdateAssociation(int association_id, string name, string email, int phone, string address, string description, string bannerUrl, string profileUrl)
     {
-        return _associationRepository.updateAssociation(association_id, name, email, phone, address, description);
+        return _associationRepository.UpdateAssociation(association_id, name, email, phone, address, description, bannerUrl, profileUrl);
     }
     
     // Delete Association
     
-    public void deleteAssociation(int associationId)
+    public void DeleteAssociation(int associationId)
     {
-        var result = _associationRepository.deleteAssociation(associationId);
+        var result = _associationRepository.DeleteAssociation(associationId);
         if (!result)
         {
             throw new Exception("Unable to delete the user");

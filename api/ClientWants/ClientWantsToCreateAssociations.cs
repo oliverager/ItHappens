@@ -9,9 +9,11 @@ public class ClientWantsToCreateAssociationsDto : BaseDto
 {
     public string Name { get; set; }
     public string Email { get; set; }
-    public int Tel { get; set; }
+    public int Phone { get; set; }
     public string Address { get; set; }
     public string Description { get; set; }
+    public string bannerUrl { get; set; }
+    public string profileUrl { get; set; }
 }
 
 public class ClientWantsToCreateAssociations : BaseEventHandler<ClientWantsToCreateAssociationsDto>
@@ -26,7 +28,7 @@ public class ClientWantsToCreateAssociations : BaseEventHandler<ClientWantsToCre
     {
         try
         {
-            _associationService.createAssociation(dto.Name, dto.Email, dto.Tel, dto.Address, dto.Description);
+            _associationService.CreateAssociation(dto.Name, dto.Email, dto.Phone, dto.Address, dto.Description, dto.bannerUrl, dto.profileUrl);
         }
         catch (Exception e)
         {
