@@ -21,17 +21,12 @@ public class ClientWantsToSignupDto : BaseDto
 
 public class ClientWantsToSignup : BaseEventHandler<ClientWantsToSignupDto>
 {
-   
     private readonly AccountService _accountService;
-    
-
     public ClientWantsToSignup(AccountService accountService)
     {
         _accountService = accountService;
         
     }
-    
-    
     public override Task Handle(ClientWantsToSignupDto dto, IWebSocketConnection socket)
     {
         
