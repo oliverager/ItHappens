@@ -62,16 +62,15 @@ public class PasswordHashRepository
     
     //Update
     
-    public void Update(int user_id, string hash, string salt, string algorithm)
+    public void Update(int user_id, string password_hash, string salt, string algorithm)
     {
         const string sql = $@"
 UPDATE ithappens.passwordhash
-SET hash = @hash, salt = @salt, algorithm = @algorithm
-WHERE user_id = @user_Id
-";
+SET password_hash = @password_hash, salt = @salt, algorithm = @algorithm
+WHERE user_id = @user_Id";
         using (var conn = _dataSource.OpenConnection())
         { 
-            conn.Execute(sql, new { user_id, hash, salt, algorithm });
+            conn.Execute(sql, new { user_id, password_hash, salt, algorithm });
         }
     }
 
