@@ -7,4 +7,5 @@ export class ClientWantsToCreateActivity extends BaseDto<ClientWantsToCreateActi
   address?: string;
   association?: string;
   booking?: Date;
+  activityId?: number;
 }

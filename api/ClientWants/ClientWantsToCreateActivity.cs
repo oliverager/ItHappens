@@ -14,6 +14,7 @@ public class ClientWantsToCreateActivityDto : BaseDto
     public string Address { get; set; }
     public string Association { get; set; }
     public string Booking { get; set; }
+    public int activityId { get; set; }
 }
 
 public class ClientWantsToCreateActivity : BaseEventHandler<ClientWantsToCreateActivityDto>
