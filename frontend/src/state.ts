@@ -47,81 +47,98 @@ export class State {
     {
       id: 1,
       bookinid: 1,
-      address: "popvej2",
+      title: "Eventstarstruck",
       location: "field2",
-      activities: "badminton",
       imgurl: "assets/badminton.jpg"
     },
     {
       id: 2,
       bookinid: 2,
+      title: "Eventstarstruck",
       address: "popvej3",
       location: "field3",
-      activities: "badminton",
+      category: "badminton",
+      description: "Her er der beskrivelse af eventen",
       imgurl: "assets/badminton.jpg"
     },
     {
       id: 3,
       bookinid: 3,
+      title: "Eventstarstruck",
       address: "popvej4",
       location: "field4",
-      activities: "badminton",
+      category: "badminton",
+      description: "Her er der beskrivelse af eventen",
       imgurl: "assets/badminton.jpg"
     },
     {
       id: 4,
       bookinid: 4,
+      title: "Eventstarstruck",
       address: "popvej5",
       location: "field5",
-      activities: "badminton",
+      category: "badminton",
+      description: "Her er der beskrivelse af eventen",
       imgurl: "assets/badminton.jpg"
     },
     {
       id: 5,
       bookinid: 5,
+      title: "Eventstarstruck",
       address: "popvej6",
       location: "field6",
-      activities: "badminton",
+      category: "badminton",
+      description: "Her er der beskrivelse af eventen",
       imgurl: "assets/Football field.jpg"
     },
     {
       id: 6,
       bookinid: 6,
+      title: "Eventstarstruck",
       address: "popvej7",
       location: "field7",
-      activities: "badminton",
+      category: "badminton",
+      description: "Her er der beskrivelse af eventen",
       imgurl: "assets/Football field.jpg"
     },
     {
       id: 7,
       bookinid: 7,
+      title: "Eventstarstruck",
       address: "popvej8",
       location: "field8",
-      activities: "badminton",
+      category: "badminton",
+      description: "Her er der beskrivelse af eventen",
       imgurl: "assets/Football field.jpg"
     },
     {
       id: 8,
       bookinid: 8,
+      title: "Eventstarstruck",
       address: "popvej9",
       location: "field9",
-      activities: "badminton",
+      category: "badminton",
+      description: "Her er der beskrivelse af eventen",
       imgurl: "assets/Football field.jpg"
     },
     {
       id: 9,
       bookinid: 9,
+      title: "Eventstarstruck",
       address: "popvej10",
       location: "field10",
-      activities: "badminton",
+      category: "badminton",
+      description: "Her er der beskrivelse af eventen",
       imgurl: "assets/Football field.jpg"
     },
     {
       id: 10,
       bookinid: 10,
+      title: "Eventstarstruck",
       address: "popvej11",
       location: "field11",
-      activities: "badminton",
+      category: "badminton",
+      description: "Her er der beskrivelse af eventen",
       imgurl: "assets/Football field.jpg"
     },
   ];

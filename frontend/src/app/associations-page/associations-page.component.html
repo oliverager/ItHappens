@@ -18,9 +18,9 @@
         <div *ngFor="let card of state.cards" class="card">
           <img [src]="card.imgurl" alt="Card Image">
           <div class="card-content">
+            <h1 class="card-header">{{card.title }}</h1>
             <h3>{{ card.location }}</h3>
-            <p>{{ card.address }}</p>
-            <p>{{ card.activities }}</p>
+            <p>host</p>
           </div>
         </div>
       </div>

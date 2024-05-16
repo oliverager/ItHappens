@@ -1,9 +1,12 @@
 export class Card {
+  title? : string;
   id? : number;
   bookinid? : number;
   address? : string;
   location? : string;
-  activities? : string;
+  category? : string;
+  description? : string;
+  associationsid? : string;
   imgurl? : string;
 }
 export class Association {
