@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {
   AbstractControl,
   FormControl, FormGroup, ReactiveFormsModule,
@@ -34,7 +34,7 @@ export class UserSignupComponent {
   ws = inject(WebSocketClientService);
   userForm: FormGroup;
   isFormSubmitted: Boolean = false;
-  constructor() {
+  constructor(public router: Router) {
     this.userForm = new FormGroup({
       userName: new FormControl("", [Validators.required]),
       firstName: new FormControl("", [Validators.required]),
@@ -48,6 +48,7 @@ export class UserSignupComponent {
     if (this.userForm.valid) {
       this.signUp();
       console.log("Success")
+      this.router.navigate(["/user-login"]);
     } else {
       console.log("Failed to add user")
     }

@@ -16,6 +16,11 @@ export const routes: Routes = [
   {path: 'associations', component: AssociationsComponent},
   {path: 'app-associations-page/:id', component: AssociationsPageComponent},
   {path: 'app-activity-page/:id', component: ActivityPageComponent},
-  {path: '', component: HomeComponent},
+  {path: 'home', component: HomeComponent},
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
 ];
 

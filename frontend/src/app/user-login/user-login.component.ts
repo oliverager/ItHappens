@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import { WebSocketClientService } from '../ws.client.service';
 import { ClientWantsToLogIn } from '../../models/ClientWantsToLogIn';
@@ -18,7 +18,7 @@ export class UserLoginComponent {
   ws = inject(WebSocketClientService);
   loginForm: FormGroup;
   isFormSubmitted: Boolean = true;
-  constructor() {
+  constructor(public router: Router) {
 
     this.loginForm = new FormGroup({
       email: new FormControl("", [Validators.required]),
@@ -29,6 +29,7 @@ export class UserLoginComponent {
     if (this.loginForm.valid) {
       this.logIn();
       console.log("Success")
+      this.router.navigate(['/home']);
     } else {
       console.log("Failed to login")
     }
