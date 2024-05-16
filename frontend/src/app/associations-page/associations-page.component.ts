@@ -26,11 +26,11 @@ export class AssociationsPageComponent {
     const associationId = Number(this.route.snapshot.params['id']);
     this.association = this.wsService.GetAssociationsById(associationId);
   }
-  createActivity(): void {
+  createEvent(): void {
     // Assuming you have the ID available in your component
     const id = 'id'; // Replace 'your-id-value' with your actual ID
 
     // Navigate to the specified route with the ID parameter
-    this.router.navigate(['app-activity-page', id])
+    this.router.navigate(['app-event-page/:id'])
   }
 }

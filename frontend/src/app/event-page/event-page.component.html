@@ -1,0 +1,68 @@
+<div class="body">
+  <form class="" [formGroup]="eventForm">
+    <div class="box-rounder">
+      <h1 class="box-rounder-h1">Event Creation</h1>
+
+
+      <div class="input-box">
+        <input  type="url" id="eventImage" name="eventImage" placeholder="ImageUrl" class="form-control" formControlName="eventImage">
+        <img id="imagePreview" src="" alt="Image Preview" style="display: none;">
+        <div class="text danger" *ngIf="eventForm.controls['eventImage'].invalid &&
+      (eventForm.controls['eventImage'].touched || eventForm.controls['eventImage'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['eventImage'].errors?.['required']">Requires an image</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input  type="text" id="title" name="title" placeholder="Title" class="form-control" formControlName="title">
+        <div class="text danger" *ngIf="eventForm.controls['title'].invalid &&
+      (eventForm.controls['title'].touched || eventForm.controls['title'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['title'].errors?.['required']">This is Required</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input  type="text" id="category" name="category" placeholder="Category" class="form-control" formControlName="category">
+        <div class="text danger" *ngIf="eventForm.controls['category'].invalid &&
+      (eventForm.controls['category'].touched || eventForm.controls['category'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['category'].errors?.['required']">This is Required</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input type="number" id="location" name="location" placeholder="Location" class="form-control" formControlName="location">
+        <div class="text danger" *ngIf="eventForm.controls['location'].invalid &&
+    (eventForm.controls['location'].touched || eventForm.controls['location'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['location'].errors?.['required']">This is Required</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input  type="text" id="address" name="address" placeholder="Address" class="form-control" formControlName="address">
+        <div class="text danger" *ngIf="eventForm.controls['address'].invalid &&
+    (eventForm.controls['address'].touched || eventForm.controls['address'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['address'].errors?.['required']">This is required</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input type="text" id="association" name="association" placeholder="Association" pattern="[0-9]{8}" class="form-control" formControlName="association">
+        <div class="text danger" *ngIf="eventForm.controls['association'].invalid &&
+    (eventForm.controls['association'].touched || eventForm.controls['association'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['association'].errors?.['required']">This is required</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input  type="datetime-local" id="booking" name="booking" placeholder="Booking" class="form-control" formControlName="booking">
+        <div class="text danger" *ngIf="eventForm.controls['booking'].invalid &&
+      (eventForm.controls['booking'].touched || eventForm.controls['booking'].dirty)">
+          <span *ngIf="eventForm.controls['booking'].errors?.['required']">You must choose a date and time</span>
+        </div>
+      </div>
+
+      <button class="btn" type="button" (click)="onSubmit()">Create Event</button>
+
+    </div>
+  </form>
+</div>
