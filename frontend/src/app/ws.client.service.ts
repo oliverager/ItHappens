@@ -4,6 +4,7 @@ import {WebsocketSuperclass} from "../models/WebsocketSuperclass";
 import {Association} from "../models/entities";
 import {State} from "../state";
 import {environment} from "../environments/environment";
+import {ServerBroadcastsEventFeed} from "../models/ServerBroadcastsEventFeed";
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,9 @@ export class WebSocketClientService  {
 
   ServerWelcomesUser(data: any) {
     console.log(data)
+  }
+
+  ServerBroadcastsEventFeed(dto: ServerBroadcastsEventFeed) {
+
   }
 }

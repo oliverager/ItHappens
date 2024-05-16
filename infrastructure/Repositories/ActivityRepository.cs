@@ -77,12 +77,12 @@ public class ActivityRepository
     {
         string sql = @$"
         SELECT
-        activity_id as {nameof(ActivityFeedQuery.activity_id)},
-        name as {nameof(ActivityFeedQuery.name)},
-        location as {nameof(ActivityFeedQuery.location)},
-        association_id as {nameof(ActivityFeedQuery.association_id)}
-        date as {nameof(ActivityFeedQuery.date)},
-        category_id as {nameof(ActivityFeedQuery.category_id)},
+        activity_id as {nameof(Activities.activity_id)},
+        name as {nameof(Activities.name)},
+        location as {nameof(Activities.location)},
+        association_id as {nameof(Activities.association_id)}
+        date as {nameof(Activities.date)},
+        category_id as {nameof(Activities.category_id)},
                
         
         FROM ithappens.activities

@@ -13,6 +13,7 @@
     <PackageReference Include="Npgsql" Version="8.0.2" />
     <PackageReference Include="Npgsql.DependencyInjection" Version="8.0.2" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
+    <PackageReference Include="uldahlalex.websocket.boilerplate" Version="1.6.0" />
   </ItemGroup>
 
 </Project>
