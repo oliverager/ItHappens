@@ -35,7 +35,7 @@ public static class Startup
         
         builder.Services.AddSingleton<AccountService>();
         builder.Services.AddSingleton<AssociationService>();
-        builder.Services.AddSingleton<ActivityService>();
+        builder.Services.AddSingleton<EventService>();
         builder.Services.AddSingleton<EventRepository>();
         builder.Services.AddSingleton<AssociationRepository>();
         builder.Services.AddSingleton<UserRepository>();

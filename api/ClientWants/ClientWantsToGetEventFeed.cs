@@ -1,19 +1,14 @@
-﻿using Dapper;
+﻿using System.Text.Json;
 using Fleck;
 using lib;
-using Npgsql;
+using service.Services;
 
 namespace api.ClientWants;
 
-public class ClientWantsToGetEventFeedDto : BaseDto
-{
-    
-}
+public class ClientWantsToGetEventFeedDto : BaseDto;
 
-public class ClientWantsToGetEventFeed() : BaseEventHandler<ClientWantsToGetEventFeedDto>
+public class ClientWantsToGetEventFeed(EventService eventService) : BaseEventHandler<ClientWantsToGetEventFeedDto>
 {
-    public override Task Handle(ClientWantsToGetEventFeedDto dto, IWebSocketConnection socket)
-    {
-        return Task.CompletedTask;
-    }
+    public override async Task Handle(ClientWantsToGetEventFeedDto dto, IWebSocketConnection socket)
+        => socket.Send(JsonSerializer.Serialize(eventService.GetEventFeed()));
 }
