@@ -1,18 +1,16 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-
-namespace infrastructure.DataModels;
+﻿namespace infrastructure.Models.DataModels;
 
 public class Events
 {
-    public int event_id { get; set; }
-    public string name { get; set; }
-    public string location { get; set; }
-    public int association_id { get; set; }
-    public DateTime date { get; set; }
-    public int category_id { get; set; }
-    public string imageurl { get; set; }
-    public int amount { get; set; }
-    public string description { get; set; }
-    public int price { get; set; }
-    public int booking_id { get; set; }
+    public int EventId { get; set; }
+    public string? Name { get; set; }
+    public string? Location { get; set; }
+    public string? ImageUrl { get; set; }
+    public string? Description { get; set; }
+    public DateTime Date { get; set; }
+    public int Amount { get; set; }
+    public int Price { get; set; }
+    public int AssociationId { get; set; }
+    public int CategoryId { get; set; }
+    public int BookingId { get; set; }
 }
