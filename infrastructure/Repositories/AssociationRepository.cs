@@ -83,11 +83,9 @@ public class AssociationRepository
         association_id as {nameof(AssociationFeedQuery.association_id)},
         name as {nameof(AssociationFeedQuery.name)},
         email as {nameof(AssociationFeedQuery.email)},
-        phone as {nameof(AssociationFeedQuery.phone)}
+        phone as {nameof(AssociationFeedQuery.phone)},
         address as {nameof(AssociationFeedQuery.address)},
-        description as {nameof(AssociationFeedQuery.description)},
-               
-        
+        description as {nameof(AssociationFeedQuery.description)}      
         FROM ithappens.association
         WHERE association_id = @association_Id 
         ";

@@ -18,7 +18,7 @@ public class PasswordHashRepository
 
     
     
-    //Create
+    //Create user
     
     public void CreateUser(int user_id, string password_hash, string salt, string algorithm)
     {

@@ -23,12 +23,12 @@ public class ActivityRepository
         INSERT INTO ithappens.activities (name, location, association_id, date, category_id) 
         VALUES (@name, @location, @association_id, @date, @category_id)
         RETURNING
-        activity_id as {nameof(Activities.activity_id)},
-        name as {nameof(Activities.name)},
-        location as {nameof(Activities.location)},
-        association_id as {nameof(Activities.association_id)},
-        date as {nameof(Activities.date)},
-        category_id as {nameof(Activities.category_id)},
+        activity_id as {nameof(Events.activity_id)},
+        name as {nameof(Events.name)},
+        location as {nameof(Events.location)},
+        association_id as {nameof(Events.association_id)},
+        date as {nameof(Events.date)},
+        category_id as {nameof(Events.category_id)},
         ";
         
         using (var conn = _dataSource.OpenConnection())
@@ -57,12 +57,12 @@ public class ActivityRepository
         UPDATE ithappens.activities SET name = @name, location = @location, association_id = @association_id, date = @date,  category_id = @category_id
         WHERE activity_id = @activity_id 
         RETURNING
-        activity_id as {nameof(Activities.activity_id)},
-        name as {nameof(Activities.name)},
-        location as {nameof(Activities.location)},
-        association_id as {nameof(Activities.association_id)},
-        date as {nameof(Activities.date)},
-        category_id as {nameof(Activities.category_id)}
+        activity_id as {nameof(Events.activity_id)},
+        name as {nameof(Events.name)},
+        location as {nameof(Events.location)},
+        association_id as {nameof(Events.association_id)},
+        date as {nameof(Events.date)},
+        category_id as {nameof(Events.category_id)}
         ";
         
         using (var conn = _dataSource.OpenConnection())
@@ -77,12 +77,12 @@ public class ActivityRepository
     {
         string sql = @$"
         SELECT
-        activity_id as {nameof(Activities.activity_id)},
-        name as {nameof(Activities.name)},
-        location as {nameof(Activities.location)},
-        association_id as {nameof(Activities.association_id)}
-        date as {nameof(Activities.date)},
-        category_id as {nameof(Activities.category_id)},
+        activity_id as {nameof(Events.activity_id)},
+        name as {nameof(Events.name)},
+        location as {nameof(Events.location)},
+        association_id as {nameof(Events.association_id)}
+        date as {nameof(Events.date)},
+        category_id as {nameof(Events.category_id)},
                
         
         FROM ithappens.activities
