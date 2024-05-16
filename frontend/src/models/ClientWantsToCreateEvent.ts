@@ -1,6 +1,6 @@
 import {BaseDto} from "./baseDto";
 
-export class ClientWantsToCreateActivity extends BaseDto<ClientWantsToCreateActivity> {
+export class ClientWantsToCreateEvent extends BaseDto<ClientWantsToCreateEvent> {
   activityImage?: string;
   category?: string;
   location?: number;
