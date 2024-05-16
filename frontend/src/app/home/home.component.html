@@ -1,25 +1,19 @@
 <section class="hero"></section>
 <div class="body">
 <div class="card-container">
-
+  <button class="btnEvent" type="button" (click)="goToEvent()">Go To Event</button>
   <div *ngFor="let card of state.cards" class="card">
     <img [src]="card.imgurl" alt="Card Image">
     <div class="card-content">
-      <h1 class="card-header">{{card.title }}</h1>
+      <h1 class="card-header">{{ card.title }}</h1>
       <h3>{{ card.location }}</h3>
       <p>Host</p>
     </div>
   </div>
   </div>
-
-  <div class="booking-container">
-    <div *ngFor="let booking of state.bookings" class="booking">
-    <img [src]="booking.imgurl" alt="Booking Image">
-    <div class="booking-content"></div>
-      <h3>{{booking.location}}</h3>
-  </div>
 </div>
-  </div>
+
+
 
 
 

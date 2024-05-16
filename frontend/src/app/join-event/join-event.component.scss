@@ -1,16 +1,8 @@
-
-p{
-  color: black;
-}
-
-h3{
-  color: black;
-}
 .hero {
   display: flex;
   align-items: stretch;
   position: relative;
-  height: 200px;
+  height: 400px;
   background: url("/assets/lot-hands-up-crowd-vector-minimal-design-illustration-fan-zone-prayers-beggars-poverty_570429-2200.jpg") no-repeat center center;
   background-size: cover;
   min-width: 900px;
@@ -41,35 +33,42 @@ h3{
   font-family: "Oswald", sans-serif;
   text-transform: uppercase;
 }
-.card-container{
+.eventBody{
+  min-height: 80vh;
+}
+.flex-container{
+  width: max-content;
+  height: max-content;
+  margin-top: 20px;
+  margin-left: 20px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 2);
+  border-color: #6c5d66;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+  color: rgb(32, 65, 87);
+  border-radius: 10px;
+  padding: 10px 10px;
+}
+.descriptionBox{
+  justify-content: start;
+  width: 500px;
+  height: max-content;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.btnEvent{
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   margin-top: 20px;
-  margin-right: 16%;
-  margin-left: 16%;
-}
-.card{
-  width: 250px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
-  margin: 20px;
-}
-.card img{
-  width: 100%;
-  height: 150px;
-}
-.card-content{
-
-  padding:16px;
-}
-.card-content{
+  margin-left: 20px;
+  width: 120px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 1);
+  cursor: pointer;
   font-size: 12px;
-  margin-bottom: 0px;
+  color: #333;
+  font-weight: 600;
 }
-.body {
-  display: flex;
-  flex-wrap: wrap;
-}
-
