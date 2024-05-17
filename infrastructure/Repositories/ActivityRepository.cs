@@ -15,7 +15,7 @@ public class ActivityRepository
         _dataSource = dataSource;
     }
     
-    // create an Association
+    // create
 
     public Activity createActivity(string name, string location, int association_id, DateTime date, int category_id)
     {
