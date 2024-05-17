@@ -67,6 +67,9 @@ public class AccountService
                 var passwordHash = hashAlgorithm.HashPassword(password, salt);
                 var user = _userRepository.CreateUser(firstname,lastname, username, email, phone, usertype_id);
                 _passwordHashRepository.CreateUser(user.user_id, passwordHash, salt, hashAlgorithm.GetName());
+                
+                SendWelcomeEmail(user.email, user.username);
+                
                 return user;
             }
             //else
@@ -80,6 +83,14 @@ public class AccountService
             _logger.LogError("Registration error: {Message}", e);
             throw; // Rethrow the exception to handle it at the controller level
         }
+    }
+    
+    private void SendWelcomeEmail(string email, string username)
+    {
+        string subject = "Welcome to Our Platform!";
+        string body = $"Dear {username},<br/><br/>Thank you for registering on our platform.<br/><br/>Best regards,<br/>The Team";
+    
+        EmailService.SendEmailAsync(email, subject, body).GetAwaiter().GetResult();
     }
     
  //   public bool IsEmailInUse(string email)
