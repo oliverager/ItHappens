@@ -3,6 +3,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators,} from "@angular
 import {WebSocketClientService} from "../ws.client.service";
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {ClientWantsToCreateEvent} from "../../models/ClientWantsToCreateEvent";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -15,6 +16,7 @@ import {ClientWantsToCreateEvent} from "../../models/ClientWantsToCreateEvent";
   styleUrl: './event-page.component.scss'
 })
 export class EventPageComponent {
+  toaster=inject(ToastrService);
   ws = inject(WebSocketClientService)
 
   eventForm: FormGroup;
@@ -32,14 +34,13 @@ export class EventPageComponent {
   onSubmit(){
     if (this.eventForm.valid) {
       this.createEvent();
-
+      this.toaster.success("You created an event", "Succes");
     } else {
-      //this.toastService.error('Please fill in all required fields.');
+      this.toaster.error("Failed to create an event", "Error");
     }
 }
   createEvent(){
     this.ws.socketConnection.sendDto(new ClientWantsToCreateEvent(this.eventForm.value!,))
-    //this.toastService.success('Activity created successfully');
   }
 
 }

@@ -10,6 +10,7 @@ import {
 import {CommonModule} from "@angular/common";
 import {WebSocketClientService} from "../ws.client.service";
 import {ClientWantsToSignup} from "../../models/ClientWantsToSignup";
+import {ToastrService} from "ngx-toastr";
 const passwordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const value: string = control.value;
   const hasUpperCase = /[A-Z]/.test(value);
@@ -30,7 +31,7 @@ const passwordValidator: ValidatorFn = (control: AbstractControl): ValidationErr
 })
 
 export class UserSignupComponent {
-
+  toaster=inject(ToastrService);
   ws = inject(WebSocketClientService);
   userForm: FormGroup;
   isFormSubmitted: Boolean = false;
@@ -48,9 +49,11 @@ export class UserSignupComponent {
     if (this.userForm.valid) {
       this.signUp();
       console.log("Success")
+      this.toaster.success("You succesfully created a user", "Succes");
       this.router.navigate(["/user-login"]);
     } else {
       console.log("Failed to add user")
+      this.toaster.error("Failed to create user", "Error");
     }
   }
 
