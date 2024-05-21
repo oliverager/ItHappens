@@ -87,7 +87,7 @@ public class UserRepository
        
         
         FROM ithappens.users
-        WHERE user_id = @user_Id 
+        WHERE user_id = @userId 
         ";
             
         using (var conn = _dataSource.OpenConnection())
