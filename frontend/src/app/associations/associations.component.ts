@@ -20,10 +20,9 @@ import {ClientWantsToCreateAssociations} from "../../models/ClientWantsToCreateA
   styleUrl: './associations.component.scss'
 })
 export class AssociationsComponent {
-  ws = inject(WebSocketClientService);
   associationForm: FormGroup;
   isFormSubmitted: Boolean = false;
-  constructor() {
+  constructor(public ws : WebSocketClientService) {
     this.associationForm = new FormGroup({
       name: new FormControl("", [Validators.required,Validators.minLength(4)]),
       email: new FormControl("", [Validators.required, Validators.email]),

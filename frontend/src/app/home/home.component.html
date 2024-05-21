@@ -9,7 +9,7 @@
     <section class="events">
       <h2>Events near <span>Esbjerg C, ES</span></h2>
       <div class="events-grid">
-        <div class="event-card" *ngFor="let event of state.events | slice:0:8">
+        <div class="event-card" *ngFor="let event of ws.events | slice:0:8">
           <img [src]="event.imageUrl" [alt]="event.name">
           <h3>{{ event.name }}</h3>
           <p>Hosted by: {{ event.associationId }}</p>
@@ -21,7 +21,7 @@
     <section class="popular-associations">
       <h2>Popular associations on ItHappens</h2>
       <div class="associations-grid">
-        <div class="association-card" *ngFor="let association of state.associations | slice:0:4">
+        <div class="association-card" *ngFor="let association of ws.associations | slice:0:4">
           <img [src]="association.imgUrl" [alt]="association.name">
           <h3>{{ association.name }}</h3>
           <p>{{ association.description }}</p>

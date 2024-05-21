@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="card-container list">
-        <div *ngFor="let events of state.events" class="card">
+        <div *ngFor="let events of ws.events" class="card">
           <img [src]="events.imageUrl" alt="Card Image">
           <div class="card-content">
             <h3>{{ events.name }}</h3>

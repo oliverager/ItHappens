@@ -1,5 +1,4 @@
 import {Component, inject} from '@angular/core';
-import {State} from "../../state";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {WebSocketClientService} from "../ws.client.service";
@@ -17,14 +16,13 @@ import {CommonModule} from "@angular/common";
 })
 export class AssociationsPageComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  wsService = inject(WebSocketClientService)
   association: Association | undefined;
 
   amount = new FormControl(0, [Validators.required])
 
-  constructor( public state: State, private router: Router) {
+  constructor( private router: Router,public ws : WebSocketClientService) {
     const associationId = Number(this.route.snapshot.params['id']);
-    this.association = this.wsService.GetAssociationsById(associationId);
+    this.association = this.ws.GetAssociationsById(associationId);
   }
   createEvent(): void {
     // Assuming you have the ID available in your component

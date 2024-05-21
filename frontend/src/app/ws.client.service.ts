@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BaseDto} from "../models/baseDto";
 import {WebsocketSuperclass} from "../models/WebsocketSuperclass";
-import {Association} from "../models/entities";
-import {State} from "../state";
-import { environment } from "../environments/environment";
+import {Association, Event} from "../models/entities";
+import {environment} from "../environments/environment";
 import {MessageService} from "primeng/api";
-import {Subject} from "rxjs";
 import {ServerSendsEventFeed} from "../models/ServerSendsEventFeed";
+import {ServerSendsAssociationFeed} from "../models/ServerSendsAssociationFeed";
 
 
 @Injectable({
@@ -14,11 +13,12 @@ import {ServerSendsEventFeed} from "../models/ServerSendsEventFeed";
 })
 export class WebSocketClientService  {
 
-  public eventItems: any[] = [];
+  events: Event[] = [];
+  associations: Association[] = [];
 
   public socketConnection: WebsocketSuperclass;
 
-  constructor(public state: State, public messageService: MessageService) {
+  constructor(public messageService: MessageService) {
     this.socketConnection = new WebsocketSuperclass(environment.websocketBaseUrl);
     this.handleEventsEmittedByTheServer()
   }
@@ -33,7 +33,7 @@ export class WebSocketClientService  {
   }
 
   GetAssociationsById(associationId: number): Association | undefined {
-    return this.state.associations.find(associated => associated.id === associationId);
+    return this.associations.find(associated => associated.id === associationId);
   }
 
   ServerWelcomesNewUser(data: any) {
@@ -46,9 +46,14 @@ export class WebSocketClientService  {
     })
   }
 
-  ServerSendsEventFeed(data: ServerSendsEventFeed) {
-    this.eventItems = data.EventsFeedQueries!;
-    console.log(this.eventItems);
+  ServerSendsEventFeed(dto: ServerSendsEventFeed) {
+    this.events = dto.EventsFeedQueries!
+    console.log(this.events);
+  }
 
+  ServerSendsAssociationFeed(dto: ServerSendsAssociationFeed) {
+    this.associations = dto.AssociationsFeedQueries!
+    console.log(this.associations);
   }
 }
+
