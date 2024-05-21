@@ -1,31 +1,49 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace service.Services;
-
-    
-
-public static class EmailService
+namespace service.Services
 {
-    public static async Task SendEmailAsync(string toEmail, string subject, string body)
+    public static class EmailService
     {
-        var smtpClient = new SmtpClient("smtp.gmail.com")
+        public static async Task SendEmailAsync(string toEmail, string subject, string body)
         {
-            Port = 587,
-            Credentials = new NetworkCredential("random@gmail.com", "app-password"),
-            EnableSsl = true,
-        };
+            Console.WriteLine("Preparing to send email...");
 
-        var mailMessage = new MailMessage
-        {
-            From = new MailAddress("random@gmail.com"),
-            Subject = subject,
-            Body = body,
-            IsBodyHtml = true,
-        };
-        mailMessage.To.Add(toEmail);
+            try
+            {
+                using (var smtpClient = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = new NetworkCredential("moellers.den@gmail.com", "your_app_specific_password_here");
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtpClient.EnableSsl = true;
 
-        await smtpClient.SendMailAsync(mailMessage);
+                    var mailMessage = new MailMessage
+                    {
+                        From = new MailAddress("moellers.den@gmail.com"),
+                        Subject = subject,
+                        Body = body,
+                        IsBodyHtml = true,
+                    };
+                    mailMessage.To.Add(toEmail);
+
+                    Console.WriteLine("Sending email to: " + toEmail);
+                    await smtpClient.SendMailAsync(mailMessage);
+                    Console.WriteLine("Email sent successfully to: " + toEmail);
+                }
+            }
+            catch (SmtpException smtpEx)
+            {
+                Console.WriteLine($"SMTP Error sending email: {smtpEx.Message}, Status Code: {smtpEx.StatusCode}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General Error sending email: {ex.Message}");
+                throw;
+            }
+        }
     }
 }
