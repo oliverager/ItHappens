@@ -54,7 +54,7 @@ public class AccountService
     }
 
 
-    public User Register(string username, string firstname, string lastname, string email, int phone, int usertype_id, string password)
+    public async Task<User> Register(string username, string firstname, string lastname, string email, int phone, int usertype_id, string password)
     {
         try
         {
@@ -68,7 +68,7 @@ public class AccountService
                 var user = _userRepository.CreateUser(firstname,lastname, username, email, phone, usertype_id);
                 _passwordHashRepository.CreateUser(user.user_id, passwordHash, salt, hashAlgorithm.GetName());
                 
-                SendWelcomeEmail(user.email, user.username);
+                await SendWelcomeEmail(user.email, user.username);
                 
                 return user;
             }
@@ -85,7 +85,7 @@ public class AccountService
         }
     }
     
-    private void SendWelcomeEmail(string email, string username)
+    private async Task SendWelcomeEmail(string email, string username)
     {
         string subject = "Welcome to Our Platform!";
         string body = $"Dear {username},<br/><br/>Thank you for registering on our platform.<br/><br/>Best regards,<br/>The Team";
