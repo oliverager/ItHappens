@@ -15,12 +15,12 @@
         </div>
       </div>
       <div class="card-container list">
-        <div *ngFor="let card of state.cards" class="card">
-          <img [src]="card.imgurl" alt="Card Image">
+        <div *ngFor="let events of state.events" class="card">
+          <img [src]="events.imageUrl" alt="Card Image">
           <div class="card-content">
-            <h3>{{ card.location }}</h3>
-            <p>{{ card.address }}</p>
-            <p>{{ card.activities }}</p>
+            <h3>{{ events.name }}</h3>
+            <p>{{ events.date }}</p>
+            <p>{{ events.location }}</p>
           </div>
         </div>
       </div>
@@ -33,7 +33,5 @@
         </div>
       </div>
     </div>
-
   </section>
-
 </main>

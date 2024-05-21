@@ -31,7 +31,7 @@ SELECT event_id as {nameof(Events.EventId)},
         price as {nameof(Events.Price)},
         association_id as {nameof(Events.AssociationId)},
         category_id as {nameof(Events.CategoryId)},
-        booking_id sa {nameof(Events.BookingId)}
+        booking_id as {nameof(Events.BookingId)}
         FROM ithappens.events
     ";
         using (var conn = _dataSource.OpenConnection())

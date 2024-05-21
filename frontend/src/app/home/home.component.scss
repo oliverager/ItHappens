@@ -1,10 +1,88 @@
-
-p{
-  color: black;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+section {
+  margin-bottom: 20px
 }
 
-h3{
-  color: black;
+header {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: white;
+}
+
+header h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+header p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+header button {
+  background-color: #008193;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.events {
+  padding: 20px;
+  background-color: white;
+}
+
+.events h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.events h2 span {
+  color: #008193;
+  cursor: pointer;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 20px;
+}
+
+.event-card {
+  background-color: #e6f5ff;
+
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    cursor: pointer;
+  }
+}
+
+.event-card img {
+  width: 100%;
+  height: auto;
+}
+
+.event-card h3 {
+  font-size: 18px;
+  margin: 15px;
+}
+
+.event-card p {
+  font-size: 14px;
+  color: #666;
+  margin: 0 15px 15px 15px;
 }
 .hero {
   display: flex;
@@ -41,73 +119,122 @@ h3{
   font-family: "Oswald", sans-serif;
   text-transform: uppercase;
 }
-.card-container{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  margin-right: 16%;
-  margin-left: 16%;
-}
-.card{
-  width: 225px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
-  margin: 20px;
-}
-.card img{
-  width: 100%;
-  height: 150px;
-}
-.card-content{
-
-  padding:16px;
-}
-.card-content{
-  font-size: 14px;
-  margin-bottom: 0px;
-}
-.body {
-  display: flex;
-  flex-wrap: wrap;
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .events-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens */
+  }
 }
 
-.booking-container{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  padding-inline: 35px;
-  padding-bottom: 35px;
+@media (max-width: 900px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for small screens */
+  }
 }
 
-.booking{
-  width: 100px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
-  margin: 20px;
+@media (max-width: 600px) {
+  .events-grid {
+    grid-template-columns: 1fr; /* 1 column for extra small screens */
+  }
 }
-.booking img{
-  width: 100%;
-  height: 100px;
+.flex-col{
+  flex-direction: column;
+  padding-right: 12%;
+  padding-left: 12%;
+}
+.popular-associations {
+  text-align: center;
 
-}
-.booking-content{
+  .associations-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 
-  padding:2px;
+    .association-card {
+      margin: 20px;
+      text-align: center;
+      width: 300px;
+
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+      }
+
+      h3 {
+        margin-top: 10px;
+      }
+
+      p {
+        margin: 5px 0;
+      }
+    }
+  }
 }
-.booking-content{
-  font-size: 28px;
-  margin-bottom: 8px;
-}
-.booking-content {
-  color: white;
-  font-size: 15px;
-  line-height: 1.3;
-}
-.body {
-  display: flex;
-  flex-wrap: wrap;
+
+.how-meetup-works {
+  text-align: center;
+  margin-top: 40px;
+
+  .how-it-works-grid {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .how-it-works-item {
+      background-color: #e6f0ff;
+      border-radius: 12px;
+      padding: 20px;
+      min-width: 300px;
+      max-width: 500px;
+      height: 200px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        cursor: pointer;
+      }
+
+      a {
+        display: flex;
+        text-decoration: none;
+        color: inherit;
+        align-items: center;
+      }
+
+      .icon {
+        flex: 0 0 auto;
+        margin-right: 20px;
+
+        svg {
+          width: 40px;
+          height: 40px;
+          fill: #008193;
+        }
+      }
+
+      .content {
+        h3 {
+          margin-bottom: 10px;
+          font-size: 1.2em;
+        }
+
+        p {
+          margin-bottom: 20px;
+        }
+
+        span {
+          color: #008193;
+          text-decoration: none;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }

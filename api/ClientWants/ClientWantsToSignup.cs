@@ -41,9 +41,9 @@ public class ClientWantsToSignup : BaseEventHandler<ClientWantsToSignupDto>
         try
         {
             _accountService.Register(dto.username, dto.firstname, dto.lastname, dto.email, dto.phone, dto.userType_id, dto.password);
-            var welcomesmessage = new ServerWelcomesUser()
+            var welcomesmessage = new ServerWelcomesNewUser()
             {
-                message = $"Welcome to the platform, " + dto.username
+                message = $"Welcome to the platform, " + dto.username, eventType = "success"
             };
             var messageToClient = JsonSerializer.Serialize(welcomesmessage);
             socket.Send(messageToClient);
@@ -51,15 +51,19 @@ public class ClientWantsToSignup : BaseEventHandler<ClientWantsToSignupDto>
         catch (Exception e)
         {
             Console.WriteLine(e);
-            socket.Send(JsonSerializer.Serialize(new  {eventType= "error", msg = "Failed to add " + dto.username}));
-            throw;
+            var errormessage = new ServerWelcomesNewUser()
+            {
+                message = $"Failed to add " + dto.username, eventType = "error"
+            };
+            var messageToClient = JsonSerializer.Serialize(errormessage);
+            socket.Send(messageToClient);
         }
 
         return Task.CompletedTask;
     }
 }
 
-public class ServerWelcomesUser : BaseDto
+public class ServerWelcomesNewUser : BaseDto
 {
     public string message { get; set; }
     

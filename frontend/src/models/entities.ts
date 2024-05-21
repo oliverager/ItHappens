@@ -22,5 +22,17 @@ export class Booking {
   location?: string;
   activity_id?: number;
   imgurl? : string;
-
+}
+export class Event {
+  eventId?: number;
+  name?: string;
+  location?: string;
+  imageUrl?: string;
+  description?: string;
+  date?: Date;
+  amount?: number;
+  price?: number;
+  associationId?: number;
+  categoryId?: number;
+  bookingId?: number;
 }
