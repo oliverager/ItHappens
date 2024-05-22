@@ -1,20 +1,22 @@
 import {Injectable} from '@angular/core';
 import {BaseDto} from "../models/baseDto";
 import {WebsocketSuperclass} from "../models/WebsocketSuperclass";
-import {Association, Event} from "../models/entities";
+import {Association, Event, User} from "../models/entities";
 import {environment} from "../environments/environment";
 import {MessageService} from "primeng/api";
 import {ServerSendsEventFeed} from "../models/ServerSendsEventFeed";
 import {ServerSendsAssociationFeed} from "../models/ServerSendsAssociationFeed";
+import { ServerSendsLoggedInUserFeed } from '../models/ServerSendsLoggedInUserFeed';
+import {Observable, of} from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketClientService {
-
   events: Event[] = [];
   associations: Association[] = [
+
     {
       AssociationId: 3,
       Name: "Community Garden",
@@ -22,8 +24,8 @@ export class WebSocketClientService {
       Phone: 23456789,
       Address: "91011 Green Road",
       Description: "Community managed garden for residents",
-      BannerUrl: "src/assets/Football field.jpg",
-      ProfileUrl: "src/assets/Football field.jpg"
+      BannerUrl: "assets/Football field.jpg",
+      ProfileUrl: "assets/Football field.jpg"
     }
   ];
 
@@ -56,7 +58,6 @@ export class WebSocketClientService {
       summary: data,
     })
   }
-
   ServerSendsEventFeed(dto: ServerSendsEventFeed) {
     this.events = dto.EventsFeedQueries!;
     console.log(this.events);
@@ -66,5 +67,20 @@ export class WebSocketClientService {
     this.associations = dto.AssociationsFeedQueries!;
     console.log(this.associations);
   }
+
+  getLoggedInUser(userId: number): Observable<User | undefined> {
+    // Assuming you have a method to fetch user data from an API or other data source
+    // For now, using a hardcoded user object
+    const loggedInUser: User = {
+      username: 'johndoe',
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'johndoe@example.com',
+      phone: '22222222'
+      //skal have token retur, så vi kan få userdata fra token
+    };
+    return of(loggedInUser);
+  }
 }
+
 
