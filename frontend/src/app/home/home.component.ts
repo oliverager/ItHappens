@@ -33,6 +33,10 @@ export class HomeComponent implements OnInit {
   GetAssociation(): void {
     this.ws.socketConnection.sendDto(new ClientWantsToGetAssociationFeed())
   }
+
+  GetEventsList() {
+    console.log(this.ws.events)
+  }
 }
 
 

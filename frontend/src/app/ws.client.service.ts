@@ -14,7 +14,18 @@ import {ServerSendsAssociationFeed} from "../models/ServerSendsAssociationFeed";
 export class WebSocketClientService {
 
   events: Event[] = [];
-  associations: Association[] = [];
+  associations: Association[] = [
+    {
+      AssociationId: 3,
+      Name: "Community Garden",
+      Email: "garden@community.org",
+      Phone: 23456789,
+      Address: "91011 Green Road",
+      Description: "Community managed garden for residents",
+      BannerUrl: "src/assets/Football field.jpg",
+      ProfileUrl: "src/assets/Football field.jpg"
+    }
+  ];
 
   public socketConnection: WebsocketSuperclass;
 
@@ -33,7 +44,7 @@ export class WebSocketClientService {
   }
 
   GetAssociationsById(associationId: number): Association | undefined {
-    return this.associations.find(associated => associated.associationId === associationId);
+    return this.associations.find(associated => associated.AssociationId === associationId);
   }
 
   ServerWelcomesNewUser(data: any) {
@@ -47,12 +58,12 @@ export class WebSocketClientService {
   }
 
   ServerSendsEventFeed(dto: ServerSendsEventFeed) {
-    this.events = dto.EventsFeedQueries!
+    this.events = dto.EventsFeedQueries!;
     console.log(this.events);
   }
 
   ServerSendsAssociationFeed(dto: ServerSendsAssociationFeed) {
-    this.associations = dto.AssociationsFeedQueries!
+    this.associations = dto.AssociationsFeedQueries!;
     console.log(this.associations);
   }
 }

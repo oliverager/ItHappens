@@ -9,26 +9,26 @@ export class User {
 }
 
 export class Association {
-  associationId?: number;
-  name?: string;
-  email?: string;
-  phone?: number;
-  address?: string;
-  description?: string;
-  bannerUrl?: string;
-  profileUrl?: string;
+  AssociationId?: number;
+  Name?: string;
+  Email?: string;
+  Phone?: number;
+  Address?: string;
+  Description?: string;
+  BannerUrl?: string;
+  ProfileUrl?: string;
 }
 
 export class Event {
-  eventId?: number;
-  name?: string;
-  location?: string;
-  imageUrl?: string;
-  description?: string;
-  date?: Date;
-  amount?: number;
-  price?: number;
-  associationId?: number;
-  categoryId?: number;
-  bookingId?: number;
+  EventId?: number;
+  Name?: string;
+  Location?: string;
+  ImageUrl?: string;
+  Description?: string;
+  Date?: Date;
+  Amount?: number;
+  Price?: number;
+  AssociationId?: number;
+  CategoryId?: number;
+  BookingId?: number;
 }

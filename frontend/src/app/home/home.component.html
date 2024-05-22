@@ -6,20 +6,21 @@
     <p>Discover your passion—whether it's hiking, reading, networking, or skill sharing, join thousands who share your
       interests on ItHappens. Events are happening daily—sign up and dive into the excitement!</p>
     <button routerLink="/user-signup">Join Today</button>
+    <button (click)="GetEventsList()"></button>
   </header>
   <section class="events">
     <h2>Events near <span>Esbjerg C, ES</span></h2>
     <div class="events-grid">
       <div class="event-card" *ngFor="let event of ws.events | slice:0:8">
-        <a [routerLink]="['/details', event.eventId]">
+        <a [routerLink]="['/details', event.EventId]">
           <div>
-            <img [src]="event.imageUrl" [alt]="event.name">
+            <img [src]="event.ImageUrl" [alt]="event.Name">
           </div>
           <div class="content">
-            <h3>{{ event.name }}</h3>
-            <p>Hosted by: {{ event.associationId }}</p>
-            <p>{{ event.location }}</p>
-            <p>{{ event.date | date: 'EEE, MMM d · h:mm a' }}</p>
+            <h3>{{ event.Name }}</h3>
+            <p>Hosted by: {{ event.AssociationId }}</p>
+            <p>{{ event.Location }}</p>
+            <p>{{ event.Date | date: 'EEE, MMM d · h:mm a' }}</p>
           </div>
         </a>
       </div>
@@ -29,16 +30,16 @@
     <h2>Popular associations on ItHappens</h2>
     <div class="associations-grid">
       <div class="association-card" *ngFor="let association of ws.associations | slice:0:4">
-        <a [routerLink]="['app-associations-page/', association.associationId]">
+        <a [routerLink]="['app-associations-page/', association.AssociationId]">
           <div>
-            <img [src]="association.profileUrl" [alt]="association.name">
+            <img [src]="association.ProfileUrl" [alt]="association.Name">
           </div>
           <div class="content">
-            <h3>{{ association.name }}</h3>
-            <p>{{ association.description }}</p>
-            <p>Email: {{ association.email }}</p>
-            <p>Telephone: {{ association.phone }}</p>
-            <p>Address: {{ association.address }}</p>
+            <h3>{{ association.Name }}</h3>
+            <p>{{ association.Description }}</p>
+            <p>Email: {{ association.Email }}</p>
+            <p>Telephone: {{ association.Phone }}</p>
+            <p>Address: {{ association.Address }}</p>
           </div>
         </a>
       </div>
