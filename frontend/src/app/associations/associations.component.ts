@@ -1,9 +1,10 @@
 import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CommonModule, NgIf} from "@angular/common";
-import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {WebSocketClientService} from "../ws.client.service";
 import {ClientWantsToCreateAssociations} from "../../models/ClientWantsToCreateAssociations";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-associations',
@@ -20,6 +21,7 @@ import {ClientWantsToCreateAssociations} from "../../models/ClientWantsToCreateA
   styleUrl: './associations.component.scss'
 })
 export class AssociationsComponent {
+  toaster=inject(ToastrService);
   ws = inject(WebSocketClientService);
   associationForm: FormGroup;
   isFormSubmitted: Boolean = false;
@@ -39,8 +41,11 @@ export class AssociationsComponent {
     if (this.associationForm.valid) {
       this.createAssociation();
       console.log("Success")
+      this.toaster.success("You created an association", "Succes");
+
     } else {
       console.log("Failed to create Association")
+      this.toaster.error("Failed to create Association", "Error");
     }
   }
 
