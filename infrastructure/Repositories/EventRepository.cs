@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Dapper;
-using infrastructure.DataModels;
+﻿using Dapper;
 using infrastructure.Models.DataModels;
 using infrastructure.Models.QueryModels;
 using Npgsql;
@@ -9,13 +7,13 @@ namespace infrastructure.Repositories;
 
 public class EventRepository
 {
-       private NpgsqlDataSource _dataSource;
+    private NpgsqlDataSource _dataSource;
 
     public EventRepository(NpgsqlDataSource dataSource)
     {
         _dataSource = dataSource;
     }
-    
+
     // get EventFeed
 
     public IEnumerable<EventsFeedQuery> GetEventsFeed()
@@ -39,13 +37,12 @@ SELECT event_id as {nameof(Events.EventId)},
             return conn.Query<EventsFeedQuery>(sql);
         }
     }
-    
-    
-    
+
+
     // create an Event
 
     public Events CreateEvent(string name, string location, string imageUrl, string description, DateTime date,
-        int amount, int price, int associationId,int categoryId, int bookingId)
+        int amount, int price, int associationId, int categoryId, int bookingId)
     {
         string sql = @$"
         INSERT INTO ithappens.events (name, location, imageurl, description, date, amount, price, association_id, category_id, booking_id) 
@@ -63,15 +60,19 @@ SELECT event_id as {nameof(Events.EventId)},
         category_id as {nameof(Events.CategoryId)},
         booking_id sa {nameof(Events.BookingId)}
         ";
-        
+
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<Events>(sql, new { name, location, imageUrl, description, date, amount, price, associationId, categoryId, bookingId });
+            return conn.QueryFirst<Events>(sql,
+                new
+                {
+                    name, location, imageUrl, description, date, amount, price, associationId, categoryId, bookingId
+                });
         }
     }
-    
+
     // delete Event
-    
+
     public bool DeleteEvent(int EventId)
     {
         var sql = @"DELETE FROM ithappens.events WHERE event_id  = @EventId;";
@@ -80,11 +81,12 @@ SELECT event_id as {nameof(Events.EventId)},
             return conn.Execute(sql, new { EventId }) == 1;
         }
     }
-    
+
     // Update Event
 
-    public Events UpdateEvent(int eventId, string name, string location, string imageUrl, string description, DateTime date,
-        int amount, int price, int associationId,int categoryId, int bookingId)
+    public Events UpdateEvent(int eventId, string name, string location, string imageUrl, string description,
+        DateTime date,
+        int amount, int price, int associationId, int categoryId, int bookingId)
     {
         string sql = @$"
         UPDATE ithappens.events SET name = @name, location = @location, imageurl = @imageUrl, description = @description, date = @date, amount = @amount, price = @price, association_id = @associationId, category_id = @categoryId, booking_id = @bookingId
@@ -102,15 +104,20 @@ SELECT event_id as {nameof(Events.EventId)},
         category_id as {nameof(Events.CategoryId)},
         booking_id sa {nameof(Events.BookingId)}
         ";
-        
+
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<Events>(sql, new { eventId, name, location, imageUrl, description, date, amount, price, associationId, categoryId, bookingId });
+            return conn.QueryFirst<Events>(sql,
+                new
+                {
+                    eventId, name, location, imageUrl, description, date, amount, price, associationId, categoryId,
+                    bookingId
+                });
         }
     }
-    
+
     // Get Events by id
-    
+
     public Events GetById(int EventId)
     {
         string sql = @$"
@@ -130,10 +137,10 @@ SELECT event_id as {nameof(Events.EventId)},
         FROM ithappens.events
         WHERE event_id  = @EventId; 
         ";
-            
+
         using (var conn = _dataSource.OpenConnection())
         {
             return conn.QueryFirst<Events>(sql, new { EventId });
-        } 
+        }
     }
 }

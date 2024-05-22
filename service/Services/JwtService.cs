@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
  using infrastructure.Repositories;
  using infrastructure.DataModels;
+ using infrastructure.Models.DataModels;
  using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 

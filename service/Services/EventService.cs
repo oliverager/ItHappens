@@ -12,23 +12,27 @@ public class EventService
     {
         _eventRepository = eventRepository;
     }
+
     public IEnumerable<EventsFeedQuery> GetEventFeed()
     {
         return _eventRepository.GetEventsFeed();
     }
 
     public Events CreateEvent(string name, string location, string imageUrl, string description, DateTime date,
-        int amount, int price, int associationId,int categoryId, int bookingId)
+        int amount, int price, int associationId, int categoryId, int bookingId)
     {
-        return _eventRepository.CreateEvent(name, location, imageUrl, description, date, amount, price, associationId, categoryId, bookingId);
+        return _eventRepository.CreateEvent(name, location, imageUrl, description, date, amount, price, associationId,
+            categoryId, bookingId);
     }
 
-    public Events UpdateEvents(int eventId, string name, string location, string imageUrl, string description, DateTime date,
-        int amount, int price, int associationId,int categoryId, int bookingId)
+    public Events UpdateEvents(int eventId, string name, string location, string imageUrl, string description,
+        DateTime date,
+        int amount, int price, int associationId, int categoryId, int bookingId)
     {
-        return _eventRepository.UpdateEvent(eventId, name, location, imageUrl, description, date, amount, price, associationId, categoryId, bookingId);
+        return _eventRepository.UpdateEvent(eventId, name, location, imageUrl, description, date, amount, price,
+            associationId, categoryId, bookingId);
     }
-    
+
     public void DeleteEvent(int eventId)
     {
         var result = _eventRepository.DeleteEvent(eventId);

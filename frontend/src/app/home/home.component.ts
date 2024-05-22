@@ -18,7 +18,7 @@ import {ClientWantsToGetAssociationFeed} from "../../models/ClientWantsToGetAsso
 export class HomeComponent implements OnInit {
 
 
-  constructor( public ws: WebSocketClientService) {
+  constructor(public ws: WebSocketClientService) {
   }
 
   ngOnInit(): void {

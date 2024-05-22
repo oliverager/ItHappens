@@ -11,7 +11,7 @@ import {ServerSendsAssociationFeed} from "../models/ServerSendsAssociationFeed";
 @Injectable({
   providedIn: 'root'
 })
-export class WebSocketClientService  {
+export class WebSocketClientService {
 
   events: Event[] = [];
   associations: Association[] = [];
@@ -33,7 +33,7 @@ export class WebSocketClientService  {
   }
 
   GetAssociationsById(associationId: number): Association | undefined {
-    return this.associations.find(associated => associated.id === associationId);
+    return this.associations.find(associated => associated.associationId === associationId);
   }
 
   ServerWelcomesNewUser(data: any) {

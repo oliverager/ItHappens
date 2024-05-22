@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using infrastructure.DataModels;
+using infrastructure.Models.DataModels;
 using infrastructure.QueryModels;
 using Npgsql;
 

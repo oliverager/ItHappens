@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 section {
   margin-bottom: 20px
 }
@@ -67,6 +68,12 @@ header button {
     transform: translateY(-3px);
     cursor: pointer;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+  }
 }
 
 .event-card img {
@@ -84,6 +91,7 @@ header button {
   color: #666;
   margin: 0 15px 15px 15px;
 }
+
 .hero {
   display: flex;
   align-items: stretch;
@@ -93,6 +101,7 @@ header button {
   background-size: cover;
   min-width: 900px;
 }
+
 .hero__text-container {
   position: relative;
   z-index: 1;
@@ -102,16 +111,19 @@ header button {
   height: 100%;
   width: 100%;
 }
+
 .hero__text {
   color: #ffffff;
   text-align: center;
 }
+
 .hero__pre-heading {
   margin-bottom: 5px;
   font-size: 40px;
   line-height: 1;
   font-family: "Mr Dafoe", sans-serif;
 }
+
 .hero__heading {
   font-size: 60px;
   line-height: 1;
@@ -119,6 +131,7 @@ header button {
   font-family: "Oswald", sans-serif;
   text-transform: uppercase;
 }
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .events-grid {
@@ -137,11 +150,13 @@ header button {
     grid-template-columns: 1fr; /* 1 column for extra small screens */
   }
 }
-.flex-col{
+
+.flex-col {
   flex-direction: column;
   padding-right: 12%;
   padding-left: 12%;
 }
+
 .popular-associations {
   text-align: center;
 

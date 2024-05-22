@@ -1,4 +1,5 @@
 ﻿using infrastructure.DataModels;
+using infrastructure.Models.DataModels;
 using infrastructure.Repositories;
 
 namespace service.Services;
