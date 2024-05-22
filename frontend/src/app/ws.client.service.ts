@@ -22,9 +22,59 @@ export class WebSocketClientService {
       Phone: 23456789,
       Address: "91011 Green Road",
       Description: "Community managed garden for residents",
+      BannerUrl: "../assets/Football field.jpg",
+      ProfileUrl: "https://en.reformsports.com/oxegrebi/2023/07/why-do-they-sprinkle-football-pitches.jpg"
+    },
+    {
+      AssociationId: 9,
+      Name: "Tjæreborg IF",
+      Email: "tjaereborguu@gmail.com",
+      Phone: 60225726,
+      Address: "Brovej 12 , Tjæreborg, Denmark, 6731",
+      Description: "TIF’s hovedaktivitet er fodbold. På det sportslige plan har TIF’s fodboldherrer som største bedrift i turneringsregi at spille sig op i serie 1 i 1993. Derudover er den største sportslige oplevelse, da foreningens fodboldherrer i 2008 spillede sig frem til landspokalturneringens anden runde, hvor man trak det lokale SAS-ligahold Esbjerg fB. Kampen endte 10-1 til Esbjerg fB, men det var en uforglemmelig oplevelse for spillere, ledere, familie og de ca. 1300 tilskuere, der mødte op på Tjæreborg Stadion. På ungdomsfronten er den største bedrift et jysk mesterskab for ynglinge i 2000 i ynglinge 3. TIF er dog mere end fodbold. Af andre aktiviteter er der kroket og petanque. I 1995 kom kroketspillet for alvor til Tjæreborg, hvor der er blevet spillet ved græsarealerne ved Tjæreborg Ældrecenter. I 1997 fik TIF i samarbejde med Esbjerg Kommune anlagt kroketbaner øst for Østerkrog, hvor der også er blevet opført et klubhus. Siden 1996 er det blevet spillet kroket under TIF på banerne ved mellem Tjæreborg Ældrecenter og Kirkestien. I 2009 er dog blevet anlagt petanquebaner ved TIF’s klubhus på brovej, hvor petanqueaktiviteterne finder sted i dag.",
+      BannerUrl: "https://live-895-tjaereborg-if.umbraco-proxy.com/media/1657/unavngivet.jpg",
+      ProfileUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWJxQaNhKqpB5a5O5G6zU3UReTsW90eHHIIbC8r2YA1g&s"
+    },
+    {
+      AssociationId: 5,
+      Name: "Community Garden",
+      Email: "garden@community.org",
+      Phone: 23456789,
+      Address: "91011 Green Road",
+      Description: "Community managed garden for residents",
+      BannerUrl: "src/assets/badminton.jpg",
+      ProfileUrl: "../assets/badminton.jpg"
+    },
+    {
+      AssociationId: 6,
+      Name: "Community Garden",
+      Email: "garden@community.org",
+      Phone: 23456789,
+      Address: "91011 Green Road",
+      Description: "Community managed garden for residents",
       BannerUrl: "src/assets/Football field.jpg",
-      ProfileUrl: "src/assets/Football field.jpg"
-    }
+      ProfileUrl: "https://en.reformsports.com/oxegrebi/2023/07/why-do-they-sprinkle-football-pitches.jpg"
+    },
+    {
+      AssociationId: 7,
+      Name: "Community Garden",
+      Email: "garden@community.org",
+      Phone: 23456789,
+      Address: "91011 Green Road",
+      Description: "Community managed garden for residents",
+      BannerUrl: "src/assets/Football field.jpg",
+      ProfileUrl: "https://en.reformsports.com/oxegrebi/2023/07/why-do-they-sprinkle-football-pitches.jpg"
+    },
+    {
+      AssociationId: 8,
+      Name: "Community Garden",
+      Email: "garden@community.org",
+      Phone: 23456789,
+      Address: "91011 Green Road",
+      Description: "Community managed garden for residents",
+      BannerUrl: "src/assets/Football field.jpg",
+      ProfileUrl: "https://en.reformsports.com/oxegrebi/2023/07/why-do-they-sprinkle-football-pitches.jpg"
+    },
   ];
 
   public socketConnection: WebsocketSuperclass;
@@ -63,7 +113,7 @@ export class WebSocketClientService {
   }
 
   ServerSendsAssociationFeed(dto: ServerSendsAssociationFeed) {
-    this.associations = dto.AssociationsFeedQueries!;
+    //this.associations = dto.AssociationsFeedQueries!;
     console.log(this.associations);
   }
 }
