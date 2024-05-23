@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {Component, inject} from '@angular/core';
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {WebSocketClientService} from "../ws.client.service";
@@ -15,13 +15,10 @@ import {User} from "../../models/entities";
   styleUrl: './profile-page.component.scss'
 })
 export class ProfilePageComponent {
-
-  loggedInUser: User | undefined;
+  user: User | undefined;
 
   constructor(private ws: WebSocketClientService) {
-    const userId = Number(localStorage.getItem("userId"));
-    this.ws.getLoggedInUser(userId).subscribe(user => {
-      this.loggedInUser = user;
-    });
+    const userId = Number(['Id']);
+    this.user = this.ws.GetUsersById(userId);
   }
 }

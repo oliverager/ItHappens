@@ -1,5 +1,6 @@
 ﻿using infrastructure.DataModels;
 using infrastructure.Models.DataModels;
+using infrastructure.QueryModels;
 using infrastructure.Repositories;
 
 namespace service.Services;
@@ -12,6 +13,13 @@ public class UserService
     {
         _userRepository = userRepository;
     }
+    //get usersfeed
+    public IEnumerable<UserFeedQuery> GetEventFeed()
+    {
+        
+        return _userRepository.GetUserFeed();
+    }
+    
     //Create user
     
     public User CreateUser(string firstname, string lastname, string username, string email, int phone, int usertype_id)

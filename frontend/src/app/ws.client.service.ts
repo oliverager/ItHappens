@@ -6,7 +6,7 @@ import {environment} from "../environments/environment";
 import {MessageService} from "primeng/api";
 import {ServerSendsEventFeed} from "../models/ServerSendsEventFeed";
 import {ServerSendsAssociationFeed} from "../models/ServerSendsAssociationFeed";
-import { ServerSendsLoggedInUserFeed } from '../models/ServerSendsLoggedInUserFeed';
+import { ServerSendsUserFeed } from '../models/ServerSendsUserFeed';
 import {Observable, of} from "rxjs";
 
 
@@ -14,6 +14,7 @@ import {Observable, of} from "rxjs";
   providedIn: 'root'
 })
 export class WebSocketClientService {
+  users: User[] = [];
   events: Event[] = [];
   associations: Association[] = [
 
@@ -49,6 +50,10 @@ export class WebSocketClientService {
     return this.associations.find(associated => associated.AssociationId === associationId);
   }
 
+GetUsersById(userId: number): User | undefined {
+  return this.users.find(user => user.userId === userId);
+}
+
   ServerWelcomesNewUser(data: any) {
     console.log(data)
     this.messageService.add({
@@ -67,19 +72,9 @@ export class WebSocketClientService {
     this.associations = dto.AssociationsFeedQueries!;
     console.log(this.associations);
   }
-
-  getLoggedInUser(userId: number): Observable<User | undefined> {
-    // Assuming you have a method to fetch user data from an API or other data source
-    // For now, using a hardcoded user object
-    const loggedInUser: User = {
-      username: 'johndoe',
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'johndoe@example.com',
-      phone: '22222222'
-      //skal have token retur, så vi kan få userdata fra token
-    };
-    return of(loggedInUser);
+  ServerSendsUserFeed(dto: ServerSendsUserFeed) {
+    this.users = dto.UsersFeedQueries!;
+    console.log(this.users);
   }
 }
 
