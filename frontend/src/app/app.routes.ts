@@ -6,7 +6,7 @@ import {AssociationsComponent} from "./associations/associations.component";
 import {AssociationsPageComponent} from "./associations-page/associations-page.component";
 import {EventPageComponent} from "./event-page/event-page.component";
 import {ProfilePageComponent} from "./profile-page/profile-page.component";
-import {JoinEventComponent} from "./join-event/join-event.component";
+import {EventInfoComponent} from "./event-info/event-info.component";
 
 
 export const routes: Routes = [
@@ -17,7 +17,7 @@ export const routes: Routes = [
   {path: 'app-event-page/:id', component: EventPageComponent},
   {path: 'home', component: HomeComponent},
   {path: 'profile-page', component: ProfilePageComponent},
-  {path: 'join-event', component: JoinEventComponent},
+  {path: 'event-info/:id', component: EventInfoComponent},
   {
     path: '',
     redirectTo: 'home',

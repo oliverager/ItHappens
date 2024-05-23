@@ -1,4 +1,4 @@
-﻿﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Authentication;
 using System.Security.Claims;
 using System.Text;
@@ -14,21 +14,31 @@ namespace service.Services;
 public class JwtService
 {
     private TokenRepository _tokenRepository;
+    private OwnerRepository _ownerRepository;
     
     private static readonly byte[] Secret = Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("jwtkey")!);
 
-    public JwtService(TokenRepository tokenRepository)
+    public JwtService(TokenRepository tokenRepository, OwnerRepository ownerRepository)
     {
         _tokenRepository = tokenRepository;
+        _ownerRepository = ownerRepository;
     }
 
     public string createToken(User user)
     {
+
+        int? Owner = 0;
+        
         if (user == null)
         {
             throw new ArgumentNullException(nameof(user), "User cannot be null.");
         }
 
+        if (user.usertype_id == 2)
+        {
+            Owner = _ownerRepository.GetAssociationIdByUserId(user.user_id);
+            Console.WriteLine($"Fetched association ID: {Owner}");
+        }
         // Print user details to console
         Console.WriteLine($"User Details: UserId={user.user_id}, Username={user.username}");
 
@@ -41,6 +51,7 @@ public class JwtService
                 new Claim(ClaimTypes.NameIdentifier, user.user_id.ToString()),
                 new Claim(ClaimTypes.Name, user.username),
                 new Claim(ClaimTypes.Role, user.usertype_id.ToString()),
+                new Claim(ClaimTypes.Actor, Owner.ToString())
             }),
             Expires = TimeZoneInfo.ConvertTimeToUtc(DateTime.Now.AddDays(7)),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Secret), SecurityAlgorithms.HmacSha256Signature)

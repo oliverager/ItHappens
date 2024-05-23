@@ -34,4 +34,20 @@ public class OwnerRepository
             return conn.QueryFirst<Owner>(sql, new { ownerId });
         } 
     }
+    
+    public int? GetAssociationIdByUserId(int userId)
+    {
+            string sql = @$"
+             SELECT
+             association_id
+             FROM ithappens.owner
+             WHERE user_id = @userId
+             ";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return conn.QueryFirstOrDefault<int?>(sql, new { userId });
+        }
+    }
+
 }

@@ -108,7 +108,7 @@ SELECT user_id as {nameof(User.user_id)},
        
         
         FROM ithappens.users
-        WHERE user_id = @user_Id 
+        WHERE user_id = @userId 
         ";
             
         using (var conn = _dataSource.OpenConnection())

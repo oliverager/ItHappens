@@ -1,0 +1,83 @@
+<body>
+<main class="flex-col">
+  <header class="event-top-bar">
+    <div class="icon">
+      <h1 class="">{{ events?.Name }}</h1>
+      <a [routerLink]="['/app-associations-page', association?.AssociationId]">
+        <div class="association-info">
+          <img [src]="association?.ProfileUrl" [alt]="association?.Name">
+          <div class="Hosted-By">
+            <p>Hosted By</p>
+            <span>{{ association?.Name }}</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </header>
+  <section class="event-top-bar">
+    <div class="icon">
+      <div class="event-info-1">
+        <div class="event-info-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+              d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+          </svg>
+          <span>{{ events?.Date | date: 'EEE, MMM d · h:mm a' }}</span>
+        </div>
+        <div class="event-info-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+            <path
+              d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+          </svg>
+          <span>{{ events?.Location }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="event-content">
+      <div class="event__imagecontainer">
+        <img class="event__image" [src]="events?.ImageUrl" alt="Event Image">
+      </div>
+      <div class="event__description">
+        <span class="alt smaller">Description</span>
+        <div class="event__short-description">
+          <p>{{ events?.Description }}</p>
+        </div>
+        <div class="tags">
+          <span class="tag">Sport</span>
+          <span class="tag">Art</span>
+          <span class="tag">Music</span>
+          <span class="tag">Games</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="event-action-bar">
+    <div class="event-container">
+      <div class="event-details">
+        <div class="event-time">
+          <time datetime="2024-05-23T01:00:00+02:00"
+                title="Thu May 23 2024 01:00:00 GMT+0200 (Centraleuropæisk sommertid)">
+            {{ events?.Date | date: 'EEE, MMM d · h:mm a' }}
+          </time>
+        </div>
+        <div class="event-title">
+          <span>{{ events?.Name }}</span>
+        </div>
+      </div>
+      <div class="event-actions">
+        <div style="display: flex; flex-direction: row;">
+          <div class="event-price"><span>{{ events?.Price }} Kr.</span></div>
+          <div>{{ events?.Amount }} spots left</div>
+        </div>
+        <div class="event-buttons">
+          <button class="attend-btn">Attend</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+

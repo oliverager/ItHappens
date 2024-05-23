@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+}
+
+.event-top-bar {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  background-color: #ffffff;
+  padding: 1rem;
+  z-index: 10;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #7d7d7d;
+
+
+  .event-info-1 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .event-info-2 {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .association-info {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0.5rem;
+
+    &:hover {
+      cursor: pointer;
+
+      .Hosted-By {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    span {
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  .icon {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    margin-right: 20px;
+    max-width: 1120px;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: #008193;
+    }
+
+    img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+    }
+
+    a {
+      display: flex;
+      text-decoration: none;
+      color: inherit;
+      align-items: center;
+    }
+  }
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-content {
+  width: 1120px;
+  min-height: 600px;
+}
+
+.event__imagecontainer {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  padding-top: 1rem;
+}
+
+.event__image img {
+  width: 100%;
+}
+
+.event__description {
+  text-align: start;
+  margin: 1rem;
+}
+
+.alt.smaller {
+  font-size: 1.25rem;
+  font-family: 'Oswald', sans-serif;
+  margin-bottom: 1rem;
+}
+
+.event__short-description p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #008193;
+}
+
+.tags {
+  display: flex;
+  justify-content: start;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  background-color: #008193;
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+
+}
+
+.event-action-bar {
+  position: sticky;
+  display: flex;
+  bottom: 0;
+  background-color: white;
+  padding: 1rem;
+  z-index: 10;
+  width: 100%;
+  height: 95px;
+
+}
+
+.event-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1120px;
+  margin: 0 auto;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.event-time {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: #6B7280;
+}
+
+.event-title p span {
+  font-size: 1rem;
+  color: #111827;
+  font-weight: bold;
+}
+
+.event-actions {
+  display: flex;
+  align-items: center;
+}
+
+.event-price {
+  font-weight: 600;
+  margin-right: 1rem;
+  color: #111827;
+}
+
+.event-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 1rem;
+  margin-left: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.375rem;
+}
+
+.share-btn {
+  color: #047857;
+  border: 2px solid #047857;
+  width: 60px;
+
+}
+
+.share-btn:hover {
+  background-color: #D1FAE5;
+}
+
+.share-btn svg {
+  margin-right: 0.5rem;
+}
+
+.attend-btn {
+  background-color: #EF4444;
+  color: white;
+  border: 2px solid #EF4444;
+  width: 120px;
+
+}
+
+.attend-btn:hover {
+  background-color: #DC2626;
+  border-color: #DC2626;
+}
