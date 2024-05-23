@@ -1,20 +1,23 @@
 import {Injectable} from '@angular/core';
 import {BaseDto} from "../models/baseDto";
 import {WebsocketSuperclass} from "../models/WebsocketSuperclass";
-import {Association, Event} from "../models/entities";
+import {Association, Event, User} from "../models/entities";
 import {environment} from "../environments/environment";
 import {MessageService} from "primeng/api";
 import {ServerSendsEventFeed} from "../models/ServerSendsEventFeed";
 import {ServerSendsAssociationFeed} from "../models/ServerSendsAssociationFeed";
+import { ServerSendsUserFeed } from '../models/ServerSendsUserFeed';
+import {Observable, of} from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketClientService {
-
+  users: User[] = [];
   events: Event[] = [];
   associations: Association[] = [
+
     {
       AssociationId: 3,
       Name: "Community Garden",
@@ -22,8 +25,8 @@ export class WebSocketClientService {
       Phone: 23456789,
       Address: "91011 Green Road",
       Description: "Community managed garden for residents",
-      BannerUrl: "../assets/Football field.jpg",
-      ProfileUrl: "https://en.reformsports.com/oxegrebi/2023/07/why-do-they-sprinkle-football-pitches.jpg"
+      BannerUrl: "assets/Football field.jpg",
+      ProfileUrl: "assets/Football field.jpg"
     },
     {
       AssociationId: 9,
@@ -97,6 +100,10 @@ export class WebSocketClientService {
     return this.associations.find(associated => associated.AssociationId === associationId);
   }
 
+GetUsersById(userId: number): User | undefined {
+  return this.users.find(user => user.userId === userId);
+}
+
   GetEventsById(eventId: number): Event | undefined {
     return this.events.find(event => event.EventId === eventId);
   }
@@ -110,7 +117,6 @@ export class WebSocketClientService {
       summary: data,
     })
   }
-
   ServerSendsEventFeed(dto: ServerSendsEventFeed) {
     this.events = dto.EventsFeedQueries!;
     console.log(this.events);
@@ -120,5 +126,10 @@ export class WebSocketClientService {
     //this.associations = dto.AssociationsFeedQueries!;
     console.log(this.associations);
   }
+  ServerSendsUserFeed(dto: ServerSendsUserFeed) {
+    this.users = dto.UsersFeedQueries!;
+    console.log(this.users);
+  }
 }
+
 

@@ -2,6 +2,7 @@
 using infrastructure.DataModels;
 using infrastructure.Models.DataModels;
 using infrastructure.QueryModels;
+using Microsoft.AspNetCore.Identity;
 using Npgsql;
 
 namespace infrastructure.Repositories;
@@ -14,6 +15,25 @@ public class UserRepository
     {
         _dataSource = dataSource;
     }
+    
+    public IEnumerable<UserFeedQuery> GetUserFeed()
+    {
+        string sql = $@"
+SELECT user_id as {nameof(User.user_id)},
+        firstname as {nameof(User.firstname)},
+        lastname as {nameof(User.lastname)},
+        username as {nameof(User.username)},
+        email as {nameof(User.email)},
+        phone as {nameof(User.phone)},
+        usertype_id as{nameof(User.usertype_id)}
+        FROM ithappens.events
+    ";
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return conn.Query<UserFeedQuery>(sql);
+        }
+    }
+    
     
     // Creating a User
 
