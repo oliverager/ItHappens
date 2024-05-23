@@ -3,7 +3,7 @@ using infrastructure.DataModels;
 using infrastructure.Models.DataModels;
 using lib;
 using service.Services;
-using Newtonsoft.Json; 
+using Newtonsoft.Json;
 
 namespace api.ClientWants
 {
@@ -27,7 +27,7 @@ namespace api.ClientWants
         public override Task Handle(ClientWantsToLogInDto dto, IWebSocketConnection socket)
         {
             User user = _accountService.Authenticate(dto.email, dto.password);
-            
+
             Console.WriteLine($"User Details: UserId={user.user_id}, Username={user.username}");
 
             // Assuming you have some authentication logic here
@@ -54,7 +54,7 @@ namespace api.ClientWants
                 // Send the JSON failure response back to the client
                 socket.Send(jsonResponse);
             }
-            
+
             return Task.CompletedTask;
         }
     }
