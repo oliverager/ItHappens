@@ -51,7 +51,23 @@
       </div>
     </div>
 
+    <div *ngIf="getUserRole() === '3'">
+         <div class="input-box">
+      <input type="number" id="association_id" name="Association Id" placeholder="Association Id" pattern="" class="form-control" formControlName="association_id">
+      <div class="text danger" *ngIf="userForm.controls['association_id'].invalid &&
+    (userForm.controls['association_id'].touched || userForm.controls['association_id'].dirty || isFormSubmitted)">
+        <span *ngIf="userForm.controls['association_id'].errors?.['pattern']">This is not a valid association Id</span>
+      </div>
+     </div>
+    </div>
+
+
   <button class="btn" type="button" (click)="onSubmit()">Sign Up</button>
+
+  <div *ngIf="getUserRole() === '3'">
+    <button class="btn" type="button" (click)="onSubmitOwner()">Create new Owner</button>
+  </div>
+
 
 </div>
 </form>
