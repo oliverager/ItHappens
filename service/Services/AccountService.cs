@@ -12,13 +12,15 @@ public class AccountService
     private readonly ILogger<AccountService> _logger;
     private readonly PasswordHashRepository _passwordHashRepository;
     private readonly UserRepository _userRepository;
+    private readonly OwnerRepository _ownerRepository;
 
     public AccountService(ILogger<AccountService> logger, UserRepository userRepository,
-        PasswordHashRepository passwordHashRepository)
+        PasswordHashRepository passwordHashRepository, OwnerRepository ownerRepository)
     {
         _logger = logger;
         _userRepository = userRepository;
         _passwordHashRepository = passwordHashRepository;
+        _ownerRepository = ownerRepository;
     }
     
     // Authenticate User.
@@ -70,6 +72,39 @@ public class AccountService
                 _passwordHashRepository.CreateUser(user.user_id, passwordHash, salt, hashAlgorithm.GetName());
                 
                 await SendWelcomeEmail(user.email, user.username);
+                
+                return user;
+            }
+            //else
+            {
+                // Email is not unique, handle accordingly (throw an exception, log, etc.)
+                throw new ArgumentException("Email address is already registered.");
+            }
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("Registration error: {Message}", e);
+            throw; // Rethrow the exception to handle it at the controller level
+        }
+    }
+    
+    public async Task<User> RegisterOwner(string username, string firstname, string lastname, string email, int phone, int usertype_id, string password, int association_id)
+    {
+        try
+        {
+            usertype_id = 2;
+            
+            // Check if the email is unique
+            //   if (!_userRepository.DoesUserWithEmailExist(email))
+            {
+                // Email is unique, proceed with registration
+                var hashAlgorithm = PasswordHashAlgorithm.Create();
+                var salt = hashAlgorithm.GenerateSalt();
+                var passwordHash = hashAlgorithm.HashPassword(password, salt);
+                var user = _userRepository.CreateUser(firstname,lastname, username, email, phone, usertype_id);
+                _passwordHashRepository.CreateUser(user.user_id, passwordHash, salt, hashAlgorithm.GetName());
+                
+                _ownerRepository.CreateOwnerLink(user.user_id, association_id);
                 
                 return user;
             }

@@ -35,6 +35,19 @@ public class OwnerRepository
         } 
     }
     
+    public void CreateOwnerLink(int userId, int associationId)
+    {
+        string sql = @"
+                INSERT INTO ithappens.owner (user_id, association_id)
+                VALUES (@UserId, @AssociationId)
+            ";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            conn.Execute(sql, new { UserId = userId, AssociationId = associationId });
+        }
+    }
+    
     public int? GetAssociationIdByUserId(int userId)
     {
             string sql = @$"
