@@ -42,6 +42,7 @@ public static class Startup
         builder.Services.AddSingleton<PasswordHashRepository>();
         builder.Services.AddSingleton<JwtService>();
         builder.Services.AddSingleton<TokenRepository>();
+        builder.Services.AddSingleton<OwnerRepository>();
         
 
         var clientEventHandlers = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());

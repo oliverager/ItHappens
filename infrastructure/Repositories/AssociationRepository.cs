@@ -111,4 +111,6 @@ SELECT association_id as {nameof(Association.AssociationId)},
             return conn.QueryFirst<Association>(sql, new { associationId });
         }
     }
+    
+    
 }
