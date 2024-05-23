@@ -29,7 +29,7 @@
     <h2>Popular associations on ItHappens</h2>
     <div class="associations-grid">
       <div class="association-card" *ngFor="let association of ws.associations | slice:0:4">
-        <a [routerLink]="['/app-associations-page', association.AssociationId]">
+        <a [routerLink]="['/app-associations-info', association.AssociationId]">
           <div>
             <img [src]="association.ProfileUrl" [alt]="association.Name">
           </div>

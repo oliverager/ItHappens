@@ -1,20 +1,20 @@
 import {Component} from '@angular/core';
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {WebSocketClientService} from "../ws.client.service";
 import {Association} from "../../models/entities";
 import {CommonModule} from "@angular/common";
 
 @Component({
-  selector: 'app-associations-page',
+  selector: 'app-associations-info',
   standalone: true,
   imports: [
-    ReactiveFormsModule, CommonModule
+    ReactiveFormsModule, CommonModule, RouterLink
   ],
-  templateUrl: './associations-page.component.html',
-  styleUrl: './associations-page.component.scss'
+  templateUrl: './associations-info.component.html',
+  styleUrl: './associations-info.component.scss'
 })
-export class AssociationsPageComponent {
+export class AssociationsInfoComponent {
   association: Association | undefined;
 
   amount = new FormControl(0, [Validators.required])

@@ -1,15 +1,13 @@
 import {Injectable} from '@angular/core';
-import {BaseDto} from "../models/baseDto";
 import {WebsocketSuperclass} from "../models/WebsocketSuperclass";
 import {Association, Event, User} from "../models/entities";
 import {environment} from "../environments/environment";
 import {MessageService} from "primeng/api";
 import {ServerSendsEventFeed} from "../models/ServerSendsEventFeed";
 import {ServerSendsAssociationFeed} from "../models/ServerSendsAssociationFeed";
-import { ServerSendsUserFeed } from '../models/ServerSendsUserFeed';
-import {Observable, of} from "rxjs";
+import {ServerSendsUserFeed} from '../models/ServerSendsUserFeed';
 import {TokenServiceService} from "../../serviceAngular/token-service.service";
-
+import {BaseDto} from "../models/baseDto";
 
 
 @Injectable({
@@ -60,26 +58,6 @@ export class WebSocketClientService {
       BannerUrl: "src/assets/Football field.jpg",
       ProfileUrl: "https://en.reformsports.com/oxegrebi/2023/07/why-do-they-sprinkle-football-pitches.jpg"
     },
-    {
-      AssociationId: 7,
-      Name: "Community Garden",
-      Email: "garden@community.org",
-      Phone: 23456789,
-      Address: "91011 Green Road",
-      Description: "Community managed garden for residents",
-      BannerUrl: "src/assets/Football field.jpg",
-      ProfileUrl: "https://en.reformsports.com/oxegrebi/2023/07/why-do-they-sprinkle-football-pitches.jpg"
-    },
-    {
-      AssociationId: 8,
-      Name: "Community Garden",
-      Email: "garden@community.org",
-      Phone: 23456789,
-      Address: "91011 Green Road",
-      Description: "Community managed garden for residents",
-      BannerUrl: "src/assets/Football field.jpg",
-      ProfileUrl: "https://en.reformsports.com/oxegrebi/2023/07/why-do-they-sprinkle-football-pitches.jpg"
-    },
   ];
 
   public socketConnection: WebsocketSuperclass;
@@ -104,7 +82,7 @@ export class WebSocketClientService {
           console.log("Token is undefined"); // Handle the case where token is undefined
         }
       } else {
-        console.log(`Received event type: ${data.eventType}. No action taken.`);
+        console.log('Received event type: ${data.eventType}. No action taken.');
         //@ts-ignore
         this[data.eventType].call(this, data);
       }
@@ -118,9 +96,9 @@ export class WebSocketClientService {
     return this.associations.find(associated => associated.AssociationId === associationId);
   }
 
-GetUsersById(userId: number): User | undefined {
-  return this.users.find(user => user.userId === userId);
-}
+  GetUsersById(userId: number): User | undefined {
+    return this.users.find(user => user.userId === userId);
+  }
 
   GetEventsById(eventId: number): Event | undefined {
     return this.events.find(event => event.EventId === eventId);
@@ -135,6 +113,7 @@ GetUsersById(userId: number): User | undefined {
       summary: data,
     })
   }
+
   ServerSendsEventFeed(dto: ServerSendsEventFeed) {
     this.events = dto.EventsFeedQueries!;
     console.log(this.events);
@@ -144,6 +123,7 @@ GetUsersById(userId: number): User | undefined {
     //this.associations = dto.AssociationsFeedQueries!;
     console.log(this.associations);
   }
+
   ServerSendsUserFeed(dto: ServerSendsUserFeed) {
     this.users = dto.UsersFeedQueries!;
     console.log(this.users);
