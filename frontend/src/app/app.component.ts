@@ -5,6 +5,7 @@ import {ToastModule} from "primeng/toast";
 import {ClientWantsToGetEventFeed} from "../models/ClientWantsToGetEventFeed";
 import {ClientWantsToGetAssociationFeed} from "../models/ClientWantsToGetAssociationFeed";
 import {WebSocketClientService} from "./ws.client.service";
+import {ClientWantsToGetUserFeed} from "../models/ClientWantsToGetUserFeed";
 
 
 @Component({
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetEvents();
-    this.GetAssociation()
+    this.GetAssociation();
+    this.GetUser();
   }
 
   GetEvents(): void {
@@ -30,4 +32,7 @@ export class AppComponent implements OnInit {
   GetAssociation(): void {
     this.ws.socketConnection.sendDto(new ClientWantsToGetAssociationFeed())
   }
+  GetUser(): void {
+    this.ws.socketConnection.sendDto(new ClientWantsToGetUserFeed())
+}
 }

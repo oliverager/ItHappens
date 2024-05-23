@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {WebSocketClientService} from "../ws.client.service";
 import {User} from "../../models/entities";
+import {TokenServiceService} from "../../../serviceAngular/token-service.service";
 
 @Component({
   selector: 'app-profile-page',
@@ -15,10 +16,11 @@ import {User} from "../../models/entities";
   styleUrl: './profile-page.component.scss'
 })
 export class ProfilePageComponent {
-  user: User | undefined;
 
-  constructor(private ws: WebSocketClientService) {
-    const userId = Number(['Id']);
-    this.user = this.ws.GetUsersById(userId);
+  users: User | undefined;
+  constructor(private ws: WebSocketClientService, private tokenService: TokenServiceService) {
+   const userId = tokenService.getUserId()
+    this.users = this.ws.GetUsersById(userId);
+
   }
 }

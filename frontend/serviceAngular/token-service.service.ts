@@ -16,14 +16,18 @@ export class TokenServiceService {
     return this.storage.getItem("token");
   }
 
-  public getUserId(): string | null {
+  public getUserId(): number | null {
     const token = this.getToken();
     if (token) {
       const tokenPayload = JSON.parse(atob(token.split('.')[1]));
-      return tokenPayload.nameid;
+      const userId = Number(tokenPayload.nameid);
+      if (!isNaN(userId)) {
+        return userId;
+      }
     }
     return null;
   }
+
 
   public getUsername(): string | null {
     const token = this.getToken();
