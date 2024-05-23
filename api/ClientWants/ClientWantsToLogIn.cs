@@ -35,7 +35,8 @@ namespace api.ClientWants
             {
                 // Create a JSON object containing the token
                 var token = _jwtService.createToken(user);
-                var response = new { success = true, token }; // Construct JSON object
+                var response = new { success = true, token, eventType = "ClientWantsToLogIn" };
+
 
                 // Serialize the JSON object to a string
                 var jsonResponse = JsonConvert.SerializeObject(response);

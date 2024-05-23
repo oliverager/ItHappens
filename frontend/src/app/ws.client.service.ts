@@ -91,18 +91,26 @@ export class WebSocketClientService {
 
   handleEventsEmittedByTheServer() {
     this.socketConnection.onmessage = (event) => {
-      const data = JSON.parse(event.data);
+      const data = JSON.parse(event.data) as BaseDto<any>;
+      console.log("Received: " + JSON.stringify(data));
 
-      if (data.success && data.token) {
-        const token = data.token;
-        console.log("Received token: " + token);
-        localStorage.setItem('jwt', token);
-        this.tokenService.setToken(token);
+      if (data.eventType === 'ClientWantsToLogIn') {
+        const token = data.token; // Access the 'token' property
+        if (token) { // Check if token is not undefined
+          console.log("Received token: " + token);
+          localStorage.setItem('jwt', token);
+          this.tokenService.setToken(token);
+        } else {
+          console.log("Token is undefined"); // Handle the case where token is undefined
+        }
       } else {
-        console.log("Received invalid response from server");
+        console.log(`Received event type: ${data.eventType}. No action taken.`);
+        //@ts-ignore
+        this[data.eventType].call(this, data);
       }
     }
   }
+
 
 
 
