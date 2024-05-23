@@ -34,7 +34,7 @@ export class UserLoginComponent {
       this.messageService.add({
         key: 'bottomcenter',
         life: 2000,
-        severity: "success",
+        severity: "Success",
         summary: "Success",
         detail: "You log in",
       });

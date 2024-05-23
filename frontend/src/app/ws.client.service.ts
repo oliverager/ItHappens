@@ -93,8 +93,12 @@ export class WebSocketClientService {
     }
   }
 
-  GetAssociationsById(associationId: number): Association | undefined {
+    GetAssociationsById(associationId: number | undefined): Association | undefined {
     return this.associations.find(associated => associated.AssociationId === associationId);
+  }
+
+  GetEventsById(eventId: number): Event | undefined {
+    return this.events.find(event => event.EventId === eventId);
   }
 
   ServerWelcomesNewUser(data: any) {

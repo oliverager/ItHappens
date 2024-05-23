@@ -62,14 +62,15 @@ header button {
 
 .events-grid {
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(4, 1fr); /* 4 columns */
   gap: 20px;
 }
 
 .event-card {
   background-color: #e6f5ff;
-
-  border-radius: 5px;
+  width: 300px;
+  border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
