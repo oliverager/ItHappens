@@ -6,6 +6,7 @@ import { ClientWantsToLogIn } from '../../models/ClientWantsToLogIn';
 import {MessageService} from "primeng/api";
 import {MessagesModule} from "primeng/messages";
 import {ToastModule} from "primeng/toast";
+import {TokenServiceService} from "../../../serviceAngular/token-service.service";
 
 @Component({
   selector: 'app-user-login',
@@ -21,7 +22,7 @@ export class UserLoginComponent {
   ws = inject(WebSocketClientService);
   loginForm: FormGroup;
   isFormSubmitted: Boolean = true;
-  constructor(public router: Router, private messageService: MessageService) {
+  constructor(public router: Router, private messageService: MessageService, private tokenService: TokenServiceService) {
 
     this.loginForm = new FormGroup({
       email: new FormControl("", [Validators.required]),
@@ -47,6 +48,16 @@ export class UserLoginComponent {
   logIn(){
     this.ws.socketConnection.sendDto(new ClientWantsToLogIn(this.loginForm.value!,))
   }
+
+  displayTokenValues() {
+    const userId = this.tokenService.getUserId();
+    const username = this.tokenService.getUsername();
+    const userRole = this.tokenService.getUserRole();
+    const associationId = this.tokenService.getAssociationId();
+
+    alert(`UserID: ${userId}\nUsername: ${username}\nUserRole: ${userRole}\nAssociationID: ${associationId}`);
+  }
+
 }
 
 

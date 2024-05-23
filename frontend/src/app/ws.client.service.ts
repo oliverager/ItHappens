@@ -8,6 +8,8 @@ import {ServerSendsEventFeed} from "../models/ServerSendsEventFeed";
 import {ServerSendsAssociationFeed} from "../models/ServerSendsAssociationFeed";
 import { ServerSendsUserFeed } from '../models/ServerSendsUserFeed';
 import {Observable, of} from "rxjs";
+import {TokenServiceService} from "../../serviceAngular/token-service.service";
+
 
 
 @Injectable({
@@ -82,21 +84,29 @@ export class WebSocketClientService {
 
   public socketConnection: WebsocketSuperclass;
 
-  constructor(public messageService: MessageService) {
+  constructor(public messageService: MessageService, public tokenService: TokenServiceService) {
     this.socketConnection = new WebsocketSuperclass(environment.websocketBaseUrl);
     this.handleEventsEmittedByTheServer()
   }
 
   handleEventsEmittedByTheServer() {
     this.socketConnection.onmessage = (event) => {
-      const data = JSON.parse(event.data) as BaseDto<any>;
-      console.log("Received: " + JSON.stringify(data));
-      //@ts-ignore
-      this[data.eventType].call(this, data);
+      const data = JSON.parse(event.data);
+
+      if (data.success && data.token) {
+        const token = data.token;
+        console.log("Received token: " + token);
+        localStorage.setItem('jwt', token);
+        this.tokenService.setToken(token);
+      } else {
+        console.log("Received invalid response from server");
+      }
     }
   }
 
-    GetAssociationsById(associationId: number | undefined): Association | undefined {
+
+
+  GetAssociationsById(associationId: number | undefined): Association | undefined {
     return this.associations.find(associated => associated.AssociationId === associationId);
   }
 
