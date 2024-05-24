@@ -19,7 +19,7 @@ public class ClientWantsToGetUserFeed(UserService userService)
     public override async Task Handle(ClientWantsToGetUserFeedDto dto, IWebSocketConnection socket)
         => socket.Send(JsonSerializer.Serialize(new ServerSendsUserFeedDto()
             {
-                UserFeedQueries = userService.GetEventFeed()
+                UserFeedQueries = userService.GetUserFeed()
             }
         ));
 }

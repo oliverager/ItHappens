@@ -26,7 +26,7 @@ SELECT user_id as {nameof(User.user_id)},
         email as {nameof(User.email)},
         phone as {nameof(User.phone)},
         usertype_id as{nameof(User.usertype_id)}
-        FROM ithappens.events
+        FROM ithappens.users
     ";
         using (var conn = _dataSource.OpenConnection())
         {

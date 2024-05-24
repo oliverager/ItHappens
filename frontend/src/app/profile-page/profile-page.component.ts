@@ -18,9 +18,9 @@ import {TokenServiceService} from "../../../serviceAngular/token-service.service
 export class ProfilePageComponent {
 
   users: User | undefined;
-  constructor(private ws: WebSocketClientService, private tokenService: TokenServiceService) {
-   const userId = tokenService.getUserId()
+  constructor(private router: Router, public ws: WebSocketClientService,
+              public activatedRoute: ActivatedRoute, public tokenService: TokenServiceService) {
+    const userId = tokenService.getUserId();
     this.users = this.ws.GetUsersById(userId);
-
   }
 }

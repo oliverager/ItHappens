@@ -14,7 +14,7 @@ public class UserService
         _userRepository = userRepository;
     }
     //get usersfeed
-    public IEnumerable<UserFeedQuery> GetEventFeed()
+    public IEnumerable<UserFeedQuery> GetUserFeed()
     {
         
         return _userRepository.GetUserFeed();
