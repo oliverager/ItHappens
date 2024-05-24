@@ -13,13 +13,72 @@ public class EventRepository
     {
         _dataSource = dataSource;
     }
+    
+    public class Booking
+    {
+        public int UserId { get; set; }
+        public int EventId { get; set; }
+    }
 
-    // get EventFeed
+    
+    public void CreateBookingLink(int userId, int eventId)
+    {
+        string sql = @"
+        INSERT INTO ithappens.booking (user_id, event_id)
+        VALUES (@UserId, @EventId)
+    ";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            conn.Execute(sql, new { UserId = userId, EventId = eventId });
+        }
+    }
+
+    public void UpdateEventTickets(int eventId, int ticketChange)
+    {
+        string sql = @"
+        UPDATE ithappens.events
+        SET amount = amount + @TicketChange
+        WHERE event_id = @EventId
+    ";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            conn.Execute(sql, new { TicketChange = ticketChange, EventId = eventId });
+        }
+    }
+
+    public bool DeleteBookingLink(int userId, int eventId)
+    {
+        string sql = @"
+        DELETE FROM ithappens.booking WHERE user_id = @UserId AND event_id = @EventId;
+    ";
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return conn.Execute(sql, new { UserId = userId, EventId = eventId }) == 1;
+        }
+    }
+
+
+    public IEnumerable<Booking> GetBookingsForEvent(int eventId)
+    {
+        string sql = @"
+            SELECT user_id, event_id
+            FROM ithappens.booking
+            WHERE event_id = @EventId;
+        ";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return conn.Query<Booking>(sql, new { EventId = eventId });
+        }
+    }
+    
 
     public IEnumerable<EventsFeedQuery> GetEventsFeed()
     {
         string sql = $@"
-SELECT event_id as {nameof(Events.EventId)},
+        SELECT event_id as {nameof(Events.EventId)},
         name as {nameof(Events.Name)},
         location as {nameof(Events.Location)},
         imageurl as {nameof(Events.ImageUrl)},
@@ -139,7 +198,7 @@ SELECT event_id as {nameof(Events.EventId)},
         ";
 
         using (var conn = _dataSource.OpenConnection())
-        {
+        { 
             return conn.QueryFirst<Events>(sql, new { EventId });
         }
     }

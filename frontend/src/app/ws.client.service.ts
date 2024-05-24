@@ -96,7 +96,7 @@ export class WebSocketClientService {
     return this.associations.find(associated => associated.AssociationId === associationId);
   }
 
-  GetUsersById(userId: number | null): User | undefined {
+  GetUsersById(userId: number | undefined): User | undefined {
     return this.users.find(user => user.userId === userId);
   }
 

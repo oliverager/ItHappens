@@ -16,7 +16,7 @@ export class TokenServiceService {
     return this.storage.getItem("token");
   }
 
-  public getUserId(): number | null {
+  public getUserId(): number | undefined {
     const token = this.getToken();
     if (token) {
       const tokenPayload = JSON.parse(atob(token.split('.')[1]));
@@ -25,7 +25,7 @@ export class TokenServiceService {
         return userId;
       }
     }
-    return null;
+    return undefined;
   }
 
 

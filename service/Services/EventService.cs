@@ -41,4 +41,26 @@ public class EventService
             throw new Exception("Could not Delete Event");
         }
     }
+
+    public void CreateBooking(int userId, int eventId)
+    {
+        
+        Console.WriteLine("you made it here too");
+        
+
+            try
+            {
+                _eventRepository.CreateBookingLink(userId, eventId);
+
+                _eventRepository.UpdateEventTickets(eventId, -1);
+            }
+
+
+            catch
+
+            {
+                throw new Exception("Could not create booking");
+            }
+      
+    }
 }
