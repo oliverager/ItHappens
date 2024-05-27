@@ -58,11 +58,11 @@
       </div>
 
       <div class="input-box">
-        <input type="number" id="category" name="category" placeholder="Category" class="form-control"
-               formControlName="category">
-        <div class="text danger" *ngIf="eventForm.controls['category'].invalid &&
-      (eventForm.controls['category'].touched || eventForm.controls['category'].dirty || isFormSubmitted)">
-          <span *ngIf="eventForm.controls['category'].errors?.['required']">This is Required</span>
+        <input type="number" id="categoryId" name="categoryId" placeholder="Category" class="form-control"
+               formControlName="categoryId">
+        <div class="text danger" *ngIf="eventForm.controls['categoryId'].invalid &&
+      (eventForm.controls['categoryId'].touched || eventForm.controls['categoryId'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['categoryId'].errors?.['required']">This is Required</span>
         </div>
       </div>
 

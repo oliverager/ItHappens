@@ -30,8 +30,8 @@ export class CreateEventComponent {
       description: new FormControl("", Validators.required),
       date: new FormControl(Date,Validators.required),
       price: new FormControl(Number),
-      association: new FormControl(associationId),
-      category: new FormControl(Number),
+      associationId: new FormControl(associationId),
+      categoryId: new FormControl(Number),
 
 
     })

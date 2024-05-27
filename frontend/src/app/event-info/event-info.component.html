@@ -3,7 +3,7 @@
   <header class="event-top-bar">
     <div class="icon">
       <h1 class="">{{ events?.Name }}</h1>
-      <a [routerLink]="['/app-create-associations-info', association?.AssociationId]">
+      <a [routerLink]="['/associations-info', association?.AssociationId]">
         <div class="association-info">
           <img [src]="association?.ProfileUrl" [alt]="association?.Name">
           <div class="Hosted-By">
