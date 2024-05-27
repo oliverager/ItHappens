@@ -13,13 +13,13 @@ public class EventRepository
     {
         _dataSource = dataSource;
     }
-    
+
     public class Booking
     {
         public int UserId { get; set; }
         public int EventId { get; set; }
     }
-
+    
     
     public void CreateBookingLink(int userId, int eventId)
     {
@@ -73,7 +73,7 @@ public class EventRepository
             return conn.Query<Booking>(sql, new { EventId = eventId });
         }
     }
-    
+
 
     public IEnumerable<EventsFeedQuery> GetEventsFeed()
     {
@@ -96,6 +96,15 @@ public class EventRepository
             return conn.Query<EventsFeedQuery>(sql);
         }
     }
+    
+    public bool AssociationExists(int associationId)
+    {
+        string sql = "SELECT COUNT(1) FROM ithappens.association WHERE association_id = @AssociationId";
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return conn.ExecuteScalar<int>(sql, new { AssociationId = associationId }) > 0;
+        }
+    }
 
 
     // create an Event
@@ -103,6 +112,11 @@ public class EventRepository
     public Events CreateEvent(string name, string location, string imageUrl, string description, DateTime date,
         int amount, int price, int associationId, int categoryId, int bookingId)
     {
+        if (!AssociationExists(associationId))
+        {
+            throw new Exception("Association ID does not exist.");
+        }
+        
         string sql = @$"
         INSERT INTO ithappens.events (name, location, imageurl, description, date, amount, price, association_id, category_id, booking_id) 
         VALUES (@name, @location, @imageUrl, @description, @date, @amount, @price, @associationId, @categoryId, @bookingId)
@@ -117,7 +131,7 @@ public class EventRepository
         price as {nameof(Events.Price)},
         association_id as {nameof(Events.AssociationId)},
         category_id as {nameof(Events.CategoryId)},
-        booking_id sa {nameof(Events.BookingId)}
+        booking_id as {nameof(Events.BookingId)}
         ";
 
         using (var conn = _dataSource.OpenConnection())
@@ -161,7 +175,7 @@ public class EventRepository
         price as {nameof(Events.Price)},
         association_id as {nameof(Events.AssociationId)},
         category_id as {nameof(Events.CategoryId)},
-        booking_id sa {nameof(Events.BookingId)}
+        booking_id as {nameof(Events.BookingId)}
         ";
 
         using (var conn = _dataSource.OpenConnection())
@@ -191,14 +205,14 @@ public class EventRepository
         price as {nameof(Events.Price)},
         association_id as {nameof(Events.AssociationId)},
         category_id as {nameof(Events.CategoryId)},
-        booking_id sa {nameof(Events.BookingId)},
+        booking_id as {nameof(Events.BookingId)},
                
         FROM ithappens.events
         WHERE event_id  = @EventId; 
         ";
 
         using (var conn = _dataSource.OpenConnection())
-        { 
+        {
             return conn.QueryFirst<Events>(sql, new { EventId });
         }
     }
