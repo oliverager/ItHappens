@@ -29,7 +29,7 @@
     <h2>Popular associations on ItHappens</h2>
     <div class="associations-grid">
       <div class="association-card" *ngFor="let association of ws.associations | slice:0:4">
-        <a [routerLink]="['/app-associations-info', association.AssociationId]">
+        <a [routerLink]="['/associations-info', association.AssociationId]">
           <div>
             <img [src]="association.ProfileUrl" [alt]="association.Name">
           </div>
@@ -47,7 +47,7 @@
     <h2>How ItHappens works</h2>
     <div class="how-it-works-grid">
       <div class="how-it-works-item">
-        <a routerLink="/events">
+        <a [routerLink]="['/**']">
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path
@@ -62,7 +62,7 @@
         </a>
       </div>
       <div class="how-it-works-item">
-        <a routerLink="/associations">
+        <a [routerLink]="['/create-associations']">
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <path

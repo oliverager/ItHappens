@@ -6,7 +6,7 @@ using lib;
 
 namespace api.ClientWants;
 
-public class ClientWantsToCreateActivityDto : BaseDto
+public class ClientWantsToCreateEventDto : BaseDto
 {
     public string Image { get; set; }
     public string Category { get; set; }
@@ -17,9 +17,9 @@ public class ClientWantsToCreateActivityDto : BaseDto
     public int activityId { get; set; }
 }
 
-public class ClientWantsToCreateActivity : BaseEventHandler<ClientWantsToCreateActivityDto>
+public class ClientWantsToCreateEvent : BaseEventHandler<ClientWantsToCreateEventDto>
 {
-    public override Task Handle(ClientWantsToCreateActivityDto dto, IWebSocketConnection socket)
+    public override Task Handle(ClientWantsToCreateEventDto dto, IWebSocketConnection socket)
     {
         var response = new
         {

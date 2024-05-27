@@ -3,30 +3,37 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators,} from "@angular
 import {WebSocketClientService} from "../ws.client.service";
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {ClientWantsToCreateEvent} from "../../models/ClientWantsToCreateEvent";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
-  selector: 'app-event-page',
+  selector: 'app-create-event',
   standalone: true,
   imports: [
     ReactiveFormsModule, CommonModule, NgOptimizedImage,
   ],
-  templateUrl: './event-page.component.html',
-  styleUrl: './event-page.component.scss'
+  templateUrl: './create-event.component.html',
+  styleUrl: './create-event.component.scss'
 })
-export class EventPageComponent {
+export class CreateEventComponent {
   ws = inject(WebSocketClientService)
 
   eventForm: FormGroup;
   isFormSubmitted: Boolean = false;
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute) {
+    const associationId = Number(this.activatedRoute.snapshot.params['id']);
+
     this.eventForm = new FormGroup({
-      eventImage: new FormControl("", [Validators.required]),
-      category: new FormControl("",[Validators.required]),
-      location: new FormControl("",[Validators.required]),
-      address: new FormControl("", [Validators.required]),
-      association: new FormControl("",[Validators.required]),
-      booking: new FormControl("",[Validators.required])
+      name: new FormControl("", [Validators.required, Validators.minLength(3)]),
+      location: new FormControl("",Validators.required),
+      imageUrl: new FormControl("", Validators.required),
+      description: new FormControl("", Validators.required),
+      date: new FormControl(Date,Validators.required),
+      price: new FormControl(Number),
+      association: new FormControl(associationId),
+      category: new FormControl(Number),
+
+
     })
   }
   onSubmit(){
@@ -34,7 +41,7 @@ export class EventPageComponent {
       this.createEvent();
 
     } else {
-      //this.toastService.error('Please fill in all required fields.');
+      console.log("error")
     }
 }
   createEvent(){

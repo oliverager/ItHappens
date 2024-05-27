@@ -1,10 +1,11 @@
 <div class="body">
   <form class="" [formGroup]="associationForm">
     <div class="box-rounder">
-      <h1 class="box-rounder-h1">Create Association</h1>
+      <h1 class="title">Create Association</h1>
 
       <div class="input-box">
-        <input type="text" id="associationName" name="associationName" placeholder="Association Name" class="form-control" formControlName="name">
+        <input type="text" id="associationName" name="associationName" placeholder="Association Name"
+               class="form-control" formControlName="name">
         <div class="text danger" *ngIf="associationForm.controls['name'].invalid &&
     (associationForm.controls['name'].touched || associationForm.controls['name'].dirty || isFormSubmitted)">
           <span *ngIf="associationForm.controls['name'].errors?.['minlength']">Min 4 characters required</span>
@@ -12,7 +13,7 @@
       </div>
 
       <div class="input-box">
-        <input  type="email" id="email" name="email" placeholder="Email" class="form-control" formControlName="email">
+        <input type="email" id="email" name="email" placeholder="Email" class="form-control" formControlName="email">
         <div class="text danger" *ngIf="associationForm.controls['email'].invalid &&
     (associationForm.controls['email'].touched || associationForm.controls['email'].dirty || isFormSubmitted)">
           <span *ngIf="associationForm.controls['email'].errors?.['email']">Email is not proper</span>
@@ -20,7 +21,8 @@
       </div>
 
       <div class="input-box">
-        <input type="number" id="phone" name="phone" placeholder="phone" pattern="[0-9]{8}" class="form-control" formControlName="phone">
+        <input type="number" id="phone" name="phone" placeholder="Phone number" pattern="[0-9]{8}" class="form-control"
+               formControlName="phone">
         <div class="text danger" *ngIf="associationForm.controls['phone'].invalid &&
     (associationForm.controls['phone'].touched || associationForm.controls['phone'].dirty || isFormSubmitted)">
           <span *ngIf="associationForm.controls['phone'].errors?.['pattern']">This is not a valid phone number</span>
@@ -28,7 +30,9 @@
       </div>
 
       <div class="input-box">
-        <input  type="url" id="address" name="associationAddress" placeholder="Association Address" pattern="^(?=\S*\s)(?=[^a-zA-Z]*[a-zA-Z])(?=\D*\d)[a-zA-Z\d\s',.#/-]*$" class="form-control" formControlName="address">
+        <input type="url" id="address" name="associationAddress" placeholder="Association Address"
+               pattern="^(?=\S*\s)(?=[^a-zA-Z]*[a-zA-Z])(?=\D*\d)[a-zA-Z\d\s',.#/-]*$" class="form-control"
+               formControlName="address">
         <div class="text danger" *ngIf="associationForm.controls['address'].invalid &&
       (associationForm.controls['address'].touched || associationForm.controls['address'].dirty)">
           <span *ngIf="associationForm.controls['address'].errors?.
@@ -37,7 +41,8 @@
       </div>
 
       <div class="input-box">
-          <textarea type="text" id="description" name="Description" placeholder="Beskrivelse" class="form-control" formControlName="description"></textarea>
+        <textarea type="text" id="description" name="Description" placeholder="Description" class="form-control"
+                  formControlName="description"></textarea>
         <div class="text danger" *ngIf="associationForm.controls['description'].invalid &&
       (associationForm.controls['description'].touched || associationForm.controls['description'].dirty)">
           <span *ngIf="associationForm.controls['description'].errors?.
@@ -46,7 +51,8 @@
       </div>
 
       <div class="input-box">
-        <input  type="url" id="bannerUrl" name="Baggrundsbillede" placeholder="Baggrundsbillede" class="form-control" formControlName="bannerUrl">
+        <input type="url" id="bannerUrl" name="Baggrundsbillede" placeholder="Banner image" class="form-control"
+               formControlName="bannerUrl">
         <div class="text danger" *ngIf="associationForm.controls['bannerUrl'].invalid &&
       (associationForm.controls['bannerUrl'].touched || associationForm.controls['bannerUrl'].dirty)">
           <span *ngIf="associationForm.controls['bannerUrl'].errors?.
@@ -55,7 +61,8 @@
       </div>
 
       <div class="input-box">
-        <input  type="url" id="profileUrl" name="Profillbillede" placeholder="Profillbillede" class="form-control" formControlName="profileUrl">
+        <input type="url" id="profileUrl" name="Profillbillede" placeholder="Profile picture" class="form-control"
+               formControlName="profileUrl">
         <div class="text danger" *ngIf="associationForm.controls['profileUrl'].invalid &&
       (associationForm.controls['profileUrl'].touched || associationForm.controls['profileUrl'].dirty)">
           <span *ngIf="associationForm.controls['profileUrl'].errors?.

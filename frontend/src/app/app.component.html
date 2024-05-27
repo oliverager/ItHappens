@@ -1,31 +1,41 @@
 <div>
-<header class="navbar">
-
-  <div class="logo">
-    <img routerLink="home" src="../assets/logo.png" height="105" width="270"/>
-  </div>
-  <nav>
-    <ul>
-      <li><button routerLink="/associations">Create-Association</button></li>
-      <li><button routerLink="/about">About</button></li>
-      <li><button routerLink="/user-login" >Login</button></li>
-      <li><button routerLink="/user-signup">Signup</button></li>
-      <li><button routerLink="/join-event">Event</button></li>
-      <li><button routerLink="/profile-page">My Profile</button></li>
-    </ul>
-  </nav>
-</header>
-<main>
-  <router-outlet></router-outlet>
-  <p-toast></p-toast>
-</main>
-<footer>
-<div class="footerContainer">
-  <div class="footerNav">
-    <div class="footerBottom">
-      <p>Copyright &copy; 2024; Designed by <span class="designer">Ithappens</span></p>
+  <header class="navbar">
+    <div class="logo">
+      <img routerLink="home" src="../assets/logo.png" height="105" width="270" alt="Home"/>
     </div>
-  </div>
-</div>
-</footer>
+    <nav>
+      <ul>
+        <li>
+          <button routerLink="/associations">Create-Association</button>
+        </li>
+        <li>
+          <button routerLink="/about">About</button>
+        </li>
+        <li>
+          <button routerLink="/user-login">Login</button>
+        </li>
+        <li>
+          <button routerLink="/user-signup">Signup</button>
+        </li>
+        <li>
+          <button routerLink="/join-event">Event</button>
+        </li>
+        <li>
+          <button routerLink="/profile-page">My Profile</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <footer>
+    <div class="footerContainer">
+      <div class="footerNav">
+        <div class="footerBottom">
+          <p>Copyright &copy; 2024; Designed by <span class="designer">Ithappens</span></p>
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>

@@ -1,0 +1,74 @@
+<div class="body">
+  <form class="" [formGroup]="eventForm">
+    <div class="box-rounder">
+      <h1 class="title">Event Creation</h1>
+
+      <div class="input-box">
+        <input type="text" id="name" name="name" placeholder="Title" class="form-control" formControlName="name">
+        <div class="text danger" *ngIf="eventForm.controls['name'].invalid &&
+      (eventForm.controls['name'].touched || eventForm.controls['name'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['name'].errors?.['required']">Required an Title</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input type="text" id="location" name="location" placeholder="Location" class="form-control"
+               formControlName="location">
+        <div class="text danger" *ngIf="eventForm.controls['location'].invalid &&
+    (eventForm.controls['location'].touched || eventForm.controls['location'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['location'].errors?.['required']">This is Required</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input type="url" id="imageUrl" name="imageUrl" placeholder="Image Url" class="form-control"
+               formControlName="imageUrl">
+        <div class="text danger" *ngIf="eventForm.controls['imageUrl'].invalid &&
+      (eventForm.controls['imageUrl'].touched || eventForm.controls['imageUrl'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['imageUrl'].errors?.['required']">Requires an image</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <textarea type="text" id="description" name="Description" placeholder="Description" class="form-control"
+                  formControlName="description"></textarea>
+        <div class="text danger" *ngIf="eventForm.controls['description'].invalid &&
+      (eventForm.controls['description'].touched || eventForm.controls['description'].dirty)">
+          <span *ngIf="eventForm.controls['description'].errors?.
+          ['minlength']">An url for the banner</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input type="datetime-local" id="date" name="date" placeholder="Date & Time" class="form-control"
+               formControlName="date">
+        <div class="text danger" *ngIf="eventForm.controls['date'].invalid &&
+      (eventForm.controls['date'].touched || eventForm.controls['date'].dirty)">
+          <span *ngIf="eventForm.controls['date'].errors?.['required']">You must choose a date and time</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input type="number" id="price" name="price" placeholder="Price per ticket" class="form-control"
+               formControlName="category">
+        <div class="text danger" *ngIf="eventForm.controls['price'].invalid &&
+      (eventForm.controls['price'].touched || eventForm.controls['price'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['price'].errors?.['required']">This is Required</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input type="number" id="category" name="category" placeholder="Category" class="form-control"
+               formControlName="category">
+        <div class="text danger" *ngIf="eventForm.controls['category'].invalid &&
+      (eventForm.controls['category'].touched || eventForm.controls['category'].dirty || isFormSubmitted)">
+          <span *ngIf="eventForm.controls['category'].errors?.['required']">This is Required</span>
+        </div>
+      </div>
+
+
+      <button class="btn" type="button" (click)="onSubmit()">Create Event</button>
+
+    </div>
+  </form>
+</div>

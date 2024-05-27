@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
-import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {WebSocketClientService} from "../ws.client.service";
-import {Association} from "../../models/entities";
+import {Association, Event} from "../../models/entities";
 import {CommonModule} from "@angular/common";
 
 @Component({
-  selector: 'app-associations-info',
+  selector: 'app-create-associations-info',
   standalone: true,
   imports: [
     ReactiveFormsModule, CommonModule, RouterLink
@@ -16,20 +16,23 @@ import {CommonModule} from "@angular/common";
 })
 export class AssociationsInfoComponent {
   association: Association | undefined;
-
-  amount = new FormControl(0, [Validators.required])
+  associationEvent: Event[] = [];
+  numberOfEvents: number;
 
   constructor(private router: Router, public ws: WebSocketClientService,
               public activatedRoute: ActivatedRoute) {
     const associationId = Number(this.activatedRoute.snapshot.params['id']);
     this.association = this.ws.GetAssociationsById(associationId);
+
+    if (this.association) {
+      this.associationEvent = this.ws.getEventsByAssociationId(this.association.AssociationId!);
+    }
+
+    this.numberOfEvents = this.associationEvent.length;
   }
 
   createEvent(): void {
-    // Assuming you have the ID available in your component
-    const id = 'id'; // Replace 'your-id-value' with your actual ID
-
-    // Navigate to the specified route with the ID parameter
-    this.router.navigate(['app-event-page/:id'])
+    const id = 'id'; // Replace 'id' with the actual ID
+    this.router.navigate(['app-event-page', id]);
   }
 }
