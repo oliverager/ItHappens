@@ -28,7 +28,7 @@
   <section class="popular-associations">
     <h2>Popular associations on ItHappens</h2>
     <div class="associations-grid">
-      <div class="association-card" *ngFor="let association of ws.associations | slice:0:4">
+      <div class="association-card" *ngFor="let association of ws.associations">
         <a [routerLink]="['/associations-info', association.AssociationId]">
           <div>
             <img [src]="association.ProfileUrl" [alt]="association.Name">

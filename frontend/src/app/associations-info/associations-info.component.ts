@@ -17,22 +17,34 @@ import {CommonModule} from "@angular/common";
 export class AssociationsInfoComponent {
   association: Association | undefined;
   associationEvent: Event[] = [];
-  numberOfEvents: number;
+  numberOfEvents: number = 0;
 
   constructor(private router: Router, public ws: WebSocketClientService,
               public activatedRoute: ActivatedRoute) {
     const associationId = Number(this.activatedRoute.snapshot.params['id']);
-    this.association = this.ws.GetAssociationsById(associationId);
 
-    if (this.association) {
-      this.associationEvent = this.ws.getEventsByAssociationId(this.association.AssociationId!);
+    // Check if the association data is already in local storage
+    const storedAssociation = localStorage.getItem('association');
+    const storedAssociationEvent = localStorage.getItem('associationEvent');
+
+    if (storedAssociation) {
+      this.association = JSON.parse(storedAssociation);
+    } else {
+      this.association = this.ws.GetAssociationsById(associationId);
+      if (this.association) {
+        localStorage.setItem('association', JSON.stringify(this.association));
+      }
+    }
+
+    if (storedAssociationEvent) {
+      this.associationEvent = JSON.parse(storedAssociationEvent);
+    } else {
+      if (this.association) {
+        this.associationEvent = this.ws.getEventsByAssociationId(this.association.AssociationId!);
+        localStorage.setItem('associationEvent', JSON.stringify(this.associationEvent));
+      }
     }
 
     this.numberOfEvents = this.associationEvent.length;
-  }
-
-  createEvent(): void {
-    const id = 'id'; // Replace 'id' with the actual ID
-    this.router.navigate(['app-event-page', id]);
   }
 }

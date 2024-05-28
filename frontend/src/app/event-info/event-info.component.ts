@@ -18,31 +18,39 @@ export class EventInfoComponent {
   events: Event | undefined;
   association: Association | undefined;
 
-
-
   constructor(private router: Router, public ws: WebSocketClientService,
               public activatedRoute: ActivatedRoute, public tokenService: TokenServiceService) {
 
     const eventId = Number(activatedRoute.snapshot.params['id']);
-    this.events = this.ws.GetEventsById(eventId);
 
-    const associationId = this.events?.AssociationId;
-    this.association = this.ws.GetAssociationsById(associationId);
+    // Check if the events data is already in local storage
+    const storedEvent = localStorage.getItem('events');
+    const storedAssociation = localStorage.getItem('association');
 
+    if (storedEvent) {
+      this.events = JSON.parse(storedEvent);
+    } else {
+      this.events = this.ws.GetEventsById(eventId);
+      localStorage.setItem('events', JSON.stringify(this.events));
+    }
 
+    if (storedAssociation) {
+      this.association = JSON.parse(storedAssociation);
+    } else {
+      const associationId = this.events?.AssociationId;
+      if (associationId) {
+        this.association = this.ws.GetAssociationsById(associationId);
+        localStorage.setItem('association', JSON.stringify(this.association));
+      }
+    }
   }
 
   attendEvent() {
-
     const userId = this.tokenService.getUserId();
-
     const eventId = Number(this.activatedRoute.snapshot.params['id']);
-
     const dto = new ClientWantsToAttendEvent({ userId, eventId });
 
     this.ws.socketConnection.send(JSON.stringify(dto));
-
-
   }
-
 }
+
