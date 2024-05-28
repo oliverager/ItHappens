@@ -4,6 +4,7 @@ import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {WebSocketClientService} from "../ws.client.service";
 import {Association, Event} from "../../models/entities";
 import {CommonModule} from "@angular/common";
+import {TokenServiceService} from "../../../serviceAngular/token-service.service"
 
 @Component({
   selector: 'app-create-associations-info',
@@ -18,9 +19,12 @@ export class AssociationsInfoComponent {
   association: Association | undefined;
   associationEvent: Event[] = [];
   numberOfEvents: number;
+  ownerId: string | null;
+  userRole: string | null;
+  showAddEventButton: boolean = false;
 
   constructor(private router: Router, public ws: WebSocketClientService,
-              public activatedRoute: ActivatedRoute) {
+              public activatedRoute: ActivatedRoute, private tokenService: TokenServiceService) {
     const associationId = Number(this.activatedRoute.snapshot.params['id']);
     this.association = this.ws.GetAssociationsById(associationId);
 
@@ -29,6 +33,18 @@ export class AssociationsInfoComponent {
     }
 
     this.numberOfEvents = this.associationEvent.length;
+
+    this.ownerId = tokenService.getAssociationId();
+    this.userRole = tokenService.getUserRole();
+
+    this.checkAddEventButtonVisibility();
+  }
+
+  checkAddEventButtonVisibility() {
+    const associationId = Number(this.activatedRoute.snapshot.params['id']);
+    if (this.userRole === '3' || this.ownerId === associationId.toString()) {
+      this.showAddEventButton = true;
+    }
   }
 
   createEvent(): void {
