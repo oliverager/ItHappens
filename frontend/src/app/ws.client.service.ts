@@ -52,7 +52,6 @@ export class WebSocketClientService {
     return this.events.filter(event => event.AssociationId === associationId);
   }
 
-
   GetAssociationsById(associationId: number | undefined): Association | undefined {
     return this.associations.find(associated => associated.AssociationId === associationId);
   }

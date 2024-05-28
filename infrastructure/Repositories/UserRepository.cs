@@ -62,7 +62,7 @@ SELECT user_id as {nameof(User.user_id)},
     
     public bool DeleteUser(int userId)
     {
-        var sql = @"DELETE FROM ithappens.users WHERE user_id  = @userId;";
+        var sql = @"DELETE CASCADE FROM ithappens.users WHERE user_id  = @userId;";
         using (var conn = _dataSource.OpenConnection())
         {
             return conn.Execute(sql, new { userId }) == 1;

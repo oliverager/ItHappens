@@ -34,5 +34,5 @@ export class AppComponent implements OnInit {
   }
   GetUser(): void {
     this.ws.socketConnection.sendDto(new ClientWantsToGetUserFeed())
-}
+  }
 }
