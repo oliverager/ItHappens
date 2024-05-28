@@ -52,7 +52,7 @@ public class EventService
             {
                 _eventRepository.CreateBookingLink(userId, eventId);
 
-                _eventRepository.UpdateEventTickets(eventId, -1);
+                _eventRepository.UpdateEventTickets(eventId, +1);
             }
 
 
