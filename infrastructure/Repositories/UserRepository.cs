@@ -62,10 +62,38 @@ SELECT user_id as {nameof(User.user_id)},
     
     public bool DeleteUser(int userId)
     {
-        var sql = @"DELETE CASCADE FROM ithappens.users WHERE user_id  = @userId;";
+        var deletePasswordHashSql = @"DELETE FROM ithappens.passwordhash WHERE user_id = @userId;";
+        var deleteBookingSql = @"DELETE FROM ithappens.booking WHERE user_id = @userId;";
+        var deleteOwnerSql = @"DELETE FROM ithappens.owner WHERE user_id = @userId;";
+        var deleteUserSql = @"DELETE FROM ithappens.users WHERE user_id = @userId;";
+    
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.Execute(sql, new { userId }) == 1;
+            using (var transaction = conn.BeginTransaction())
+            {
+                try
+                {
+                    // Delete related records in passwordhash table
+                    conn.Execute(deletePasswordHashSql, new { userId }, transaction);
+
+                    // Delete related records in booking table
+                    conn.Execute(deleteBookingSql, new { userId }, transaction);
+
+                    // Delete related records in owner table
+                    conn.Execute(deleteOwnerSql, new { userId }, transaction);
+
+                    // Now delete the user record
+                    var rowsAffected = conn.Execute(deleteUserSql, new { userId }, transaction);
+                
+                    transaction.Commit();
+                    return rowsAffected == 1;
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
         }
     }
     

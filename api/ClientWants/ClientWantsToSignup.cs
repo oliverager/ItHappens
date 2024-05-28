@@ -14,7 +14,6 @@ public class ClientWantsToSignupDto : BaseDto
     public string password { get; set; }
     public string email { get; set; }
     public int phone { get; set; }
-    
     public int userType_id { get; set;}
     
 }

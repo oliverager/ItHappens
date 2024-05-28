@@ -9,9 +9,9 @@ export class WebsocketSuperclass extends ReconnectingWebSocket {
 
     super(address);
     this.onopen = this.handleOpen.bind(this);
-    // this.onerror = (error) => {
-    //   console.error('WebSocket Error:', error);
-    // };
+    this.onerror = (error) => {
+      console.error('WebSocket Error:', error);
+    };
   }
 
   sendDto(dto: BaseDto<any>) {
@@ -27,7 +27,6 @@ export class WebsocketSuperclass extends ReconnectingWebSocket {
     let jwt = localStorage.getItem('jwt');
     if (jwt && jwt != '')
       this.sendDto(new ClientWantsToAuthenticateWithJwt({jwt: jwt}));
-    //attempt to rejoin current room
     while (this.messageQueue.length > 0) {
 
       const dto = this.messageQueue.shift();

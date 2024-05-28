@@ -23,6 +23,10 @@ public class ClientWantsToDeleteUser: BaseEventHandler<ClientWantsToDeleteUserDt
         try
         {
             _userService.DeleteUser(dto.userId);
+            socket.Send(JsonSerializer.Serialize(new ServerGoodbyeMessage()
+            {
+                Message = "Thank you for this time. We look forward to seeing you again."
+            }));
         }
         catch (Exception e)
         {
@@ -32,4 +36,9 @@ public class ClientWantsToDeleteUser: BaseEventHandler<ClientWantsToDeleteUserDt
         }
         return Task.CompletedTask;
     }
+}
+
+public class ServerGoodbyeMessage()
+{
+    public string? Message { get; set; }
 }

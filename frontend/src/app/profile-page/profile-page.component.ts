@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
@@ -17,19 +17,16 @@ import {ClientWantsToDeleteUser} from "../../models/ClientWantsToDeleteUser";
   styleUrl: './profile-page.component.scss'
 })
 export class ProfilePageComponent {
-  users: User | undefined;
-  usersEvent: Event | undefined;
+  user: User | undefined;
+  usersEvent: Event [] = [];
   numberOfEvents: number = 0;
 
-  constructor(private router: Router, public ws: WebSocketClientService,
-              public activatedRoute: ActivatedRoute, public tokenService: TokenServiceService) {
+  constructor(public ws: WebSocketClientService, public tokenService: TokenServiceService) {
     const userId = tokenService.getUserId();
-    console.log(userId)
-    this.users = this.ws.GetUsersById(userId);
-    console.log(this.users)
+    this.user = this.ws.GetUsersById(userId);
   }
 
   DeleteUser() {
-    this.ws.socketConnection.sendDto(new ClientWantsToDeleteUser(this.users));
+    this.ws.socketConnection.sendDto(new ClientWantsToDeleteUser());
   }
 }
