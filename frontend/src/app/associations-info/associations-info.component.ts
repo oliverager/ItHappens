@@ -28,22 +28,26 @@ export class AssociationsInfoComponent {
     const associationId = Number(this.activatedRoute.snapshot.params['id']);
 
     // Check if the association data is already in local storage
+    // Get the stored association ID
+    const storedAssociationId = localStorage.getItem('associationId');
     const storedAssociation = localStorage.getItem('association');
     const storedAssociationEvent = localStorage.getItem('associationEvent');
 
-    if (storedAssociation) {
+    if (storedAssociation && storedAssociationEvent && storedAssociationId === associationId.toString()) {
+      // If the ID matches, use the stored data
       this.association = JSON.parse(storedAssociation);
-    } else {
-      this.association = this.ws.GetAssociationsById(associationId);
-      if (this.association) {
-        localStorage.setItem('association', JSON.stringify(this.association));
-      }
-    }
-
-    if (storedAssociationEvent) {
       this.associationEvent = JSON.parse(storedAssociationEvent);
     } else {
+      // Clear any old data in local storage
+      localStorage.removeItem('associationId');
+      localStorage.removeItem('association');
+      localStorage.removeItem('associationEvent');
+
+      // Fetch new data
+      this.association = this.ws.GetAssociationsById(associationId);
       if (this.association) {
+        localStorage.setItem('associationId', associationId.toString());
+        localStorage.setItem('association', JSON.stringify(this.association));
         this.associationEvent = this.ws.getEventsByAssociationId(this.association.AssociationId!);
         localStorage.setItem('associationEvent', JSON.stringify(this.associationEvent));
       }
@@ -62,10 +66,5 @@ export class AssociationsInfoComponent {
     if (this.userRole === '3' || this.ownerId === associationId.toString()) {
       this.showAddEventButton = true;
     }
-  }
-
-  createEvent(): void {
-    const id = 'id'; // Replace 'id' with the actual ID
-    this.router.navigate(['app-event-page', id]);
   }
 }

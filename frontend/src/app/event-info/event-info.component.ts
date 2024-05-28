@@ -23,18 +23,30 @@ export class EventInfoComponent {
 
     const eventId = Number(activatedRoute.snapshot.params['id']);
 
-    // Check if the events data is already in local storage
+    // Get the stored event ID
+    const storedEventId = localStorage.getItem('eventId');
     const storedEvent = localStorage.getItem('events');
     const storedAssociation = localStorage.getItem('association');
 
-    if (storedEvent) {
+    if (storedEvent && storedEventId === eventId.toString()) {
+      // If the ID matches, use the stored data
       this.events = JSON.parse(storedEvent);
     } else {
+      // Clear any old data in local storage
+      localStorage.removeItem('eventId');
+      localStorage.removeItem('events');
+      localStorage.removeItem('association');
+
+      // Fetch new data
       this.events = this.ws.GetEventsById(eventId);
-      localStorage.setItem('events', JSON.stringify(this.events));
+      if (this.events) {
+        localStorage.setItem('eventId', eventId.toString());
+        localStorage.setItem('events', JSON.stringify(this.events));
+      }
     }
 
-    if (storedAssociation) {
+    if (storedAssociation && storedEventId === eventId.toString()) {
+      // If the ID matches, use the stored data
       this.association = JSON.parse(storedAssociation);
     } else {
       const associationId = this.events?.AssociationId;
