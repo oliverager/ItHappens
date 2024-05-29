@@ -44,23 +44,21 @@ public class EventService
 
     public void CreateBooking(int userId, int eventId)
     {
-        
-        Console.WriteLine("you made it here too");
-        
+        try
+        {
+            _eventRepository.CreateBookingLink(userId, eventId);
 
-            try
-            {
-                _eventRepository.CreateBookingLink(userId, eventId);
+            _eventRepository.UpdateEventTickets(eventId, +1);
+        }
 
-                _eventRepository.UpdateEventTickets(eventId, +1);
-            }
+        catch
+        {
+            throw new Exception("Could not create booking");
+        }
+    }
 
-
-            catch
-
-            {
-                throw new Exception("Could not create booking");
-            }
-      
+    public IEnumerable<int> GetEventIdsForUser(int userId)
+    {
+        return _eventRepository.GetEventIdsForUser(userId);
     }
 }

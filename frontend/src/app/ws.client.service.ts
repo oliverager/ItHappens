@@ -17,6 +17,7 @@ export class WebSocketClientService {
   users: User[] = []; // Array to store user data
   events: Event[] = []; // Array to store event data
   associations: Association[] = []; // Array to store association data
+  user: User = {}
 
   public socketConnection: WebsocketSuperclass; // WebSocket connection instance
 
@@ -65,12 +66,12 @@ export class WebSocketClientService {
   }
 
   // Get user by ID
-  GetUsersById(userId: number | undefined): User {
-    const user = this.users.find(user => user.UserId === userId);
+  GetUsersById(userId: number) {
+    const user = this.users.find(user => user.user_id === userId);
     if (!user) {
       throw new Error('User with id ' + userId + ' not found');
     }
-    return user;
+    this.user = user;
   }
 
   // Get event by ID

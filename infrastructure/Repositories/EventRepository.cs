@@ -60,19 +60,20 @@ public class EventRepository
     }
 
 
-    public IEnumerable<Booking> GetBookingsForEvent(int eventId)
+    public IEnumerable<int> GetEventIdsForUser(int userId)
     {
-        string sql = @"
-            SELECT user_id, event_id
-            FROM ithappens.booking
-            WHERE event_id = @EventId;
-        ";
+        string sql = $@"
+        SELECT event_id
+        FROM ithappens.booking
+        WHERE user_id = @UserId
+    ";
 
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.Query<Booking>(sql, new { EventId = eventId });
+            return conn.Query<int>(sql, new { UserId = userId });
         }
     }
+
 
 
     public IEnumerable<EventsFeedQuery> GetEventsFeed()

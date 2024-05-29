@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 export class TokenServiceService {
   private readonly storage = window.sessionStorage;
 
-  constructor() {}
+  constructor() {
+  }
 
   public setToken(token: string) {
     this.storage.setItem("token", token);
@@ -16,16 +17,19 @@ export class TokenServiceService {
     return this.storage.getItem("token");
   }
 
-  public getUserId(): number | undefined {
+  public getUserId(): number {
     const token = this.getToken();
     if (token) {
       const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+      console.log(tokenPayload)
       const userId = Number(tokenPayload.nameid);
+      console.log(userId)
       if (!isNaN(userId)) {
         return userId;
       }
     }
-    return undefined;
+    throw new Error("Not a number")
+
   }
 
 

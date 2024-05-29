@@ -80,7 +80,7 @@
           <h2>Upcoming events ({{numberOfEvents}})</h2>
           <div class="event-scroll">
             <div class="event-card" *ngFor="let event of associationEvent">
-              <a [routerLink]="">
+              <a [routerLink]="['/event-info', event.EventId]">
                 <div class="event-details">
                   <time class="event-date">{{event.Date | date: 'EEE, MMM d · h:mm a' }}</time>
                   <h3>{{event.Name}}</h3>

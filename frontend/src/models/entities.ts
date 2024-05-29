@@ -1,11 +1,11 @@
 export class User {
-  UserId?: number;
-  Firstname?: string;
-  Lastname?: string;
-  Username?: string;
-  Email?: string;
-  Phone?: number;
-  UserType?: number;
+  user_id?: number;
+  firstname?: string;
+  lastname?: string;
+  username?: string;
+  email?: string;
+  phone?: number;
+  usertype_id?: number;
 }
 
 export class Association {

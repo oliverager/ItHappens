@@ -118,7 +118,7 @@ time {
   background-color: #ffffff;
 
 
-  .action-button{
+  .action-button {
     width: 1100px;
     display: flex;
     justify-content: space-between;
@@ -145,7 +145,6 @@ time {
   font-weight: 500;
   font-size: 1.5rem;
   margin-right: 2rem;
-
 }
 
 .action-bar a:last-child {
@@ -200,21 +199,16 @@ time {
 .association-info {
   display: flex;
   justify-content: space-between;
-  min-height: 800px;
+  min-height: 500px;
 }
 
 .association-feed {
-  width: 65%;
+  width: 100%;
   padding: 10px;
 }
 
 .description-info {
 
-}
-
-.members-list {
-  width: 35%;
-  padding: 10px;
 }
 
 .organizers img {
@@ -248,11 +242,11 @@ time {
 }
 
 .event-scroll {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
   overflow-y: scroll;
-  height: 600px;
-  align-items: center;
+  max-height: 700px;
 }
 
 .event-card {
@@ -263,10 +257,8 @@ time {
   background-color: #fff;
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  margin-bottom: 10px;
-  margin-top: 10px;
-
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
@@ -286,8 +278,12 @@ time {
   }
 
   .event-image {
+    display: flex;
+    flex-direction: column;
     flex: 1;
+    gap: 5px;
     position: relative;
+    font-family: "Oswald", sans-serif;
   }
 
   .event-image img {
@@ -298,26 +294,25 @@ time {
 
 .attendees {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: rgba(0,0,0,0.5);
+  height: 39px;
+  background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 0 10px 10px 0;
 }
 
 .attend-button {
   background-color: #ffffff;
   color: #ff0055;
-  border: 2px solid  #ff0055;
+  border: 2px solid #ff0055;
   padding: 10px 20px;
-  border-radius: 10px;
-  cursor: pointer;
+  border-radius: 10px 0 0 10px;
   transition: background-color 0.3s ease, color 0.3s;
 
   &:hover {
     background-color: #ff0055;
     color: #ffffff;
+    cursor: pointer;
   }
 }
 
