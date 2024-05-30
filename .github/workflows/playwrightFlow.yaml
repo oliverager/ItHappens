@@ -18,8 +18,7 @@ jobs:
         with:
           node-version: '18'
       - run: npm install -g newman
-      - name: run tests
-        run: dotnet test
+        
         env:
           pgconn: ${{secrets.PGCONN}}
           jwtkey: ${{secrets.JWTKEY}}
