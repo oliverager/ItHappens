@@ -47,5 +47,6 @@ export class AppComponent implements OnInit {
 
   SignOut() {
     this.storage.removeItem('token')
+    console.log("Sign Out")
   }
 }
