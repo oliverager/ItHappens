@@ -8,26 +8,45 @@ namespace PlaywrightTests;
 
 [Parallelizable(ParallelScope.Self)]
 [TestFixture]
-public class Tests : PageTest
-{
-    [Test]
-    public async Task HomepageHasPlaywrightInTitleAndGetStartedLinkLinkingtoTheIntroPage()
+
+  public class Tests : PageTest
     {
-        await Page.GotoAsync("https://playwright.dev");
-
-        // Expect a title "to contain" a substring.
-        await Expect(Page).ToHaveTitleAsync(new Regex("Playwright"));
-
-        // create a locator
-        var getStarted = Page.GetByRole(AriaRole.Link, new() { Name = "Get started" });
-
-        // Expect an attribute "to be strictly equal" to the value.
-        await Expect(getStarted).ToHaveAttributeAsync("href", "/docs/intro");
-
-        // Click the get started link.
-        await getStarted.ClickAsync();
-
-        // Expects the URL to contain intro.
-        await Expect(Page).ToHaveURLAsync(new Regex(".*intro"));
+        [Test]
+        public async Task LoginTest()
+        {
+            await Page.GotoAsync("http://localhost:4200/");
+            await Page.GotoAsync("http://localhost:4200/home");
+            await Page.GetByRole(AriaRole.Button, new() { Name = "Log in" }).ClickAsync();
+            await Page.GetByPlaceholder("Email").ClickAsync();
+            await Page.GetByPlaceholder("Email").FillAsync("mail@moellers-hule.dk");
+            await Page.GetByPlaceholder("Password").ClickAsync();
+            await Page.GetByPlaceholder("Password").FillAsync("DruKhari1923!");
+            await Page.GetByRole(AriaRole.Main).GetByRole(AriaRole.Button, new() { Name = "Log in" }).ClickAsync();
+        }
+        
+        [Test]
+        public async Task SignupTest()
+        {
+            await Page.GotoAsync("http://localhost:4200/");
+            await Page.GotoAsync("http://localhost:4200/home");
+            await Page.GetByRole(AriaRole.Button, new() { Name = "Sign up" }).ClickAsync();
+            await Page.GetByPlaceholder("First Name").ClickAsync();
+            await Page.GetByPlaceholder("First Name").FillAsync("Preben");
+            await Page.GetByPlaceholder("userName").ClickAsync();
+            await Page.GetByPlaceholder("userName").FillAsync("PE66");
+            await Page.GetByPlaceholder("Last Name").ClickAsync();
+            await Page.GetByPlaceholder("Last Name").FillAsync("Elkær");
+            await Page.GetByPlaceholder("email").ClickAsync();
+            await Page.GetByPlaceholder("email").FillAsync("PE@fakeshit.dk");
+            await Page.GetByPlaceholder("Phone Number").ClickAsync();
+            await Page.GetByPlaceholder("Phone Number").FillAsync("55669977");
+            await Page.GetByPlaceholder("Password").ClickAsync();
+            await Page.GetByPlaceholder("Password").FillAsync("PE47");
+            await Page.GetByRole(AriaRole.Button, new() { Name = "Sign Up", Exact = true }).ClickAsync();
+            await Page.GetByPlaceholder("Password").ClickAsync();
+            await Page.GetByPlaceholder("Password").FillAsync("ChaosKnight1923!");
+            await Page.GetByRole(AriaRole.Button, new() { Name = "Sign Up", Exact = true }).ClickAsync();
+        }
     }
-}
+        
+
