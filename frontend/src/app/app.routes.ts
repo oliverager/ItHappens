@@ -7,6 +7,7 @@ import {AssociationsInfoComponent} from "./associations-info/associations-info.c
 import {CreateEventComponent} from "./create-event/create-event.component";
 import {ProfilePageComponent} from "./profile-page/profile-page.component";
 import {EventInfoComponent} from "./event-info/event-info.component";
+import {DiscoverComponent} from "./discover/discover.component";
 
 
 export const routes: Routes = [
@@ -16,6 +17,7 @@ export const routes: Routes = [
   {path: 'associations-info/:id', component: AssociationsInfoComponent},
   {path: 'create-event/:id', component: CreateEventComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'discover', component: DiscoverComponent},
   {path: 'profile-page', component: ProfilePageComponent},
   {path: 'event-info/:id', component: EventInfoComponent},
   {
