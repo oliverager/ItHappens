@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
-import { WebsocketSuperclass } from "../models/WebsocketSuperclass";
-import { Association, Event, User } from "../models/entities";
-import { environment } from "../environments/environment";
-import { MessageService } from "primeng/api";
-import { ServerSendsEventFeed } from "../models/ServerSendsEventFeed";
-import { ServerSendsAssociationFeed } from "../models/ServerSendsAssociationFeed";
-import { ServerSendsUserFeed } from '../models/ServerSendsUserFeed';
-import { TokenServiceService } from "../../serviceAngular/token-service.service";
-import { BaseDto } from "../models/baseDto";
-import { ServerGoodbyeMessage } from "../models/ServerGoodbyeMessage";
+import {Injectable} from '@angular/core';
+import {WebsocketSuperclass} from "../models/WebsocketSuperclass";
+import {Association, Event, User} from "../models/entities";
+import {environment} from "../environments/environment";
+import {MessageService} from "primeng/api";
+import {ServerSendsEventFeed} from "../models/ServerSendsEventFeed";
+import {ServerSendsAssociationFeed} from "../models/ServerSendsAssociationFeed";
+import {ServerSendsUserFeed} from '../models/ServerSendsUserFeed';
+import {TokenServiceService} from "../../serviceAngular/token-service.service";
+import {BaseDto} from "../models/baseDto";
+import {ServerGoodbyeMessage} from "../models/ServerGoodbyeMessage";
+import {ServerSendsEventIds} from "../models/ServerSendsEventIds";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class WebSocketClientService {
   users: User[] = []; // Array to store user data
   events: Event[] = []; // Array to store event data
   associations: Association[] = []; // Array to store association data
-  user: User = {}
+  currentlyLoginUser: User = {}
+  attendEvents: Event[] = [];
 
   public socketConnection: WebsocketSuperclass; // WebSocket connection instance
 
@@ -71,7 +73,7 @@ export class WebSocketClientService {
     if (!user) {
       throw new Error('User with id ' + userId + ' not found');
     }
-    this.user = user;
+    this.currentlyLoginUser = user;
   }
 
   // Get event by ID
@@ -115,5 +117,19 @@ export class WebSocketClientService {
   // Handle the goodbye message from the server
   ServerGoodbyeMessage(dto: ServerGoodbyeMessage) {
     console.log(dto.message)
+  }
+
+  // Handle the event where the server sends event IDs
+  ServerSendsEventIds(dto: ServerSendsEventIds) {
+    const eventIds = dto.EventIdsQueries!;
+    console.log(eventIds)
+    const attendEvents: Event[] = [];
+    for (let i = 0; i < eventIds.length; i++) {
+      const event = this.GetEventsById(eventIds[i]);
+      console.log(event)
+      attendEvents.push(event);
+    }
+    this.attendEvents = attendEvents;
+
   }
 }

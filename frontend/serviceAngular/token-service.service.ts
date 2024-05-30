@@ -21,9 +21,7 @@ export class TokenServiceService {
     const token = this.getToken();
     if (token) {
       const tokenPayload = JSON.parse(atob(token.split('.')[1]));
-      console.log(tokenPayload)
       const userId = Number(tokenPayload.nameid);
-      console.log(userId)
       if (!isNaN(userId)) {
         return userId;
       }

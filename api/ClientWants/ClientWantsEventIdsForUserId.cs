@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Fleck;
+using infrastructure.Models.QueryModels;
 using lib;
 using service.Services;
 
@@ -9,29 +10,21 @@ public class ClientWantsEventIdsForUserDto : BaseDto
 {
     public int UserId { get; set; }
 }
-
-
-public class ClientWantsEventIdsForUser : BaseEventHandler<ClientWantsEventIdsForUserDto>
+public class ClientWantsEventIdsForUserId : BaseEventHandler<ClientWantsEventIdsForUserDto>
 {
     private readonly EventService _eventService;
-
-    public ClientWantsEventIdsForUser(EventService eventService)
+    public ClientWantsEventIdsForUserId(EventService eventService)
     {
         _eventService = eventService;
     }
-
     public override Task Handle(ClientWantsEventIdsForUserDto dto, IWebSocketConnection socket)
     {
         try
         {
-            var eventIds = _eventService.GetEventIdsForUser(dto.UserId);
-            var response = new
+            socket.Send(JsonSerializer.Serialize(new ServerSendsEventIdsDto()
             {
-                eventType = "EventIdsForUser",
-                userId = dto.UserId,
-                eventIds = eventIds
-            };
-            socket.Send(JsonSerializer.Serialize(response));
+                EventIdsQueries = _eventService.GetEventIdsForUser(dto.UserId)
+            }));
         }
         catch (Exception e)
         {
@@ -42,9 +35,8 @@ public class ClientWantsEventIdsForUser : BaseEventHandler<ClientWantsEventIdsFo
         return Task.CompletedTask;
     }
 }
-public class EventIdsForUserMessage
+
+public class ServerSendsEventIdsDto : BaseDto
 {
-    public string EventType { get; set; } = "EventIdsForUser";
-    public int UserId { get; set; }
-    public IEnumerable<int> EventIds { get; set; }
+    public IEnumerable<int>? EventIdsQueries { get; set; }
 }

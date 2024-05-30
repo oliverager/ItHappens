@@ -98,8 +98,14 @@
                 </div>
                 <div class="event-image">
                   <img [src]="event.ImageUrl" alt="">
-                  <span class="attendees">{{ event?.Amount }} Attendies</span>
-                  <button class="attend-button">Attend</button>
+                  <div style="display: flex; flex-direction: row">
+                    <div class="attend-button">
+                      <button>Attend</button>
+                    </div>
+                    <div class="attendees">
+                      <span>{{ event?.Amount }} Attendies</span>
+                    </div>
+                  </div>
                 </div>
               </a>
             </div>

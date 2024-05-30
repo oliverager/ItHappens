@@ -279,6 +279,7 @@ time {
 
   a {
     display: flex;
+    flex-grow: 1;
     text-decoration: none;
     color: inherit;
     align-items: center;
@@ -286,41 +287,46 @@ time {
 
   .event-details {
     flex: 2;
+    margin-right: 0.75rem;
   }
 
   .event-image {
+    display: flex;
+    flex-direction: column;
+    max-height: 180px;
+    justify-content: space-between;
     flex: 1;
+    gap: 5px;
     position: relative;
   }
 
   .event-image img {
-    width: 100%;
+    max-width: 240px;
+    max-height: 140px;
     border-radius: 10px;
   }
 }
 
 .attendees {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 0 10px 10px 0;
 }
 
-.attend-button {
+.attend-button button {
   background-color: #ffffff;
   color: #ff0055;
-  border: 2px solid  #ff0055;
-  padding: 10px 20px;
-  border-radius: 10px;
-  cursor: pointer;
+  border: 2px solid #ff0055;
+  padding: 10px 10px;
+  border-radius: 10px 0 0 10px;
   transition: background-color 0.3s ease, color 0.3s;
 
   &:hover {
     background-color: #ff0055;
     color: #ffffff;
+    cursor: pointer;
   }
 }
 
