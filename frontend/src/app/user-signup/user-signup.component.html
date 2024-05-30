@@ -1,74 +1,85 @@
-<div class="body">
-<form class="" [formGroup]="userForm">
-  <div class="box-rounder">
-  <h1 class="box-rounder-h1">Sign Up</h1>
+<main>
+  <div class="body">
+    <form class="" [formGroup]="userForm">
+      <div class="box-rounder">
+        <h1 class="title">Sign Up</h1>
 
-    <div class="input-box">
-      <input  type="text" id="firstname" name="firstname" placeholder="First Name" class="form-control" formControlName="firstName">
-      <div class="text danger" *ngIf="userForm.controls['firstName'].invalid &&
-      (userForm.controls['firstName'].touched || userForm.controls['firstName'].dirty || isFormSubmitted)">
-        <span *ngIf="userForm.controls['firstName'].errors?.['required']">This is Required</span>
-      </div>
-    </div>
-
-    <div class="input-box">
-      <input  type="text" id="username" name="username" placeholder="userName" class="form-control" formControlName="userName">
-      <div class="text danger" *ngIf="userForm.controls['userName'].invalid &&
+        <div class="input-box">
+          <input type="text" id="username" name="username" placeholder="Username" class="form-control"
+                 formControlName="userName">
+          <div class="text danger" *ngIf="userForm.controls['userName'].invalid &&
       (userForm.controls['userName'].touched || userForm.controls['userName'].dirty || isFormSubmitted)">
-        <span *ngIf="userForm.controls['userName'].errors?.['required']">This is Required</span>
-    </div>
-    </div>
+            <span *ngIf="userForm.controls['userName'].errors?.['required']">This is Required</span>
+          </div>
+        </div>
 
-  <div class="input-box">
-    <input type="text" id="lastname" name="lastname" placeholder="Last Name" class="form-control" formControlName="lastName">
-    <div class="text danger" *ngIf="userForm.controls['lastName'].invalid &&
+        <div class="input-box">
+          <input type="text" id="firstname" name="firstname" placeholder="First Name" class="form-control"
+                 formControlName="firstName">
+          <div class="text danger" *ngIf="userForm.controls['firstName'].invalid &&
+      (userForm.controls['firstName'].touched || userForm.controls['firstName'].dirty || isFormSubmitted)">
+            <span *ngIf="userForm.controls['firstName'].errors?.['required']">This is Required</span>
+          </div>
+        </div>
+
+        <div class="input-box">
+          <input type="text" id="lastname" name="lastname" placeholder="Last Name" class="form-control"
+                 formControlName="lastName">
+          <div class="text danger" *ngIf="userForm.controls['lastName'].invalid &&
     (userForm.controls['lastName'].touched || userForm.controls['lastName'].dirty || isFormSubmitted)">
-      <span *ngIf="userForm.controls['lastName'].errors?.['minlength']">Min 4 characters required</span>
-  </div>
-  </div>
+            <span *ngIf="userForm.controls['lastName'].errors?.['minlength']">Min 4 characters required</span>
+          </div>
+        </div>
 
-  <div class="input-box">
-    <input  type="email" id="email" name="email" placeholder="email" class="form-control" formControlName="email">
-    <div class="text danger" *ngIf="userForm.controls['email'].invalid &&
+        <div class="input-box">
+          <input type="email" id="email" name="email" placeholder="Email" class="form-control" formControlName="email">
+          <div class="text danger" *ngIf="userForm.controls['email'].invalid &&
     (userForm.controls['email'].touched || userForm.controls['email'].dirty || isFormSubmitted)">
-      <span *ngIf="userForm.controls['email'].errors?.['email']">Email is not proper</span>
-    </div>
-  </div>
+            <span *ngIf="userForm.controls['email'].errors?.['email']">Email is not proper</span>
+          </div>
+        </div>
 
-  <div class="input-box">
-    <input type="tel" id="phoneNumber" name="phone Number" placeholder="Phone Number" pattern="[0-9]{8}" class="form-control" formControlName="phoneNumber">
-    <div class="text danger" *ngIf="userForm.controls['phoneNumber'].invalid &&
+        <div class="input-box">
+          <input type="tel" id="phoneNumber" name="phone Number" placeholder="Phone Number" pattern="[0-9]{8}"
+                 class="form-control" formControlName="phoneNumber">
+          <div class="text danger" *ngIf="userForm.controls['phoneNumber'].invalid &&
     (userForm.controls['phoneNumber'].touched || userForm.controls['phoneNumber'].dirty || isFormSubmitted)">
-      <span *ngIf="userForm.controls['phoneNumber'].errors?.['pattern']">This is not a valid phone number</span>
-    </div>
-  </div>
+            <span *ngIf="userForm.controls['phoneNumber'].errors?.['pattern']">This is not a valid phone number</span>
+          </div>
+        </div>
 
-    <div class="input-box">
-      <input  type="password" id="password" name="password" placeholder="Password" class="form-control" formControlName="password">
-      <div class="text danger" *ngIf="userForm.controls['password'].invalid &&
+        <div class="input-box">
+          <input type="password" id="password" name="password" placeholder="Password" class="form-control"
+                 formControlName="password">
+          <div class="text danger" *ngIf="userForm.controls['password'].invalid &&
       (userForm.controls['password'].touched || userForm.controls['password'].dirty)">
-        <span *ngIf="userForm.controls['password'].errors?.['passwordRequirements']">Password is not strong enough</span>
-      </div>
-    </div>
+          <span
+            *ngIf="userForm.controls['password'].errors?.['passwordRequirements']">Password is not strong enough</span>
+          </div>
+        </div>
 
-    <div *ngIf="getUserRole() === '3'">
-         <div class="input-box">
-      <input type="number" id="association_id" name="Association Id" placeholder="Association Id" pattern="" class="form-control" formControlName="association_id">
-      <div class="text danger" *ngIf="userForm.controls['association_id'].invalid &&
+        <div *ngIf="getUserRole() === '3'">
+          <div class="input-box">
+            <input type="number" id="association_id" name="Association Id" placeholder="Association Id" pattern=""
+                   class="form-control" formControlName="association_id">
+            <div class="text danger" *ngIf="userForm.controls['association_id'].invalid &&
     (userForm.controls['association_id'].touched || userForm.controls['association_id'].dirty || isFormSubmitted)">
-        <span *ngIf="userForm.controls['association_id'].errors?.['pattern']">This is not a valid association Id</span>
+            <span
+              *ngIf="userForm.controls['association_id'].errors?.['pattern']">This is not a valid association Id</span>
+            </div>
+          </div>
+        </div>
+
+
+        <button class="btn" type="button" (click)="onSubmit()">Sign Up</button>
+
+        <div *ngIf="getUserRole() === '3'">
+          <button class="btn" type="button" (click)="onSubmitOwner()">Create new Owner</button>
+        </div>
+
+
       </div>
-     </div>
-    </div>
-
-
-  <button class="btn" type="button" (click)="onSubmit()">Sign Up</button>
-
-  <div *ngIf="getUserRole() === '3'">
-    <button class="btn" type="button" (click)="onSubmitOwner()">Create new Owner</button>
+    </form>
   </div>
+</main>
 
-
-</div>
-</form>
-</div>

@@ -47,7 +47,6 @@ time {
   }
 }
 
-
 .info {
   width: 600px;
   padding: 1rem;
@@ -304,24 +303,14 @@ time {
 
 .attendees {
   width: 100%;
+  min-width: 180px;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   padding: 5px;
-  border-radius: 0 10px 10px 0;
-}
-
-.attend-button button{
-  background-color: #ffffff;
-  color: #ff0055;
-  border: 2px solid #ff0055;
-  padding: 10px 10px;
   border-radius: 10px;
-  transition: background-color 0.3s ease, color 0.3s;
 
-  &:hover {
-    background-color: #ff0055;
-    color: #ffffff;
-    cursor: pointer;
+  span {
+    margin-left: 10px;
   }
 }
 

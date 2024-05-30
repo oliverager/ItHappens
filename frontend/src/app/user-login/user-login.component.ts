@@ -7,12 +7,13 @@ import {MessageService} from "primeng/api";
 import {MessagesModule} from "primeng/messages";
 import {ToastModule} from "primeng/toast";
 import {TokenServiceService} from "../../../serviceAngular/token-service.service";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-user-login',
   standalone: true,
   imports: [
-    RouterOutlet, RouterLink, RouterLinkActive, ReactiveFormsModule, MessagesModule, ToastModule,
+    RouterOutlet, RouterLink, RouterLinkActive, ReactiveFormsModule, MessagesModule, ToastModule, NgIf,
   ],
   templateUrl: './user-login.component.html',
   styleUrl: './user-login.component.scss'
@@ -25,7 +26,7 @@ export class UserLoginComponent {
   constructor(public router: Router, private messageService: MessageService, private tokenService: TokenServiceService) {
 
     this.loginForm = new FormGroup({
-      email: new FormControl("", [Validators.required]),
+      email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [Validators.required])
     })
   }

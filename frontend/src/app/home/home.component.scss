@@ -66,7 +66,6 @@ header button {
 
 .events h2 span {
   color: #008193;
-  cursor: pointer;
 }
 
 .events-grid {
@@ -199,6 +198,10 @@ header button {
 
 .popular-associations {
   text-align: center;
+
+  span {
+    color: #008193;
+  }
 
   .associations-grid {
     display: flex;

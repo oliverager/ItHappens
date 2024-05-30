@@ -8,7 +8,7 @@
     <button routerLink="/user-signup">Join Today</button>
   </header>
   <section class="events">
-    <h2>Events near <span>Esbjerg C, ES</span></h2>
+    <h2>Popular <span>Event</span> on ItHappens</h2>
     <div class="events-grid">
       <div class="event-card" *ngFor="let event of ws.events | slice:0:8">
         <a [routerLink]="['/event-info', event.EventId]">
@@ -48,7 +48,7 @@
       </div>
     </div>
   </section>  <section class="popular-associations">
-    <h2>Popular associations on ItHappens</h2>
+    <h2>Popular <span>Associations</span> on ItHappens</h2>
     <div class="associations-grid">
       <div class="association-card" *ngFor="let association of ws.associations | slice:0:4">
         <a [routerLink]="['/associations-info', association.AssociationId]">
