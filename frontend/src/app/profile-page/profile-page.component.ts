@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {WebSocketClientService} from "../ws.client.service";
-import {Event} from "../../models/entities";
 import {TokenServiceService} from "../../../serviceAngular/token-service.service";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
@@ -22,9 +21,9 @@ export class ProfilePageComponent {
     const userId = tokenService.getUserId();
     this.ws.GetUsersById(userId);
 
-    this.numberOfEvents = this.ws.attendEvents.length;
-
     this.ws.socketConnection.sendDto(new ClientWantsEventIdsForUserId({userId: this.ws.currentlyLoginUser.user_id}))
+
+    this.numberOfEvents = this.ws.attendEvents.length;
   }
 
 

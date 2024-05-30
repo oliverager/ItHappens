@@ -255,7 +255,8 @@ time {
 }
 
 .event-card {
-  max-width: 500px;
+  width: 500px;
+  height: 260px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -273,25 +274,25 @@ time {
 
   a {
     display: flex;
+    justify-content: space-between;
     width: 100%;
+    height: 100%;
     text-decoration: none;
     color: inherit;
-    align-items: center;
   }
 
   .event-details {
-    flex: 2;
     margin-right: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   .event-image {
     display: flex;
     flex-direction: column;
-    height: 164px;
     justify-content: space-between;
-    flex: 1;
     gap: 5px;
-    position: relative;
   }
 
   .event-image img {

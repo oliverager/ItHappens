@@ -39,7 +39,7 @@ export class UserLoginComponent {
         summary: "Success",
         detail: "You log in",
       });
-      //this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
     } else {
       console.log("Failed to login")
     }

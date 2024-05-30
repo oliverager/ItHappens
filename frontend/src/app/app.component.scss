@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald&display=swap');
+
 body, html {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 .navbar {
@@ -14,30 +16,44 @@ body, html {
 }
 
 .logo img {
-  height: 50px;
+  height: 65px;
 
   &:hover {
     cursor: pointer;
   }
 }
 
-nav ul {
-  list-style: none;
-  padding: 0;
+nav {
+  display: flex;
+  flex-direction: row;
+  gap: .5rem;
+  padding: 0.5rem;
 }
 
-nav ul li {
-  display: inline;
+nav ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: .5rem;
 }
 
 nav ul li button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 16px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  background: #ffffff;
+  border: 2px solid #007889;
+  border-radius: 5px;
+  color: #007889;
+  font-size: 24px;
+  padding: 5px 20px;
+  font-weight: 600;
+  font-family: 'Oswald', sans-serif;
+  transition: color 0.3s ease, background-color 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #007889;
+    color: #fff;
+  }
 }
 
 nav ul li button:hover {
@@ -46,50 +62,46 @@ nav ul li button:hover {
 
 
 footer{
-  background-color: cadetblue;
+  background-color: #007889;
 }
 .footerContainer{
   width: 100%;
-  padding: 30px 30px 10px ;
-}
-.footerNav{
-  margin: 30px 0;
-}
-.footerNav ul{
   display: flex;
-  justify-content: center;
-  list-style-type: none;
-}
-.footerNav ul li a{
-  color:white;
-  margin: 20px;
-  text-decoration: none;
-  font-size: 1.3em;
-  opacity: 0.7;
-  transition: 0.5s;
-
-}
-.footerNav ul li a:hover{
-  opacity: 1;
-}
-.footerBottom{
-  background-color: cadetblue;
-  padding: 10px;
-  text-align: center;
-}
-.footerBottom p{
-  color: white;
+  justify-content: space-evenly;
+  padding: 30px ;
 }
 .designer{
   opacity: 0.7;
-  text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
-  margin: 0px 5px;
+  font-family: 'Oswald', sans-serif;
 }
-.footerNav ul li{
-  width:100%;
+.w-33 {
+  width: 33%;
+}
+.Copyright {
   text-align: center;
-  margin: 10px;
+  color: white;
 }
+.GitHub {
 
+  a {
+    text-decoration: none;
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+
+    svg {
+      fill: #fff;
+    }
+
+    p {
+      text-align: center;
+      padding-left: 0.5rem;
+    }
+  }
+
+
+}

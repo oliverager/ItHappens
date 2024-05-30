@@ -1,23 +1,27 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {NgOptimizedImage} from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 import {ToastModule} from "primeng/toast";
 import {ClientWantsToGetEventFeed} from "../models/ClientWantsToGetEventFeed";
 import {ClientWantsToGetAssociationFeed} from "../models/ClientWantsToGetAssociationFeed";
 import {WebSocketClientService} from "./ws.client.service";
 import {ClientWantsToGetUserFeed} from "../models/ClientWantsToGetUserFeed";
+import {TokenServiceService} from "../../serviceAngular/token-service.service";
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgOptimizedImage, RouterLink, RouterLinkActive, ToastModule],
+  imports: [RouterOutlet, NgOptimizedImage, RouterLink, RouterLinkActive, ToastModule, NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
+  private readonly storage = window.sessionStorage;
   title = 'frontend';
-  ws = inject(WebSocketClientService)
+
+  constructor(public ws: WebSocketClientService, public ts: TokenServiceService) {
+  }
 
   ngOnInit(): void {
     this.GetEvents();
@@ -34,5 +38,14 @@ export class AppComponent implements OnInit {
   }
   GetUser(): void {
     this.ws.socketConnection.sendDto(new ClientWantsToGetUserFeed())
+  }
+
+  get isLogin(): boolean {
+    let username = this.ts.getUsername();
+    return username != null;
+  }
+
+  SignOut() {
+    this.storage.removeItem('token')
   }
 }
