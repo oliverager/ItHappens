@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {WebSocketClientService} from "../ws.client.service";
 import {Association, Event} from "../../models/entities";
@@ -14,7 +14,7 @@ import {ClientWantsToAttendEvent} from "../../models/ClientWantsToAttendEvent";
   templateUrl: './event-info.component.html',
   styleUrl: './event-info.component.scss'
 })
-export class EventInfoComponent {
+export class EventInfoComponent implements OnInit{
   events: Event | undefined;
   association: Association | undefined;
 
@@ -57,12 +57,35 @@ export class EventInfoComponent {
     }
   }
 
+  ngOnInit() {
+    this.disableAttendButtonIfNecessary();
+  }
+
   attendEvent() {
     const userId = this.tokenService.getUserId();
     const eventId = Number(this.activatedRoute.snapshot.params['id']);
     const dto = new ClientWantsToAttendEvent({ userId, eventId });
-
     this.ws.socketConnection.send(JSON.stringify(dto));
+    this.router.navigate(["/home"]);
+  }
+
+  disableAttendButtonIfNecessary() {
+    const attendEvents: Event[] = this.ws.attendEvents;
+    const currentEventId = this.events?.EventId;
+
+    if (attendEvents && currentEventId) {
+      const isAttended = attendEvents.some(event => event.EventId === currentEventId);
+      if (isAttended) {
+        const attendButton = document.querySelector('.attend-btn') as HTMLButtonElement;
+        if (attendButton) {
+          attendButton.disabled = true
+          attendButton.classList.add('disabled-button'); // Add disabled class for styling
+          console.log('disabled')
+        } else {
+          console.log('not disabled')
+        }
+      }
+    }
   }
 }
 

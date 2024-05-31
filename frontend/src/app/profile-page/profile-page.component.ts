@@ -5,7 +5,6 @@ import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component
 import {MatDialog} from "@angular/material/dialog";
 import {ClientWantsToDeleteUser} from "../../models/ClientWantsToDeleteUser";
 import {Router} from "@angular/router";
-import {ClientWantsEventIdsForUserId} from "../../models/ClientWantsEventIdsForUserId";
 
 @Component({
   selector: 'app-profile-page',
@@ -18,12 +17,9 @@ export class ProfilePageComponent {
 
   constructor(public ws: WebSocketClientService, public tokenService: TokenServiceService,
               public dialog: MatDialog, public route: Router) {
-    const userId = tokenService.getUserId();
-    this.ws.GetUsersById(userId);
-
-    this.ws.socketConnection.sendDto(new ClientWantsEventIdsForUserId({userId: this.ws.currentlyLoginUser.user_id}))
-
     this.numberOfEvents = this.ws.attendEvents.length;
+
+
   }
 
 

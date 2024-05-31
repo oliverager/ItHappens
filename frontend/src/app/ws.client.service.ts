@@ -69,11 +69,15 @@ export class WebSocketClientService {
 
   // Get user by ID
   GetUsersById(userId: number) {
-    const user = this.users.find(user => user.user_id === userId);
-    if (!user) {
-      throw new Error('User with id ' + userId + ' not found');
-    }
-    this.currentlyLoginUser = user;
+    // Simulating a timeout to mimic asynchronous behavior
+    setTimeout(() => {
+      const user = this.users.find(user => user.user_id === userId);
+      if (!user) {
+        throw new Error('User with id ' + userId + ' not found');
+      }
+      this.currentlyLoginUser = user;
+      console.log(this.currentlyLoginUser)
+    }, 1000); // You can adjust the timeout duration as needed
   }
 
   // Get event by ID

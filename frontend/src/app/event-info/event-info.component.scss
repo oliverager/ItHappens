@@ -233,3 +233,14 @@ button {
   background-color: #DC2626;
   border-color: #DC2626;
 }
+.disabled-button {
+  background-color: #7E7E7EFF;
+  border-color: #7E7E7EFF;
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: #7E7E7EFF;
+    border-color: #7E7E7EFF;
+    cursor: not-allowed;
+  }
+}
